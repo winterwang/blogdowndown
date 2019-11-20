@@ -14,7 +14,7 @@ weight = 110
 
 +++
 
-#### 平成31年(2019)
+#### 平成31年/令和1年(2019)
 
 1. 基礎医学セミナー1st, 2/13, am, Understand Sensitivity and Specificity, [slides](https://wangcc.me/seminar_2019/)
 2. 基礎医学セミナー2nd, 2/18, am, Pubmed and etc., [slides](https://wangcc.me/seminar_2019_pubmed/)

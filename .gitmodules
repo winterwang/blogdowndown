@@ -6,4 +6,4 @@
 	url = https://github.com/winterwang/winterwang.github.io
 [submodule "public"]
 	path = public
-	url = https://github.com/winterwang/winterwang.github.io
+	url = git@github.com:winterwang/winterwang.github.io.git
