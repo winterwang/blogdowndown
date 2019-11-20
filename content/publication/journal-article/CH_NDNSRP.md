@@ -6,16 +6,16 @@ authors:
 - Luigi Palla
 
 date: "2019-10-10"
-
+featured: true
 publication_types: ["2"]
 publication: Nutrients
 publication_short: Nutrients
 # selected = true
 url_dataset: https://beta.ukdataservice.ac.uk/datacatalogue/studies/study?id=6533#!/details
 url_pdf: https://www.mdpi.com/2072-6643/11/10/2476/pdf
-url_project: project/chronon/
-
-
+# url_project: chronon/
+projects: [chronon]
+commentable: true
 links:
 - name: Nutrients
   url: https://www.mdpi.com/2072-6643/11/10/2476

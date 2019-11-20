@@ -1,0 +1,13 @@
+---
+title: Aichi Workers' Cohort Study
+summary: A cohort study of cardiovascular diseases in a worksite in central Japan
+tags:
+- Aichi
+date: "2017-02-02T00:00:00Z"
+
+# Optional external URL for project (replaces project detail page).
+external_link: http://koei-nagoya.blogspot.jp/
+image:
+  caption: Aichi
+---
+
