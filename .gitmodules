@@ -1,3 +1,9 @@
 [submodule "themes/academic"]
 	path = themes/academic
 	url = https://github.com/gcushen/hugo-academic.git
+[submodule "winterwang.github.io"]
+	path = winterwang.github.io
+	url = https://github.com/winterwang/winterwang.github.io
+[submodule "public"]
+	path = public
+	url = https://github.com/winterwang/winterwang.github.io
