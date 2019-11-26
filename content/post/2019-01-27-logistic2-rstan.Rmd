@@ -1,0 +1,201 @@
+---
+title: Rstan Wonderful R-(5)
+author: ''
+date: '2019-02-03'
+slug: logistic-rstan2
+# slug: rstan-wonderful-r(3)
+categories:
+  - Bayesian
+  - R techniques
+  - statistics
+tags:
+  - Bayesian
+  - Medical Statistics
+header:
+  caption: 'Thomas Bayes'
+  image: '052816_bayesian-opener_free.jpg'
+output:
+  blogdown::html_page:
+    toc: true
+summary: "Rstan 學習筆記 Chapter 5.3"
+---
+
+# 另一種形式的貝葉斯邏輯回歸
+
+[前面一節](https://wangcc.me/post/logistic-rstan/)使用的數據是以學生爲單位，將每名學生的實際課時數和實際出勤數進行了彙總之後的總結性數據，本章我們來看看相同數據的另一種形式。由於分析中有人建議說，天氣狀況對出勤率也是有較大的影響的，所以希望在[前一節](https://wangcc.me/post/logistic-rstan/)已有的邏輯回歸模型中增加對天氣狀況的調整。那麼這時候需要使用的就是彙總之前的數據，也就是要是用實際記錄了每名學生每一次課時的出勤與否的原始數據。值得注意的是，這時候[原始數據](https://raw.githubusercontent.com/winterwang/RStanBook/master/chap05/input/data-attendance-3.txt)中每名學生的記錄有許多行，因爲每行記錄的是該名學生每次上課時的天氣狀況和他/她是否出勤(0,1)的結果。
+
+```{r}
+d <- read.table("https://raw.githubusercontent.com/winterwang/RStanBook/master/chap05/input/data-attendance-3.txt", 
+                     sep = ",", header = T)
+head(d, 10)
+```
+
+其中，
+
+- $Weather$，天氣數據 (`A` = 晴天，`B` = 多雲，`C` = 下雨)；
+- $Y$，該次課時學生是否出勤 (`0` = 缺勤，`1` = 出勤)。
+
+其他的數據和前一節中使用的數據相同。
+
+# 分析的目的
+
+本次數據分析的目的依然是瞭解幾個預測變量，天氣，是否喜歡打工，是否熱愛學習，對學生出勤率的影響。
+
+# 確認數據分佈
+
+
+你可以用先進的 `tidyverse` 進行簡單的數據彙總，看看天氣狀況不同時實際出勤率是否有差別:
+
+```{r message=FALSE}
+library(tidyverse)
+d %>% 
+  group_by(Weather, Y) %>% 
+  summarise (n= n()) %>%
+  mutate(rel.freq = paste0(round(100 * n/sum(n), 2), "%"))
+```
+
+如果你不想學習 `tidyverse`，也可以用下面的方法獲得類似的效果，
+
+```{r}
+aggregate(Y ~ Weather, data = d, FUN = table)
+```
+
+無論是哪種方法，我們都能大概猜出，天氣是晴天的時候 (`Weather = A`)，出勤率相對較高。
+
+在作者的原著中，[使用的是給分類型變量強制賦予連續值的方法](https://raw.githubusercontent.com/winterwang/RStanBook/master/chap05/run-model5-5.R)，這點確實有點噁心，爲了正常的模型，我們需要把天氣轉換成爲更加常見的啞變量 (dummy variable) 如下:
+
+```{r}
+d <- fastDummies::dummy_cols(d, select_columns = "Weather")
+head(d)
+```
+# 思考數據模型
+
+我們設想的數學模型應該是這樣子的:
+
+$$
+\begin{aligned}
+\text{logit}(q[i]) & = b_{1} + b_{2}A_{i} + b_{3}\text{Score}_{i} + b_{4}\text{WeatherB} + b_{5}\text{WeatherC} \\ 
+\text{where} & \\ 
+& \text{ WeatherB} = 0, \text{ WeatherC} = 0 \text{ indicates weather = A} \\ 
+& \text{ WeatherB} = 1, \text{ WeatherC} = 0 \text{ indicates weather = B} \\ 
+& \text{ WeatherB} = 0, \text{ WeatherC} = 1 \text{ indicates weather = C} \\
+Y[i] &\sim \text{Bernulli}(q[i])
+\end{aligned}
+$$
+
+# 寫下 Stan 模型代碼
+
+下面是相應的 Stan 模型:
+
+```
+data {
+  int I;
+  int<lower=0, upper=1> A[I];
+  real<lower=0, upper=1> Score[I];
+  int<lower=0, upper=1> W_B[I];
+  int<lower=0, upper=1> W_C[I];
+  int<lower=0, upper=1> Y[I];
+}
+
+// The parameters accepted by the model. 
+parameters {
+  real b[5];
+}
+
+// The model to be estimated. 
+model {
+   for (i in 1:I)
+    Y[i] ~ bernoulli_logit(b[1] + b[2]*A[i] + b[3]*Score[i] + b[4]*W_B[i] + b[5]*W_C[i]);
+}
+
+```
+
+
+和跑它們的 R 代碼
+```{r}
+library(rstan)
+data <- list(I=nrow(d), A=d$A, Score=d$Score/200, 
+             W_A=d$Weather_A, W_B = d$Weather_B, W_C = d$Weather_C, 
+             Y=d$Y)
+fit1 <- stan(file='stanfiles/myex4.stan', data=data, pars=c('b', "OR1", "OR2", "OR3", "OR4", "q"), seed=1234)
+fit1
+```
+
+
+# 檢查模型參數的收斂情況
+
+
+```{r chapter5-5, cache=FALSE, echo=TRUE, fig.cap='用 bayesplot包數繪製的模型5-5的MCMC鏈式軌跡圖 (trace plot)。', fig.align='center', out.width='80%', message=FALSE, fig.width=6, fig.height=4.2}
+library(bayesplot)
+
+color_scheme_set("mix-brightblue-gray")
+
+posterior5.5 <- rstan::extract(fit1, inc_warmup = TRUE, permuted = FALSE)
+
+p <- mcmc_trace(posterior5.5, n_warmup = 0, pars = c("b[1]", "b[2]", "b[3]",   "lp__"), facet_args = list(nrow = 2, labeller = label_parsed))
+
+p
+```
+
+
+```{r chapter5-5-acf, cache=TRUE, echo=TRUE, fig.cap='用 bayesplot包數繪製的事後樣本自相關圖(autocorrelation)。', fig.align='center', out.width='80%', message=FALSE}
+p <- mcmc_acf_bar(posterior5.5, pars = c("b[1]", "b[2]", "b[3]",   "lp__"))
+p
+```
+
+```{r step5-5-density, cache=TRUE, echo=TRUE, fig.cap='用 bayesplot包數繪製的事後樣本密度分佈圖。', fig.align='center', out.width='80%', message=FALSE}
+p <- mcmc_dens_overlay(posterior5.5, pars = c("b[1]", "b[2]", "b[3]", "OR1",  "OR2", "lp__"), color_chains = T)
+p
+```
+# 檢查模型的擬合情況
+
+
+```{r validity-of-model, cache=TRUE, echo=TRUE, fig.cap='不喜歡打工，且天氣晴天的情況下，分數在 30-200 點之間的學生的出勤概率 q 和它的 80% 可信區間範圍。圖中黑色實線是預測概率的事後分佈的中央值，灰色帶是可信區間範圍。', fig.align='center', out.width='80%', message=FALSE}
+ms <- rstan::extract(fit1)
+set.seed(123)
+logistic <- function(x) 1/(1+exp(-x))
+X <- 30:200
+q_qua <- logistic(t(sapply(1:length(X), function(i) {
+  q_mcmc <- ms$b[,1] + ms$b[,3]*X[i]/200
+  quantile(q_mcmc, probs=c(0.1, 0.5, 0.9))
+})))
+d_est <- data.frame(X, q_qua)
+colnames(d_est) <- c('X', 'p10', 'p50', 'p90')
+d$A <- as.factor(d$A)
+
+p <- ggplot(d_est, aes(x=X, y=p50))
+p <- p + theme_bw(base_size=18)
+p <- p + geom_ribbon(aes(ymin=p10, ymax=p90), fill='black', alpha=2/6)
+p <- p + geom_line(size=1)
+p <- p + geom_point(data=subset(d, A==0 & Weather=='A'), aes(x=Score, y=Y, color=A),
+  position=position_jitter(w=0, h=0.1), size=1)
+p <- p + labs(x='Score', y='q')
+p <- p + scale_color_manual(values=c('black'))
+p <- p + scale_y_continuous(breaks=seq(0, 1, 0.2))
+p <- p + xlim(30, 200)
+p
+# ggsave(file='output/fig5-9.png', plot=p, dpi=300, w=4.5, h=3)
+```
+
+圖\@ref(fig:validity-of-model)試圖把分數範圍在 30-200 之間的學生中，通過模型計算獲得的，在天氣晴朗，且不愛打工的孩子們的事後出勤概率的預測值(黑色實線)，和它的事後概率80%可信區間，以及對應的實際觀測值的結果(黑點)。但是，當預測變量越來越多，模型結果的可視化變得越來越困難。下面我們介紹兩種常見的評價邏輯回歸擬合結果的可視化圖。
+
+首先是圖 \@ref(fig:validity-of-model1) 顯示的事後出勤概率，和實際觀察出勤結果之間的關係圖。在這個圖中，橫軸是 $q[i]$ 的事後分佈的中央值(每名學生都有自己的事後出勤概率預測，它的中央值)，縱軸是該名學生實際是否在該次課上出勤的觀察結果。如果模型擬合的理想的話，那麼在 $Y=0$，也就是圖中的下半部分，大多數的預測點應該靠近概率較低的部分(也就是靠近左側)，同時，$y = 1$ 的部分預測概率應該大多數在靠近左側的部分。此圖其實提示我們該模型的擬合效果不理想。不能明顯地將出勤與不出勤較爲準確地區分開來。
+
+```{r validity-of-model1, cache=TRUE, echo=TRUE, fig.cap='把計算獲得的事後概率的中央值作爲每名學生是否出勤的概率預測(x 軸)，和實際觀察的出勤結果(y 軸)，繪製的散點圖。其中，灰色的小提琴圖其實是根據獲得的事後概率的中央值的概率密度曲線，繪製的上下對稱的圖形，形似小提琴。', fig.align='center', out.width='80%', message=FALSE}
+set.seed(123)
+ms <- rstan::extract(fit1)
+d_qua <- t(apply(ms$q, 2, quantile, prob=c(0.1, 0.5, 0.9)))
+colnames(d_qua) <- c('p10', 'p50', 'p90')
+d_qua <- data.frame(d, d_qua)
+d_qua$Y <- as.factor(d_qua$Y)
+d_qua$A <- as.factor(d_qua$A)
+
+p <- ggplot(data=d_qua, aes(x=Y, y=p50))
+p <- p + theme_bw(base_size=18)
+p <- p + coord_flip()
+p <- p + geom_violin(trim=FALSE, size=1.5, color='grey80')
+p <- p + geom_point(aes(color=A), position=position_jitter(w=0.4, h=0), size=1)
+p <- p + scale_color_manual(values=c('grey5', 'grey50'))
+p <- p + labs(x='Y', y='q')
+p
+```
