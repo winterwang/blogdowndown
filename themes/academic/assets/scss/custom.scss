@@ -1,1 +1,6 @@
 // Override this file to add your own SCSS styling.
+.diff_off{text-decoration: line-through;color: #CC0000;padding-left:8px;}
+.diff_add{background: #C1FFC1;padding:0 2px;}
+.diff_alert{background:Yellow;}
+.diffchar_off{text-decoration: line-through;color: #CC0000;}
+.diffchar_add{background: SpringGreen;}
