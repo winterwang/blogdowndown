@@ -26,6 +26,8 @@ output:
 summary: "快要可以搬新家咯"
 ---
 
+## Before 2019-12-03
+
 日本蓋房子的速度還是很快的。
 
 我這一轉眼馬上就要搬新家了，結果發現自己太多都還沒有準備。
@@ -44,3 +46,64 @@ summary: "快要可以搬新家咯"
 
 
 
+## UPdated 2019-12-3
+
+其實到這裏我才開始打算放重點圖片哈哈。
+過去了三個多月了，從夏天一直忙活到冬天。我家的房子終於平安建成。
+
+8月份地基好了以後，一樓的地板下面的空間開始鋪設：
+
+![](/img/IMG_20190817_143007.jpg)
+
+![](/img/IMG_20190817_143424.jpg)
+
+這是工人們鋪設時的錄像，可以看到地板下面有較大的隔空空間，還有厚厚的防熱層。
+
+<video autoplay width=auto height=auto controls allowfullscreen>
+  <source src="/video/VID_20190817_143428.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+  Your browser does not support the video tag.
+</video>
+
+之後就到了上棟的日子了：
+
+![](/img/IMG_20190822_091324.jpg)
+
+高高的腳手架前，用大吊車把工廠運來的房屋部件大大小小的送進工地。看這會飛的牆壁：
+
+![](/img/mmexport1566442416961.jpg)
+
+
+<video autoplay width=auto height=auto controls allowfullscreen>
+  <source src="/video/IMG_0689.MOV" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+  Your browser does not support the video tag.
+</video>
+
+一樓：
+
+![](/img/IMG_0699.jpg)
+
+
+二樓也搭起來了：
+
+![](/img/IMG_20190824_103057.jpg)
+
+站在二樓西側時的樣子：
+
+![](/img/mmexport1566614302031.jpg)
+
+二樓堆滿了建築資材：
+
+![](/img/mmexport1566614351032.jpg)
+
+一樓也堆滿了接下來需要的各種材料和工具：
+
+![](/img/mmexport1566614327505.jpg)
+
+
+南側可以看到東邊吐出來一塊是陽臺：
+![](/img/IMG_20190824_164155.jpg)
+
+
+![](/img/IMG_20190904_093820.jpg)
