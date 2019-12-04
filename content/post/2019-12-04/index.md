@@ -1,7 +1,7 @@
 ---
 title: 馬上搬家，腳手架拆除之後
 author: ''
-date: '2019-10-12'
+date: '2019-11-27'
 slug: home-almost-complete
 categories:
   - thoughts
