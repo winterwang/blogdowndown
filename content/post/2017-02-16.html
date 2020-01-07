@@ -1,0 +1,186 @@
+---
+title: 「統計解析のための線形代数」復習筆記7
+author: Chaochen Wang
+date: '2017-02-16'
+categories: [statistics]
+tags:
+  - learning notes
+  - basic mathematics
+  - linear algebra
+summary: "第2章　統計の基礎 P26-30"
+---
+
+
+
+<div id="分解平方和-1" class="section level2">
+<h2>分解平方和 1</h2>
+<p>樣本量均爲 <span class="math inline">\(n\)</span> 的兩變量 <span class="math inline">\(z, \hat{z}\)</span> 如下表，已知這兩個變量滿足條件：<br>
+<span class="math inline">\(\bar{z}=\frac{1}{n}\sum\limits_{i=1}^nz_i=\frac{1}{n}\sum\limits_{i=1}^n\hat{z}_i=\bar{\hat{z}},\)</span> <br>
+<span class="math inline">\(\sum\limits_{i=1}^n(z_i-\hat{z_i})(\hat{z_i}-\bar{z})=0\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">個体の番号</th>
+<th align="center">変量 <span class="math inline">\(z\)</span></th>
+<th align="center">変量 <span class="math inline">\(\hat{z}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(1\)</span></td>
+<td align="center"><span class="math inline">\(z_1\)</span></td>
+<td align="center"><span class="math inline">\(\hat{z}_1\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(2\)</span></td>
+<td align="center"><span class="math inline">\(z_2\)</span></td>
+<td align="center"><span class="math inline">\(\hat{z}_2\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(i\)</span></td>
+<td align="center"><span class="math inline">\(z_i\)</span></td>
+<td align="center"><span class="math inline">\(\hat{z}_i\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(n\)</span></td>
+<td align="center"><span class="math inline">\(z_n\)</span></td>
+<td align="center"><span class="math inline">\(\hat{z}_n\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>此時我們有：</p>
+<ul>
+<li><strong>全平方和</strong>(全変動，總平方和，總變動， <strong>Total sum of Squares</strong>)：<br>
+<span class="math inline">\(S_T=(z_i-\bar{z})^2+(z_2-\bar{z})^2+\cdots+(z_n-\bar{z})^2\\ \;\;\;\;=\sum\limits_{i=1}^n(z_i-\bar{z})^2\)</span></li>
+<li><strong>回歸平方和</strong>(回歸變動，<strong>Regression sum of Squares</strong>)<br>
+<span class="math inline">\(S_R=(\hat{z_1}-\bar{\hat{z}})^2+(\hat{z_2}-\bar{\hat{z}})^2+\cdots+(\hat{z_n}-\bar{\hat{z}})^2\\ \;\;\;\;=\sum\limits_{i=1}^n(\hat{z_i}-\bar{\hat{z}})^2=\sum\limits_{i=1}^n(\hat{z_i}-\bar{z})^2\)</span></li>
+<li><strong>殘差平方和</strong>(誤差平方和，殘差變動，誤差變動，<strong>residual sum of Squares</strong>)<br>
+<span class="math inline">\(S_e=(z_1-\hat{z_1})^2+(z_2-\hat{z_2})^2+\cdots+(z_n-\hat{z_n})^2\\ \;\;\;\;=\sum\limits_{i=1}^n(z_i-\hat{z_i})^2\)</span></li>
+<li>上面三個平方和之間，有如下的關系：
+<span class="math display" id="eq:Sumofsquares">\[\begin{equation}
+  S_T=S_R+S_e
+  \tag{1}
+  \end{equation}\]</span>
+<br>
+既：全平方和等於殘差平方和與回歸平方和之和。<a href="#eq:Sumofsquares">(1)</a>式被稱爲<strong>平方和的分解(decomposition of sum of squares)</strong></li>
+</ul>
+<div id="證明refeqsumofsquares式" class="section level5">
+<h5>證明<a href="#eq:Sumofsquares">(1)</a>式</h5>
+</div>
+<div id="解" class="section level5">
+<h5>解：</h5>
+<p><span class="math display">\[
+\begin{equation}
+\begin{split}
+S_T &amp; = \sum\limits_{i=1}^n(z_i-\bar{z})^2 \\
+&amp; = \sum\limits_{i=1}^n\left\{(z_i-\hat{z_i})+(\hat{z_i}-\bar{z})\right\}^2\\
+&amp; = \sum\limits_{i=1}^n\left\{(z_i-\hat{z_i})^2+(\hat{z_i}-\bar{z})^2+2(z_i-\hat{z_i})(\hat{z_i}-\bar{z})\right\}\\
+&amp; = \sum\limits_{i=1}^n(z_i-\hat{z_i})^2+\sum\limits_{i=1}^n(\hat{z_i}-\bar{z})^2 + 0\\
+&amp; = S_e + S_R
+\end{split}
+\end{equation}
+\]</span>
+最後一步等式，利用了一開始給出的條件 <span class="math inline">\(\sum\limits_{i=1}^n(z_i-\hat{z_i})(\hat{z_i}-\bar{z})=0\)</span><br>
+這裏的平方和分解與<strong>回歸分析</strong>有着緊密的聯系。</p>
+</div>
+</div>
+<div id="分解平方和-2" class="section level2">
+<h2>分解平方和 2</h2>
+<p>有樣本量爲 <span class="math inline">\(n\)</span> 的變量 <span class="math inline">\(z_1\)</span> 與樣本量爲 <span class="math inline">\(m\)</span> 的變量 <span class="math inline">\(z_2\)</span> 的數據如下表：</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">変量 <span class="math inline">\(z_1\)</span></th>
+<th align="center">変量 <span class="math inline">\(z_2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(z_{11}\)</span></td>
+<td align="center"><span class="math inline">\(z_{12}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(z_{21}\)</span></td>
+<td align="center"><span class="math inline">\(z_{22}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(z_{i1}\)</span></td>
+<td align="center"><span class="math inline">\(z_{i2}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(z_{n1}\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"><span class="math inline">\(z_{m2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>此時我們有：</p>
+<ul>
+<li>樣本<strong>平均值</strong>： <br>
+<span class="math inline">\(\bar{z_1}=\frac{1}{n}\sum\limits_{i=1}^nz_{i1}, \;\bar{z_2}=\frac{1}{m}\sum\limits_{i=1}^mz_{i2}\)</span></li>
+<li>樣本<strong>總平均值</strong>： <br>
+<span class="math inline">\(\bar{z}=\frac{1}{n+m}(\sum\limits_{i=1}^nz_{i1}+\sum\limits_{i=1}^mz_{i2})\)</span></li>
+<li>全<strong>平方和</strong> (全変動，總平方和，總變動, <strong>Total sum of Squares</strong>)：<br>
+<span class="math inline">\(S_T=\left\{(z_{11}-\bar{z})^2+(z_{21}-\bar{z})^2+\cdots+(z_{n1}-\bar{z})^2\right\}\\ \;\;\;\;\;\;\;\;+\left\{(z_{12}-\bar{z})^2+(z_{22}-\bar{z})^2+\cdots+(z_{m2}-\bar{z})^2\right\}\\ \;\;\;\;=\sum\limits_{i=1}^n(z_{i1}-\bar{z})^2+\sum\limits_{i=1}^m(z_{i2}-\bar{z})^2\)</span></li>
+<li><strong>羣內平方和</strong>(組內平方和，級內平方和，羣內變動，級內變動，變量內平方和，變量內變動，<strong>Within-groups sum of Squares</strong>)：<br>
+<span class="math inline">\(S_W=\left\{(z_{11}-\bar{z_1})^2+(z_{21}-\bar{z_1})^2+\cdots+(z_{n1}-\bar{z_1})^2\right\}\\ \;\;\;\;\;\;\;\;+\left\{(z_{12}-\bar{z_2})^2+(z_{22}-\bar{z_2})^2+\cdots+(z_{m2}-\bar{z_2})^2\right\}\\ \;\;\;\;=\sum\limits_{i=1}^n(z_{i1}-\bar{z_1})^2+\sum\limits_{i=1}^m(z_{i2}-\bar{z_2})^2\)</span></li>
+<li><strong>羣間平方和</strong>(組間平方和，級間平方和，羣間變動，級間變動，變量間平方和，變量間變動，<strong>Between-groups sum of Squares</strong>)：<br>
+<span class="math inline">\(S_B=\left\{(\bar{z_1}-\bar{z})^2+(\bar{z_1}-\bar{z})^2+\cdots+(\bar{z_1}-\bar{z})^2\right\}\\ \;\;\;\;\;\;\;\;+\left\{(\bar{z_2}-\bar{z})^2+(\bar{z_2}-\bar{z})^2+\cdots+(\bar{z_2}-\bar{z})^2\right\}\\ \;\;\;\;=\sum\limits_{i=1}^n(\bar{z_1}-\bar{z})^2+\sum\limits_{i=1}^m(\bar{z_2}-\bar{z})^2\\ \;\;\;\;=n(\bar{z_1}-\bar{z})^2+m(\bar{z_2}-\bar{z})^2\)</span></li>
+<li>上面三個平方和之間有如下的關系：
+<span class="math display" id="eq:Sumofsqua">\[\begin{equation}
+S_T=S_W+S_B
+\tag{2}
+\end{equation}\]</span></li>
+</ul>
+<div id="證明refeqsumofsqua式" class="section level5">
+<h5>證明<a href="#eq:Sumofsqua">(2)</a>式</h5>
+</div>
+<div id="解-1" class="section level5">
+<h5>解：</h5>
+<p>注意利用：<span class="math inline">\(\sum\limits_{i=1}^n(z_{i1}-\bar{z_1})(\bar{z_1}-\bar{z})=(\bar{z_1}-\bar{z})\sum\limits_{i=1}^n(z_{i1}-\bar{z_1})\\ \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\:=(\bar{z_1}-\bar{z})(\sum\limits_{i=1}^nz_{i1}-n\bar{z_1})\\ \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\:=(\bar{z_1}-\bar{z})(n\bar{z_1}-n\bar{z_1})=0\)</span><br>因此<br></p>
+<p><span class="math display">\[
+\begin{equation}
+\begin{split}
+S_T &amp; = \sum_{i=1}^n(z_{i1}-\bar{z})^2+\sum_{i=1}^m(z_{i2}-\bar{z})^2\\
+&amp; = \sum_{i=1}^n\left\{(z_{i1}-\bar{z_1})+(\bar{z_1}-\bar{z})\right\}^2\\
+&amp;\;\;\;\;\; + \sum_{i=1}^m\left\{(z_{i2}-\bar{z_2})+(\bar{z_2}-\bar{z})\right\}^2\\
+&amp; = \sum_{i=1}^n\left\{(z_{i1}-\bar{z_1})^2+2(z_{i1}-\bar{z_1})(\bar{z_1}-\bar{z})+(\bar{z_1}-\bar{z})^2\right\}\\
+&amp;\;\;\;\;\; +\sum_{i=1}^m\left\{(z_{i2}-\bar{z_2})^2+2(z_{i2}-\bar{z_2})(\bar{z_2}-\bar{z})+(\bar{z_2}-\bar{z})^2\right\}\\
+&amp; = \sum_{i=1}^n(z_{i1}-\bar{z_1})^2 + n(\bar{z_1}-\bar{z})^2\\
+&amp;\;\;\;\;\; + \sum_{i=1}^m(z_{i2}-\bar{z_2})^2 + m(\bar{z_2}-\bar{z})^2\\
+&amp; = S_W+S_B
+\end{split}
+\end{equation}
+\]</span></p>
+</div>
+</div>
+<div id="變量的合成與加權" class="section level2">
+<h2>變量的合成與加權</h2>
+<p>我們說，將 <span class="math inline">\(p\)</span> 個變量 <span class="math inline">\(x_1,x_2,\cdots,x_p\)</span> 轉變成一次式：<span class="math inline">\(w_1x_1+w_2x_2+\cdots+w_px_p (=\hat{y})\)</span> 的過程稱爲變量的合成 <strong>(linear combination of variables)</strong> <span class="math inline">\(\hat{y}\)</span> 被叫做<strong>合成變量</strong>。系數 <span class="math inline">\(w_1,w_2,\cdots,w_p\)</span> 被叫做<strong>權重 (weight)</strong>。假如 <span class="math inline">\(x_1,x_2,\cdots,x_p\)</span> 是 <span class="math inline">\(p\)</span> 個科目的考試得分，那麼:</p>
+<ul>
+<li><span class="math inline">\(w_1=w_2=\cdots=w_p=1\)</span> 時，<span class="math inline">\(\hat{y}\)</span> 意思就是 <span class="math inline">\(p\)</span> 個科目的總分</li>
+<li><span class="math inline">\(w_1=w_2=\cdots=w_p=\frac{1}{p}\)</span> 時，<span class="math inline">\(\hat{y}\)</span> 意思就是 <span class="math inline">\(p\)</span> 個科目的平均分</li>
+</ul>
+<p>多元變量分析中，我們實質上做的許多事就是思考如何合理的決定這個<strong>權重</strong>。</p>
+</div>

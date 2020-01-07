@@ -1,0 +1,106 @@
+---
+title: 「統計解析のための線形代数」復習筆記15
+author: Chaochen Wang
+date: '2017-03-08'
+categories: [statistics]
+tags:
+  - learning notes
+  - basic mathematics
+  - linear algebra
+summary: "第4章　矩陣 matrix P63-68"
+---
+
+
+
+<div id="單位矩陣" class="section level2">
+<h2>單位矩陣</h2>
+<p>對角成分全部都是 <span class="math inline">\(1\)</span> (此時我們假定有 <span class="math inline">\(n\)</span> 個)，的對角矩陣被叫做<strong>單位矩陣(identity matrix, unit matrix)</strong>。寫作：
+<span class="math inline">\(\left( \begin{array}{c} 1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; \cdots &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; \vdots \\ 0 &amp; 0 &amp; 0 &amp; \ddots &amp; 0 \\ 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 1 \end{array} \right)=E_n=I_n\)</span> 下標 <span class="math inline">\(n\)</span> 常被省略。一般的，將 <span class="math inline">\(E_n\)</span> 從左往右乘以 <span class="math inline">\(n\)</span> 次正方形矩陣 <span class="math inline">\(A\)</span>，的結果和從右往左相乘的結果是相等的： <span class="math inline">\(E_nA=AE_n=A\)</span>。</p>
+<ol style="list-style-type: decimal">
+<li><p>單位矩陣 <span class="math inline">\(E=\left( \begin{array}{c} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ \end{array} \right)\)</span> 和矩陣 <span class="math inline">\(A=\left( \begin{array}{c} a_1 &amp; a_2 &amp; a_3 \\ b_1 &amp; b_2 &amp; b_3 \\ c_1 &amp; c_2 &amp; c_3 \\ \end{array} \right)\)</span> 的積爲：<span class="math inline">\(EA=\left( \begin{array}{c} a_1 &amp; a_2 &amp; a_3 \\ b_1 &amp; b_2 &amp; b_3 \\ c_1 &amp; c_2 &amp; c_3 \\ \end{array} \right)=AE=A\)</span>，矩陣 <span class="math inline">\(A\)</span> 的<strong>所有成分均不變。</strong></p></li>
+<li><p><span class="math inline">\(E_nE_n=E_n\)</span>。像這樣，自己與自己相乘，結果等於自己的矩陣，被叫做<strong>冪等矩陣(idempotent matrix, 冪等行列「べきとうぎょうれつ」)</strong>。即，<span class="math inline">\(HH(=H^2)=H\)</span> 成立時，<span class="math inline">\(H\)</span> 是冪等矩陣。</p></li>
+<li><p><span class="math inline">\(\underline{x}=E\underline{x}, \lambda\underline{x}=\lambda E\underline{x}\)</span> 此等式會在後面<strong>特徵值(eigenvalue, 固有値問題)</strong>時使用。</p></li>
+<li><p><a href="https://winterwang.github.io/post/2017-03-01/">前一個小節</a>中的對角矩陣(diagonal matrix) <span class="math inline">\(D^{\frac{1}{2}}\)</span> 則具有這樣的性質： <span class="math inline">\(D^{\frac{1}{2}}D^{-\frac{1}{2}}=D^{-\frac{1}{2}}D^{\frac{1}{2}}=E_n\)</span></p></li>
+</ol>
+</div>
+<div id="逆矩陣-inverse-matrix" class="section level2">
+<h2>逆矩陣 inverse matrix</h2>
+<p>如果正方形矩陣 <span class="math inline">\(A\)</span> 存在另一個正放心矩陣 <span class="math inline">\(X\)</span> 使得他們滿足 <span class="math inline">\(AX=XA=E\)</span>，即乘積爲一個單位矩陣，那麼我們說 <span class="math inline">\(X\)</span> 是 <span class="math inline">\(A\)</span> 的<strong>逆矩陣(inverse matrix)</strong>，寫作：<span class="math inline">\(A^{-1}\)</span>。可以將上面的連等式改成：<span class="math inline">\(AA^{-1}=A^{-1}A=E\)</span>。</p>
+<ol style="list-style-type: decimal">
+<li><p>如果矩陣 <span class="math inline">\(A=\left( \begin{array}{c} a &amp; b \\ c &amp; d \\ \end{array} \right)\)</span> 的成分滿足： <span class="math inline">\(ad -bc \neq 0\)</span>，那麼有 <span class="math inline">\(A^{-1}=\frac{1}{ad-bc}\left( \begin{array}{c} d &amp; -b \\ -c &amp; a \\ \end{array} \right)\)</span>。<strong>如果， <span class="math inline">\(ad-bc=0\)</span> 那麼我們認爲 <span class="math inline">\(A\)</span> 的逆矩陣不存在。</strong></p></li>
+<li><p>矩陣 <span class="math inline">\(P=\left( \begin{array}{c} \cos \theta &amp; -\sin \theta \\ \sin \theta &amp; \cos \theta \\ \end{array} \right)\)</span> 的逆矩陣 <span class="math inline">\(P^{-1}=\left( \begin{array}{c} \cos \theta &amp; \sin \theta \\ -\sin \theta &amp; \cos \theta \\ \end{array} \right)\)</span> <span class="diff_alert">注意此處出現了逆矩陣的逆矩陣爲元矩陣的例子。</span></p></li>
+<li><p><strong>對稱矩陣(symmetric matrix)</strong> <span class="math inline">\(A=\left( \begin{array}{c} 1 &amp; 2 &amp; 3 \\ 2 &amp; 4 &amp; 5 \\ 3 &amp; 5 &amp; 6 \\ \end{array} \right)\)</span> 的逆矩陣 <span class="math inline">\(A^{-1}=\left( \begin{array}{c} 1 &amp; -3 &amp; 2 \\ -3 &amp; 3 &amp; -1 \\ 2 &amp; -1 &amp; 0 \\ \end{array} \right)\)</span> <span class="diff_alert">注意此處出現了對稱矩陣的逆矩陣還是對稱矩陣的例子。</span></p></li>
+<li><p>矩陣 <span class="math inline">\(A=\left( \begin{array}{c} -11 &amp; 2 &amp; 2 \\ -4 &amp; 0 &amp; 1 \\ 6 &amp; -1 &amp; -1 \\ \end{array} \right)\)</span> 的逆矩陣 <span class="math inline">\(A^{-1}=\left( \begin{array}{c} 1 &amp; 0 &amp; 2 \\ 2 &amp; -1 &amp; 3 \\ 4 &amp; 1 &amp; 8 \\ \end{array} \right)\)</span></p></li>
+</ol>
+</div>
+<div id="正交矩陣-orthogonal-matrix" class="section level2">
+<h2>正交矩陣 orthogonal matrix</h2>
+<p>如果正方形矩陣 <span class="math inline">\(P\)</span> 滿足： <span class="math inline">\(PP^t=P^tP=E\)</span> (單位矩陣)；或者滿足 <span class="math inline">\(P^t=P^{-1}\)</span> 時，我們說這個正方形矩陣 <span class="math inline">\(P\)</span> 爲<strong>正交矩陣(orthogonal matrix，直交行列「ちょっこうぎょうれつ」)</strong>。正交矩陣如果用列向量來表示，那麼這些組成正交矩陣的列向量被稱爲<strong>規範正交系(orthonomal system，正規直交系)</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>矩陣 <span class="math inline">\(P=\left( \begin{array}{c} \cos \theta &amp; -\sin \theta \\ \sin \theta &amp; \cos \theta \\ \end{array} \right)\)</span> 是2次的正交矩陣。如果 <span class="math inline">\(\underline{p}_1=\left( \begin{array}{c} \cos \theta \\ \sin \theta \\ \end{array} \right), \; \underline{p}_2=\left( \begin{array}{c} -\sin \theta \\ \cos \theta \\ \end{array} \right)\)</span>，那麼列向量的長度有：<span class="math inline">\(\| \underline{p}_1 \|=\| \underline{p}_2 \|=1\)</span>，<span class="math inline">\(\underline{p}_1\cdot\underline{p}_2=0\)</span>。因此組成矩陣 <span class="math inline">\(P\)</span> 的兩個列向量 <span class="math inline">\(\underline{p}_1,\underline{p}_2\)</span> 構成了一個規範正交系。</p></li>
+<li><p>矩陣 <span class="math inline">\(P=\left( \begin{array}{c} \frac{1}{\sqrt{3}} &amp; \frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{6}} \\ \frac{1}{\sqrt{3}} &amp; -\frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{6}} \\ \frac{1}{\sqrt{3}} &amp; 0 &amp; -\frac{2}{\sqrt{6}} \\ \end{array} \right)\)</span> 是個3次正交矩陣。如果 <span class="math inline">\(\underline{p}_1=\left( \begin{array}{c} \frac{1}{\sqrt{3}}\\ \frac{1}{\sqrt{3}}\\ \frac{1}{\sqrt{3}}\\ \end{array} \right), \underline{p}_2=\left( \begin{array}{c} \frac{1}{\sqrt{2}} \\ -\frac{1}{\sqrt{2}} \\ 0 \\ \end{array} \right), \underline{p}_3=\left( \begin{array}{c} \frac{1}{\sqrt{6}}\\ \frac{1}{\sqrt{6}}\\ -\frac{2}{\sqrt{6}}\\ \end{array} \right)\)</span> 這三個列向量構成了一個規範正交系。</p></li>
+</ol>
+</div>
+<div id="三角矩陣-triangular-matrix" class="section level2">
+<h2>三角矩陣 triangular matrix</h2>
+<p>主對角線的左下部分全部爲 <span class="math inline">\(0\)</span> 的正方形矩陣被叫做：<strong>上三角矩陣(upper triangular matrix)</strong>，右上部分的成分全部爲 <span class="math inline">\(0\)</span> 的正方形矩陣被叫做： <strong>下三角矩陣(lower triangular matrix)</strong>。上三角矩陣，下三角矩陣，統稱爲<strong>三角矩陣</strong>。有時候左下部分或者右上部分就簡略的只寫一個大的 <span class="math inline">\(O\)</span>。</p>
+<p>類型相同的兩個上三角矩陣的積依然是一個上三角矩陣。兩個類型相同的下三角矩陣的積也依然是一個下三角矩陣。</p>
+<p><span class="math display">\[
+上三角矩陣： \left(
+\begin{array}{c}
+a_{11}&amp; a_{12} &amp; \cdots &amp; a_{1n}\\
+0     &amp; a_{22} &amp; \cdots &amp; a_{2n}\\
+\vdots&amp; \ddots &amp; \ddots &amp; \vdots\\
+0     &amp; \cdots &amp; 0      &amp; a_{nn}
+\end{array}
+\right)
+=\left(
+\begin{array}{c}
+a_{11}&amp; a_{12} &amp; \cdots &amp; a_{1n}\\
+      &amp; a_{22} &amp; \cdots &amp; a_{2n}\\
+      &amp;        &amp; \ddots &amp; \vdots\\
+\Huge{0}  &amp;        &amp;        &amp; a_{nn}
+\end{array}
+\right)\]</span></p>
+<p><span class="math display">\[
+下三角矩陣：\left(
+\begin{array}{c}
+a_{11}&amp; 0 &amp; \cdots &amp; 0 \\
+a_{21}&amp; a_{22} &amp; \ddots &amp; \vdots \\
+\vdots&amp; \cdots &amp; \ddots &amp; 0\\
+a_{n1}&amp; a_{n2} &amp; \cdots   &amp; a_{nn}
+\end{array}
+\right)=\left(
+\begin{array}{c}
+a_{11}&amp; &amp;&amp;\Huge{0}  \\
+a_{21}&amp; a_{22} &amp;  \\
+\vdots&amp; \cdots &amp; \ddots &amp;\\
+a_{n1}&amp; a_{n2} &amp; \cdots   &amp; a_{nn}
+\end{array}
+\right)\]</span></p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\left( \begin{array}{c} 2 &amp; 1 \\ 0 &amp; 8 \\ \end{array} \right), \left( \begin{array}{c} -3 &amp; 0 &amp; 6 \\ 0 &amp; 5 &amp; 2 \\ 0 &amp; 0 &amp; 4 \\ \end{array} \right), \left( \begin{array}{c} 5 &amp; -6 &amp; 3 &amp; 2 \\ 0 &amp; 9 &amp;-2 &amp; 4 \\ 0 &amp; 0 &amp; 3 &amp; 7 \\ 0 &amp; 0 &amp; 0 &amp; 1 \end{array} \right)\)</span> 這些都是上三角矩陣。</p></li>
+<li><p><span class="math inline">\(\left( \begin{array}{c} 2 &amp; 0 \\ 5 &amp; 8 \\ \end{array} \right), \left( \begin{array}{c} -3 &amp; 0 &amp; 0 \\ 8 &amp; 5 &amp; 0 \\ 7 &amp; 2 &amp; 4 \\ \end{array} \right), \left( \begin{array}{c} 5 &amp; 0 &amp; 0 &amp; 0 \\ 2 &amp; 9 &amp; 0 &amp; 0 \\ 3 &amp; 10 &amp; 3 &amp; 0 \\ 5 &amp; 1 &amp; 34 &amp; 0 \end{array} \right)\)</span> 這些都是下三角矩陣。</p></li>
+</ol>
+</div>
+<div id="階梯形矩陣-echelon-matrix" class="section level2">
+<h2>階梯形矩陣 echelon matrix</h2>
+<p>如下所示，第1行，第2行，第3行，行數增加的同時，左側的成分中 <span class="math inline">\(0\)</span> 的個數跟着增加的矩陣被叫做<strong>階梯形矩陣(echelon matrix)</strong>。 <span class="math inline">\(\#\)</span> 表示非 <span class="math inline">\(0\)</span> 的數， <span class="math inline">\(*\)</span> 表示任意數。<span class="math inline">\(\#\)</span> 的個數，或者說此矩陣的非零向量的個數被定義爲這個矩陣的<strong>階數 (rank)</strong>。階梯形矩陣的階數記爲： <span class="math inline">\(rank(A)\)</span>。零矩陣 <span class="math inline">\(O\)</span> 的階數： <span class="math inline">\(rank(O)=0\)</span>。</p>
+<p><span class="math display">\[\left(
+\begin{array}{c}
+\# &amp; * &amp; * &amp; * &amp; * &amp; * &amp; * &amp; *  &amp; *\\
+0 &amp; \# &amp; * &amp; * &amp; * &amp; * &amp; * &amp; *  &amp; * \\
+0 &amp; 0 &amp; 0 &amp; \# &amp; * &amp; * &amp; * &amp; *  &amp; * \\
+0 &amp; 0 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 0 &amp; \# &amp; *  \\
+0 &amp; 0 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0  &amp; 0
+\end{array}
+\right)\]</span></p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(A=\left( \begin{array}{c} 2 &amp; 5 &amp; 6 &amp; 9\\ 0 &amp; 5 &amp; -1 &amp; 4\\ 0 &amp; 0 &amp; 5 &amp; 0\\ \end{array} \right)， rank(A)=3\)</span></p></li>
+<li><p><span class="math inline">\(B=\left( \begin{array}{c} 4 &amp; 0 &amp; 6 &amp; 0\\ 0 &amp; 5 &amp; 0 &amp; 4\\ 0 &amp; 0 &amp; 0 &amp; 5\\ \end{array} \right)， rank(B)=3\)</span></p></li>
+<li><p><span class="math inline">\(C=\left( \begin{array}{c} 2 &amp; 0 &amp; 0 &amp; 0\\ 0 &amp; 0 &amp; -7 &amp; 4\\ 0 &amp; 0 &amp; 0 &amp; -1\\ \end{array} \right)， rank(C)=3\)</span></p></li>
+<li><p><span class="math inline">\(D=\left( \begin{array}{c} 4 &amp; 0 &amp; 6 &amp; 0\\ 0 &amp; 0 &amp; 0 &amp; 4\\ 0 &amp; 0 &amp; 0 &amp; 0\\ \end{array} \right), rank(D)=2\)</span></p></li>
+<li><p><span class="math inline">\(F=\left( \begin{array}{c} 0 &amp; 2 &amp; 0 &amp; 0\\ 0 &amp; 0 &amp; 0 &amp; 0\\ 0 &amp; 0 &amp; 0 &amp; 0\\ \end{array} \right), rank(F)=1\)</span></p></li>
+<li><p><span class="math inline">\(O=\left( \begin{array}{c} 0 &amp; 0 &amp; 0 &amp; 0\\ 0 &amp; 0 &amp; 0 &amp; 0\\ 0 &amp; 0 &amp; 0 &amp; 0\\ \end{array} \right), rank(O)=0\)</span></p></li>
+</ol>
+</div>

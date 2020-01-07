@@ -1,0 +1,103 @@
+---
+title: 「統計解析のための線形代数」復習筆記13
+author: Chaochen Wang
+date: '2017-02-28'
+categories: [statistics]
+tags:
+  - learning notes
+  - basic mathematics
+  - linear algebra
+summary: "第4章　矩陣 matrix P57-59"
+---
+
+
+
+<div id="連立一次方程式與矩陣向量的積" class="section level2">
+<h2>連立一次方程式與矩陣向量的積</h2>
+<p>連立一次方程式可以改寫爲<strong>矩陣與向量的積形成的向量</strong>的形式。特別的，以連立方程式的系數作成分的矩陣被叫做<strong>系數矩陣(coefficient matrix)</strong>。當我們看到連立方程式，應該能立刻條件反射地聯想到其對應的<strong>矩陣和向量的積</strong>。</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\begin{align} \left\{ \begin{array}{rr}  a_1+2a_2+3a_3 = 3\\ 2a_1+4a_2+5a_3 = 5\\ 3a_1+5a_2+6a_3 = 7 \end{array} \right. \end{align}\)</span> 可以改寫成 <span class="math inline">\(\left( \begin{array}{c} 1 &amp; 2 &amp; 3 \\ 2 &amp; 4 &amp; 5 \\ 3 &amp; 5 &amp; 6 \end{array} \right)\left( \begin{array}{c} a_1\\ a_2\\ a_3 \end{array} \right)=\left( \begin{array}{c} 3\\ 5\\ 7 \end{array} \right)\)</span> 的形式。<br>
+如果把等號右邊的列向量寫到<strong>系數矩陣</strong>的右側，形成的矩陣被叫做<strong>擴大系數矩陣(augmented coefficient)</strong>：<br>
+<span class="math inline">\(\left( \begin{array}{c} 1 &amp; 2 &amp; 3 &amp; 3 \\ 2 &amp; 4 &amp; 5 &amp; 5 \\ 3 &amp; 5 &amp; 6 &amp; 7 \end{array} \right)\)</span></p></li>
+<li><p><span class="math inline">\(\begin{align} \left\{ \begin{array}{rr} a_{11}x_1+a_{12}x_2+a_{13}x_3=0\\ a_{21}x_1+a_{22}x_2+a_{23}x_3=0\\ \end{array} \right. \end{align}\)</span> 可以改寫成 <span class="math inline">\(\left( \begin{array}{c} a_{11} &amp; a_{12} &amp; a_{13} \\ a_{21} &amp; a_{22} &amp; a_{23} \\ \end{array} \right)\left( \begin{array}{c} x_1\\ x_2\\ x_3 \end{array} \right)=\left( \begin{array}{c} 0\\ 0\\ \end{array} \right)\)</span></p></li>
+<li><p><span class="math inline">\(\begin{align} \left\{ \begin{array}{rr} (5-\lambda)x_1+ x_2+ x_3 = 0\\  x_1+(3-\lambda)x_2+ x_3 = 0\\  x_1+ x_2+(3-\lambda)x_3 = 0 \end{array} \right. \end{align}\)</span> 可以改寫爲 <span class="math inline">\(\left( \begin{array}{c} 5-\lambda &amp; 1 &amp; 1 \\ 1 &amp; 3-\lambda &amp; 1 \\ 1 &amp; 1 &amp; 3-\lambda \end{array} \right)\left( \begin{array}{c} x_1\\ x_2\\ x_3 \end{array} \right)=\left( \begin{array}{c} 0\\ 0\\ 0 \end{array} \right)\)</span></p></li>
+</ol>
+</div>
+<div id="矩形矩陣" class="section level2">
+<h2>矩形矩陣</h2>
+<p>列數行數不相等的矩陣，被稱爲<strong>矩形矩陣(rectangular matrix)</strong>。特別的行數 <span class="math inline">\(&gt;\)</span> 列數的矩陣被叫做<strong>垂直型矩形矩陣</strong>。行數 <span class="math inline">\(&lt;\)</span> 列數的矩陣被叫做<strong>水平型矩形矩陣</strong>。多元變量分析時，數據常常被加工稱爲垂直型矩形矩陣的形式。</p>
+<hr />
+<table>
+<thead>
+<tr class="header">
+<th align="center">個体</th>
+<th align="center">体重 <span class="math inline">\((kg)\)</span></th>
+<th align="center">身長 <span class="math inline">\((cm)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">安倍さん</td>
+<td align="center"><span class="math inline">\(53\)</span></td>
+<td align="center"><span class="math inline">\(157\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">伊藤さん</td>
+<td align="center"><span class="math inline">\(67\)</span></td>
+<td align="center"><span class="math inline">\(172\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">植村さん</td>
+<td align="center"><span class="math inline">\(49\)</span></td>
+<td align="center"><span class="math inline">\(163\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">江川さん</td>
+<td align="center"><span class="math inline">\(80\)</span></td>
+<td align="center"><span class="math inline">\(178\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">小野さん</td>
+<td align="center"><span class="math inline">\(74\)</span></td>
+<td align="center"><span class="math inline">\(181\)</span></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<ul>
+<li>5人的體重和身高數據被表示爲上面的表格： <br>
+如果只提取出表格中的數字寫成垂直型矩形矩陣： <span class="math inline">\(\left(  \begin{array}{c} 53 &amp; 157 \\ 67 &amp; 172 \\ 49 &amp; 163 \\ 80 &amp; 178 \\ 74 &amp; 181 \\  \end{array}  \right)\)</span></li>
+</ul>
+</div>
+<div id="正方形矩陣" class="section level2">
+<h2>正方形矩陣</h2>
+<p>行數和列數相等的矩陣被稱爲<strong>正方形矩陣(sqare matrix)</strong>。一個正方形的矩陣如果類型爲 <span class="math inline">\((n,n)\)</span>，又被叫做是 <span class="math inline">\(n\)</span> 次正方矩陣或者 <span class="math inline">\(n\)</span> 次矩陣。</p>
+<p><span class="math display">\[A_{n\times n}= \left(
+\begin{array}{c}
+a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\
+a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+a_{n1} &amp; a_{n2} &amp; \cdots &amp; a_{nn}
+\end{array}
+\right)\]</span></p>
+<p>從左上角往右下角方向劃一條對角線，這條對角線的名稱爲<strong>主對角線(main diagonal)</strong>。主對角線上有的成分 <span class="math inline">\(a_{11},a_{22},\cdots, a_{nn}\)</span>，被叫做<strong>對角成分(diagonal element)</strong>。其餘的成分被叫做<strong>非對角成分(off-diagonal element)</strong>。對角成分的和被叫做是該矩陣的跡(trace/spur)，寫作 <span class="math inline">\(tr(A)=\sum\limits_{i=1}^na_{ii}\)</span>
+。
+<span class="math inline">\(A=\left( \begin{array}{c} 1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \\ 7 &amp; 8 &amp; 9 \end{array} \right)\)</span> 是 <span class="math inline">\(3\)</span> 次正方形矩陣， <span class="math inline">\(tr(A)=1+5+9=15\)</span></p>
+</div>
+<div id="矩陣轉置" class="section level2">
+<h2>矩陣轉置</h2>
+<p><span class="math inline">\((m,n)\)</span> 型矩陣 <span class="math inline">\(A_{m\times n}=(a_{ij})\)</span> 的行與列互相對調，被叫做<strong>轉置(transpose)</strong>，形成的新 <span class="math inline">\((n,m)\)</span> 型矩陣，被叫做 <span class="math inline">\(A\)</span> 的<strong>轉置矩陣 (transposed matrix)</strong> ： <span class="math inline">\((a_{ji})\)</span> 有多種標記方式：<span class="math inline">\(A^t, A^\prime, A^T, ^TA\)</span> 等，我們今後統一使用 <span class="math inline">\(A^t\)</span>。轉置矩陣具有如下的性質：</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\((A^t)^t=A\)</span></li>
+<li><span class="math inline">\((AB)^t=B^tA^t\)</span> <span class="diff_alert">注意： 不是<span class="math inline">\(A^tB^t\)</span></span></li>
+<li><span class="math inline">\((A+B)^t=A^t+B^t\)</span></li>
+<li><span class="math inline">\((kA)^t=kA^t\)</span> (<span class="math inline">\(k\)</span>爲標量 scalar)</li>
+</ol>
+<div id="練習" class="section level4">
+<h4>練習</h4>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(A=\left( \begin{array}{c} 1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \\ 7 &amp; 8 &amp; 9 \end{array} \right)\)</span> 的轉置矩陣爲：<span class="math inline">\(A^t=\left( \begin{array}{c} 1 &amp; 4 &amp; 7 \\ 2 &amp; 5 &amp; 8 \\ 3 &amp; 6 &amp; 9 \end{array} \right)\)</span></p></li>
+<li><p><span class="math inline">\(B=\left( \begin{array}{c} 1 &amp; 2 &amp; 3 &amp; 4\\ 5 &amp; 6 &amp; 7 &amp; 8\\ \end{array} \right)\)</span> 的轉置矩陣爲：<span class="math inline">\(B^t=\left( \begin{array}{c} 1 &amp; 5 \\ 2 &amp; 6 \\ 3 &amp; 7 \\ 4 &amp; 8 \end{array} \right)\)</span></p></li>
+</ol>
+</div>
+</div>

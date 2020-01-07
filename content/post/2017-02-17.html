@@ -1,0 +1,58 @@
+---
+title: 「統計解析のための線形代数」復習筆記8
+author: Chaochen Wang
+date: '2017-02-17'
+categories: [statistics]
+tags:
+  - learning notes
+  - basic mathematics
+  - linear algebra
+summary: "第3章　向量 vector P31-34"
+---
+
+
+
+<div id="向量-vector" class="section level2">
+<h2>向量 vector</h2>
+<div id="列向量-column-vector" class="section level3">
+<h3>列向量 column vector</h3>
+<p>在等號的右側，將數字寫成一列，左右用圓括號或者方括號包含在內的形式，被叫做列向量(column vector)：</p>
+<p><span class="math inline">\(\underline{a}=\left( \begin{array}{c} a_1\\ a_2\\ \vdots\\ a_i\\ \vdots\\ a_n \end{array} \right), \;\; \textbf{a}=\left[ \begin{array}{c} a_1\\ a_2\\ \vdots\\ a_i\\ \vdots\\ a_n \end{array} \right]\)</span><br></p>
+<ul>
+<li><p>我們接下來將會繼續定義，向量的加減法，標量乘法(scalar multiplication)。把上述的向量用一個文字表示的時候，通常會記爲下劃線 <span class="math inline">\(\underline{a}\)</span>，或者是加粗的小寫字母： <span class="math inline">\(\bf{a}\)</span>。</p></li>
+<li><p>構成向量的各個數字，被命名爲<strong>成分(component, element, entry)</strong>，從上往下第 <span class="math inline">\(i\)</span> 個成分稱爲第 <span class="math inline">\(i\)</span> 成分。</p></li>
+<li><p>成分的個數爲 <span class="math inline">\(n\)</span>，就被稱爲這個向量具有 <span class="math inline">\(n\)</span> 個<strong>維度(次元，dimension)</strong>，或者說這個向量的維度爲 <span class="math inline">\(n\)</span>。成分可以是數字，也可以是函數，或者式子。如果兩個列向量的維度一致，我們稱這兩個列向量的<strong>型(size, order)</strong>,或者 <strong>類型(type)</strong> 一致。</p></li>
+<li><p>成分只有一個的向量，被特別稱爲<strong>標量(scalar)</strong>，原則上不加括號。</p></li>
+<li><p>將向量成分全部羅列出來，寫成上面的形式的過程，被稱爲<strong>成分表示</strong>。在多元變量分析中，我們說到向量，多默認指的就是列向量。</p></li>
+</ul>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\underline{b}=\left( \begin{array}{c} 16\\ 59\\ 80\\ \end{array} \right)=\left[ \begin{array}{c} 16\\ 59\\ 80\\ \end{array} \right]=\textbf{b}\)</span><br>今後我們都用字母帶下劃線，圓括號包含數字的方式表示向量。</p></li>
+<li><p><span class="math inline">\(\underline{c}=\left( \begin{array}{c} \sin t+\cos t\\ \cos t+\tan t-2\\ \tan t + \sin t\\ \end{array} \right)\)</span></p></li>
+<li><p>當 <span class="math inline">\(F\)</span> 爲 <span class="math inline">\(a_1,a_2,a_3\)</span> 的函數時，寫作 <span class="math inline">\(F(a_1,a_2,a_3)\)</span>。 以<strong>三個未知數的偏微分</strong>爲成分的向量(梯度向量，gradient vector)，寫成下面等式左邊的形式。可以簡略寫作: <span class="math inline">\(\underline{a}=\left( \begin{array}{c} a_1\\ a_2\\ a_3\\ \end{array} \right)\)</span>。<span class="math inline">\(\nabla\)</span>讀作<code>nabla</code>。<br>
+<span class="math inline">\(\left( \begin{array}{c} \frac{\partial F}{\partial a_1}\\ \frac{\partial F}{\partial a_2}\\ \frac{\partial F}{\partial a_3}\\ \end{array} \right)=\frac{\partial F}{\partial \underline{a}}=\nabla_{\underline{a}}F\)</span></p></li>
+</ol>
+</div>
+</div>
+<div id="橫向量行向量-row-vector" class="section level2">
+<h2>橫向量(行向量) row vector</h2>
+<p>在等號的右側，將數字寫成一行，左右用圓括號或者方括號包含在內的形式，被叫做橫向量(row vector):</p>
+<p><span class="math inline">\(\underline{a}=(a_1,a_2,\cdots,a_j,\cdots,a_n), \; \textbf{a}=[a_1,a_2,\cdots,a_j,\cdots,a_n]\)</span></p>
+<p>成分，維度，類型等的定義與列向量相同。另外注意，維度相同，但是一個是橫向量，一個是列向量的話，這兩個向量是不同類型的。</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\underline{x}=(x_1,x_2,x_3)\)</span><br>
+有時也可以不用逗號分隔成分。 寫作 <span class="math inline">\((x_1 \; x_2 \;x_3)\)</span>。下同。</li>
+<li><span class="math inline">\((\frac{\partial F}{\partial x_1},\frac{\partial F}{\partial x_2},\frac{\partial F}{\partial x_3})=\frac{\partial F}{\partial \underline{x}}=\nabla_{\underline{x}F}\)</span></li>
+<li><span class="math inline">\(\underline{u}=(\sin\theta\cos\phi, \sin\theta\cos\theta, \cos\theta)\)</span></li>
+</ol>
+</div>
+<div id="向量的轉置-vector-transpose" class="section level2">
+<h2>向量的轉置 (vector transpose)</h2>
+<p>將列向量的每個成分，按照從上到下的順序，一字橫着排開寫成橫向量。這個向量稱爲原來列向量的轉置向量(transposed vector)。反之亦然。</p>
+<p>向量 <span class="math inline">\(\underline{a}\)</span> 的轉置向量，可以標記爲 <span class="math inline">\(\underline{a}^t,\;\underline{a}^\prime,\;^t\underline{a},\;\underline{a}^T, \;^T\underline{a}\)</span> 各種形式。今後統一用 <span class="math inline">\(\underline{a}^t\)</span>。</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\underline{a}=\left( \begin{array}{c} a_1\\ a_2\\ a_3\\ \end{array} \right)\)</span> 的轉置向量我們會記爲：<br>
+<span class="math inline">\(\underline{a}^t=\left( \begin{array}{c} a_1\\ a_2\\ a_3\\ \end{array} \right)^t=(a_1,a_2,a_3)\)</span></li>
+<li><span class="math inline">\(\underline{x}=(x_1.x_2,x_3)\)</span> 的轉置向量我們會記爲：<br>
+<span class="math inline">\(\underline{x}^t=(x_1.x_2,x_3)^t=\left( \begin{array}{c} x_1\\ x_2\\ x_3\\ \end{array} \right)\)</span></li>
+</ol>
+</div>

@@ -1,0 +1,185 @@
+---
+title: 「統計解析のための線形代数」復習筆記6
+author: Chaochen Wang
+date: '2017-02-15'
+categories: [statistics]
+tags:
+  - learning notes
+  - basic mathematics
+  - linear algebra
+summary: "第2章　統計の基礎 P22-25"
+---
+
+
+
+<div id="數據的變換" class="section level2">
+<h2>數據的變換</h2>
+<ol style="list-style-type: decimal">
+<li>平均值附近的偏差:
+<ul>
+<li>各個數值 <span class="math inline">\(x_i\)</span> 與樣本平均值 <span class="math inline">\(\bar{x}\)</span> 的差 <span class="math display">\[x_i^\prime=x_i-\bar{x} (i = 1,2,\cdots,n)\]</span> <br>
+稱爲數據 <span class="math inline">\(x_i\)</span> 在它的平均值 <span class="math inline">\(\bar{x}\)</span> 附近的<strong>偏差(deviation)</strong>。通常我們說<strong>求偏差</strong>，指的是，對數據 <span class="math inline">\(x_i\)</span> 進行<strong>偏差轉換</strong>。這個過程又被稱作是<strong>中心變換(centering)</strong></li>
+<li>關於偏差，我們列舉如下兩個有特徵的的<strong>概括統計</strong>：
+<ul>
+<li>樣本平均值：
+<span class="math display" id="eq:samplemean">\[\begin{equation}
+   \bar{x}^\prime=\frac{1}{n}\sum_{i=1}^nx_i^\prime=0
+   \tag{1}
+   \end{equation}\]</span></li>
+<li>樣本偏差平方和：
+<span class="math display" id="eq:SSprime">\[\begin{equation}
+  SS^\prime=\sum_{i=1}^n(x^\prime)^2=SS
+  \tag{2}
+  \end{equation}\]</span></li>
+</ul></li>
+</ul></li>
+</ol>
+<div id="練習證明refeqsamplemean" class="section level4">
+<h4>練習：證明<a href="#eq:samplemean">(1)</a></h4>
+</div>
+<div id="解" class="section level4">
+<h4>解：</h4>
+<p><strong>證明<a href="#eq:samplemean">(1)</a></strong>:
+<span class="math display">\[\bar{x}^\prime=\frac{\sum\limits_{i=1}^n(x_i-\bar{x})}{n}\\
+\;\;\;=\frac{\sum\limits_{i=1}^nx_i-n\bar{x}}{n}\\
+\;\;\;=\frac{\sum\limits_{i=1}^nx_i}{n}-\bar{x}\\
+\;\;\;=\bar{x}-\bar{x}=0\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>數據的標準化：
+<ul>
+<li>將數據 <span class="math inline">\(x_i\)</span> 的平均值 <span class="math inline">\(\bar{x}\)</span> 附近的偏差除以樣本標準偏差 <span class="math inline">\(s\)</span> 從而獲得下面式子所表示的數據 <span class="math inline">\(z_i\)</span> 的過程，被叫做<strong>數據的標準化 (standardization)</strong>：
+<span class="math display" id="eq:standardization">\[\begin{equation}
+ z_i=\frac{x_i-\bar{x}}{s}
+ \tag{3}
+ \end{equation}\]</span></li>
+<li>標準化後的數據 <span class="math inline">\(z_i\)</span> 的<strong>概括統計</strong>有下列特徵：
+<ul>
+<li>樣本平均值：
+<span class="math display" id="eq:samplemeans">\[\begin{equation}
+  \bar{z}=\frac{1}{n}\sum_{i=1}^nz_i=0
+  \tag{4}
+  \end{equation}\]</span></li>
+<li>樣本方差:
+<span class="math display" id="eq:Ssquare">\[\begin{equation}
+  s_{z}^2=\frac{1}{n}\sum_{i=1}^nz_i^2=1
+  \tag{5}
+  \end{equation}\]</span></li>
+</ul></li>
+<li>由於標準化數據具有上述兩個非常顯著的特徵，均值爲 <span class="math inline">\(0\)</span>，方差爲 <span class="math inline">\(1\)</span>，因此我們實際分析數據過程中常常對數據進行標準化。標準化以後的數據，單位消失，變成了一組<strong>無名數</strong></li>
+<li><span class="math inline">\(\divideontimes\)</span> 數據的標準化，有時你會看到被定義爲:
+<span class="math display" id="eq:newstandardization">\[\begin{equation}
+ z_i=\frac{x_i-\bar{x}}{u}
+ \tag{6}
+ \end{equation}\]</span> <br>
+此時的不偏樣本方差爲：
+<span class="math display" id="eq:unbsamplevar">\[\begin{equation}
+ u_z^2=\frac{1}{n-1}\sum_{i=1}{n}z_i^2=1
+ \tag{7}
+ \end{equation}\]</span></li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="變量數據的概括統計" class="section level2">
+<h2>2變量數據的概括統計：</h2>
+<div id="樣本量同爲-n-的-2-變量-x_1x_2-的數據表示爲如下表格" class="section level5">
+<h5>樣本量同爲 <span class="math inline">\(n\)</span> 的 <span class="math inline">\(2\)</span> 變量 <span class="math inline">\(x_1,x_2\)</span> 的數據，表示爲如下表格：</h5>
+<table>
+<thead>
+<tr class="header">
+<th align="center">個体の番号</th>
+<th align="center">変量 <span class="math inline">\(x_1\)</span></th>
+<th align="center">変量 <span class="math inline">\(x_2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(1\)</span></td>
+<td align="center"><span class="math inline">\(x_{11}\)</span></td>
+<td align="center"><span class="math inline">\(x_{12}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(2\)</span></td>
+<td align="center"><span class="math inline">\(x_{21}\)</span></td>
+<td align="center"><span class="math inline">\(x_{22}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(i\)</span></td>
+<td align="center"><span class="math inline">\(x_{i1}\)</span></td>
+<td align="center"><span class="math inline">\(x_{i2}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(n\)</span></td>
+<td align="center"><span class="math inline">\(x_{n1}\)</span></td>
+<td align="center"><span class="math inline">\(x_{n2}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="按照變量-x_1x_2-各自的定義" class="section level5">
+<h5>按照變量 <span class="math inline">\(x_1,x_2\)</span> 各自的定義：</h5>
+<ul>
+<li>樣本<strong>平均值</strong>：<span class="math inline">\(\bar{x_1}=\frac{1}{n}\sum\limits_{i=1}^nx_{i1}, \; \bar{x_2}=\frac{1}{n}\sum\limits_{i=1}^nx_{i2}\)</span></li>
+<li>樣本<strong>偏差平方和</strong>: <span class="math inline">\(SS_1=\sum\limits_{i=1}^n(x_{i1}-\bar{x_1})^2, \; SS_2=\sum\limits_{i=1}^n(x_{i2}-\bar{x_2})^2\)</span></li>
+<li>樣本<strong>方差</strong>： <span class="math inline">\(s_1^2=\frac{SS_1}{n}, \; s_2^2=\frac{SS_2}{n}\)</span></li>
+<li>樣本<strong>標準偏差</strong>： <span class="math inline">\(s_1=\sqrt{s_1^2}, \; s_2=\sqrt{s_2^2}\)</span></li>
+<li><strong>不偏樣本方差</strong>： <span class="math inline">\(u_1^2=\frac{SS}{n-1}, \; u_2^2=\frac{SS_2}{n-1}\)</span></li>
+<li><strong>不偏樣本方差平方根</strong>: <span class="math inline">\(u_1=\sqrt{u_1^2}, \; u_2=\sqrt{u_2^2}\)</span></li>
+</ul>
+</div>
+<div id="對於這樣一對變量-x_1x_2-來說我們又可以追加如下的概括統計" class="section level5">
+<h5>對於這樣一對變量 <span class="math inline">\(x_1,x_2\)</span> 來說，我們又可以追加如下的概括統計：</h5>
+<ul>
+<li>樣本<strong>總體平均值</strong>： <span class="math inline">\(\bar{x}=\frac{1}{n+n}(\sum\limits_{i-1}^nx_{i1}+\sum\limits_{i-1}^nx_{i2})\)</span></li>
+<li><p>樣本<strong>方差積和(cross-product)</strong>：
+<span class="math display" id="eq:crossproduct">\[\begin{equation}
+\begin{split}
+S_{12} &amp; = \sum_{i=1}^n(x_{i1}-\bar{x_1})\cdot(x_{i2}-\bar{x_2})\\
+&amp; = \sum_{i=1}^n(x_{i1}x_{i2}-\bar{x_1}x_{i2}-x_{i1}\bar{x_2}+\bar{x_1}\bar{x_2})\\
+&amp; = \sum_{i=1}^nx_{i1}x_{i2}-\bar{x_1}\sum_{i=1}^nx_{i2}-{\sum_{i=1}^nx_{i1}}\bar{x_2}+n\bar{x_1}\bar{x_2}\\
+&amp; = \sum_{i=1}^nx_{i1}x_{i2}-\bar{x_1}\cdot n\bar{x_2}-n\bar{x_1}\cdot\bar{x_2}+n\bar{x_1}\bar{x_2}\\
+&amp; = \sum_{i=1}^nx_{i1}x_{i2}-n\cdot\bar{x_1}\cdot\bar{x_2}\\
+&amp; = \sum_{i=1}^nx_{i1}x_{i2}-n\cdot\frac{\sum\limits_{i=1}^nx_{i1}}{n}\cdot\frac{\sum\limits_{i=1}^nx_{i2}}{n}\\
+&amp; = \sum_{i=1}^nx_{i1}x_{i2}-\frac{1}{n}(\sum_{i=1}^nx_{i1})(\sum_{i=1}^nx_{i2}) = S_{21}
+\end{split}
+\tag{8}
+\end{equation}\]</span></p></li>
+<li><p>樣本<strong>協方差(covariance，共分散)</strong>：<span class="math inline">\(s_{12}=\frac{S_{12}}{n}=\frac{S_{21}}{n}=s_{21}\)</span></p></li>
+<li><p>樣本<strong>相關系數 (correlation coefficient)</strong>： <span class="math inline">\(r_{11}=r_{22}=1\)</span>
+<span class="math display" id="eq:correlation">\[\begin{equation}
+\begin{split}
+r_{12} &amp; = \frac{S_{12}}{\sqrt{SS_1\cdot SS_2}}\\
+&amp; = \frac{\frac{S_{12}}{n}}{\sqrt{\frac{SS_1}{n}}\cdot\sqrt{\frac{SS_2}{n}}}\\
+&amp; = \frac{s_{12}}{s_1s_2}=r_{21}\\
+\end{split}
+\tag{9}
+\end{equation}\]</span></p></li>
+</ul>
+</div>
+<div id="此處我們再來證明一下標準化以後的數據的樣本協方差covariance和標準化以前原來的數據的樣本相關系數correlation-coefficient是相等的" class="section level5">
+<h5>此處我們再來證明一下，標準化以後的數據的樣本協方差(covariance)，和標準化以前原來的數據的樣本相關系數(correlation coefficient)是相等的：</h5>
+<p>假設，<span class="math inline">\(x_{i1}\)</span> 標準化以後爲 <span class="math inline">\(z_{i1}=\frac{x_{i1}-\bar{x_1}}{s_1}\)</span>； <br>
+<span class="math inline">\(x_{i2}\)</span> 標準化以後爲 <span class="math inline">\(z_{i2}=\frac{x_{i2}-\bar{x_2}}{s_1}\)</span>。 <br>
+此時，<span class="math inline">\(z_{i1}, z_{i2}\)</span> 的樣本協方差可以計算如下:
+<span class="math display" id="eq:stcorrelation">\[\begin{equation}
+\begin{split}
+s_{z_{12}} &amp; = \frac{S_{z_{12}}}{n} \\
+&amp; = \frac{1}{n}\cdot\sum_{i=1}^n(z_{i1}-\bar{z_1})(z_{i2}-\bar{z_2})\\
+&amp; = \frac{1}{n}\sum_{i=1}^nz_{i1}z_{i2}\\
+&amp; = \frac{1}{n}\sum_{i=1}^n(\frac{x_{i1}-\bar{x_1}}{s_1})(\frac{x_{i2}-\bar{x_2}}{s_2})\\
+&amp; = \frac{S_{12}}{n}\cdot\frac{1}{s_1s_2} = \frac{s_{12}}{s_1s_2}=r_{12}
+\end{split}
+\tag{10}
+\end{equation}\]</span></p>
+</div>
+</div>
