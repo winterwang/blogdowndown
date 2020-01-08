@@ -1,0 +1,177 @@
+---
+title: 泊松回歸模型的貝葉斯Stan實現
+author: ''
+date: '2019-07-11'
+slug: poisson-stan
+categories: 
+  - Bayesian
+  - R techniques
+  - statistics
+tags: 
+  - Bayesian
+  - Medical Statistics
+header:
+  caption: 'Thomas Bayes'
+  image: '052816_bayesian-opener_free.jpg'
+output:
+  blogdown::html_page:
+    toc: true
+summary: "Rstan 學習筆記 Chapter 5.4"
+---
+
+
+
+# 分析目的，數據，和選擇 Poisson 回歸模型的原因
+
+我們這裏使用[之前擬合貝葉斯邏輯回歸模型](https://wangcc.me/post/logistic-rstan/)時使用的相同的數據來展示如何跑貝葉斯泊松回歸模型。
+
+```{r}
+d <- read.table("https://raw.githubusercontent.com/winterwang/RStanBook/master/chap05/input/data-attendance-2.txt", sep = ",", header = T)
+head(d)
+```
+
+其中，
+
+- `PersonID`: 是學生的編號；
+- `A`, `Score`: 用來預測出勤率的兩個預測變量，分別是表示是否喜歡打工的 `A`，和表示對學習本身是否喜歡的評分 (滿分200)；
+- `M`: 過去三個月內，該名學生一共需要上課的總課時數；
+- `Y`: 過去三個月內，該名學生實際上出勤的課時數。
+
+這一次我們希望通過分析泊松回歸來回答「`A` 和 `Score` 對總課時數 `M` 具體有多大的影響？」這個問題。[之前擬合貝葉斯邏輯回歸模型](https://wangcc.me/post/logistic-rstan/)時，使用的結果變量是 `Y`，也就是實際出勤課時數。但是本小節我們用 `M` 作爲結果變量。因爲總課時數是學生自己選課時的結果，也就是說學生本身的態度（是否喜歡打工，是否熱愛學習），可能本身左右了他/她到底會選多少課。背景知識假設是：喜歡多去打工的學生，選課可能態度消極，總課時數從開始可能就選的少。那麼像總選課時數這樣的非負（計數型）離散變量作爲結果變量的時候，**泊松回歸模型是我們的第一選擇。**
+
+## 想象模型機制
+
+如果使用[上上節介紹的多重線性回歸模型](https://wangcc.me/post/rstan-wonderful-r3/)，那麼模型的預測變量的分佈便可能取到負數，這樣就不符合實際情況下"總選課時數"是非負（計數型）離散變量這一事實。這就需要把預測變量 `A` 和 `Score` 相加的線性模型 $(b_1 + b_2A + b_3Score)$，通過數學轉換限制在非負數範圍。假設平均總課時數是 $\lambda$，我們認爲它服從均值是 $\lambda$ 的泊松分佈。關於泊松分佈的詳細知識，期望值和方差的推導可以參考[學習筆記](https://wangcc.me/LSHTMlearningnote/poisson.html)。另外，非貝葉斯版本的一般性傳統泊松回歸模型可以參照學習筆記的[廣義線性回歸的泊松回歸模型章節](https://wangcc.me/LSHTMlearningnote/poisson-regression.html)。
+
+對泊松回歸模型略有瞭解的話應該很自然地想到，把結果變量限制在非負數範圍的標準鏈接方程是 $\log(\lambda)$，或者在 Stan 模型中，我們更自然地把線性模型部分寫在指數模型中: $\exp(b_1 + b_2A + b_3Score)$。
+
+## 寫下數學模型表達式
+
+$$
+\begin{aligned}
+\lambda[n] & = \exp(b_1 + b_2A[n] + b_3Score[n]) & n = 1, \dots, N \\
+M[n]       & \sim \text{Poisson}(\lambda[n])     & n = 1, \dots, N
+\end{aligned}
+$$
+
+其中， 
+
+- $N$，是該數據中學生的人數；
+- $n$，是每名學生的標籤/編號（下標）；
+- $b_1, b_2, b_3$ 是我們感興趣的參數。
+
+## 把數學模型翻譯成 Stan 模型代碼
+
+
+```
+data {
+  int N; 
+  int<lower=0, upper=1> A[N]; 
+  real<lower=0, upper=1> Score[N]; 
+  int<lower=0> M[N];
+}
+
+parameters {
+  real b[3]; 
+}
+
+transformed parameters {
+  real lambda[N];
+  for (n in 1:N) {
+    lambda[n] = exp(b[1] + b[2]*A[n] + b[3]*Score[n]);
+  }
+}
+
+model {
+  for (n in 1:N) {
+    M[n] ~ poisson(lambda[n]); 
+  }
+}
+
+generated quantities {
+  int m_pred[N]; 
+  for (n in 1:N) {
+    m_pred[n] = poisson_rng(M[n], q[n]);
+  }
+}
+```
+
+值得一提的是，在 Stan 中，提供了 `poisson_log(x)` 分佈函數，其實它等價於使用 `poisson(exp(x))`。除了更加接近我們熟悉的泊松回歸模型的數學表達式，避免了 `exp` 指數運算，計算結果穩定。於是我們還可以把上面的模型修改成：
+
+
+```
+data {
+  int N; 
+  int<lower=0, upper=1> A[N]; 
+  real<lower=0, upper=1> Score[N]; 
+  int<lower=0> M[N];
+}
+
+parameters {
+  real b[3]; 
+}
+
+transformed parameters {
+  real lambda[N];
+  for (n in 1:N) {
+    lambda[n] = b[1] + b[2]*A[n] + b[3]*Score[n]；
+  }
+}
+
+model {
+  for (n in 1:N) {
+    M[n] ~ poisson_log(lambda[n]); 
+  }
+}
+
+generated quantities {
+  int m_pred[N]; 
+  for (n in 1:N) {
+    m_pred[n] = poisson_log_rng(M[n], q[n]);
+  }
+}
+```
+
+運行它的代碼如下：
+
+```{r}
+library(rstan)
+
+data <- list(N=nrow(d), A=d$A, Score=d$Score/200, M=d$M)
+# fit <- stan(file='model/model5-6.stan', data=data, seed=1234)
+fit <- stan(file='stanfiles/model5-6b.stan', data=data, seed=1234, pars = c("b", "lambda"))
+fit
+```
+
+## 運行結果的解釋
+
+```
+...{省略}...
+              mean se_mean   sd    2.5%     25%     50%     75%   97.5% n_eff Rhat
+b[1]          3.58    0.00 0.09    3.38    3.51    3.58    3.64    3.76  1373    1
+b[2]          0.26    0.00 0.04    0.18    0.24    0.26    0.29    0.35  1797    1
+b[3]          0.29    0.00 0.15    0.00    0.20    0.29    0.39    0.59  1422    1
+lambda[1]     3.68    0.00 0.05    3.58    3.65    3.68    3.71    3.77  1510    1
+...{省略}...
+```
+
+我們把計算獲得的事後概率分佈均值放入前面寫下的數學表達式:
+
+$$
+\begin{aligned}
+\lambda[n] & = \exp(3.58 + 0.26A[n] + 0.29Score[n]/200) & n = 1, \dots, N \\
+M[n]       & \sim \text{Poisson}(\lambda[n])     & n = 1, \dots, N
+\end{aligned}
+$$
+
+例如說，`Score = 150` 和 `Score = 50` 的兩名學生，如果對打工喜好態度相同的話，他們之間選課的總課時數之比爲：
+
+$$
+\begin{aligned}
+\frac{M_\text{Score = 150}}{M_\text{Score = 50}} & = \frac{\exp(3.58 + 0.26A + 0.29\times\frac{150}{200})}{\exp(3.58 + 0.26A + 0.29\times\frac{50}{200})} \\ 
+& = \exp(0.29\times\frac{150-50}{200}) \approx 1.16
+\end{aligned}
+$$
+
+
+也就是熱愛學習分數 `Score` 達到150的人和只有50的人相比，選課總課時數平均多 16%。相似地，喜歡打工 `A = 1` 的學生和不喜歡打工 `A = 0` 的學生選課總課時數之比爲 $\exp(0.26)\approx1.30$。

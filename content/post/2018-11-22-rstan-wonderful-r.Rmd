@@ -1,0 +1,113 @@
+---
+title: Rstan Wonderful R-(1)
+author: ''
+date: '2018-11-22'
+slug: rstan-wonderful-r
+categories:
+  - R techniques
+  - statistics
+tags:
+  - Medical Statistics
+  - Bayesian
+header:
+  caption: ''
+  image: '052816_bayesian-opener_free.jpg'
+output:
+  blogdown::html_page:
+    toc: true
+summary: "Rstan 學習筆記"
+---
+
+P16
+
+事後分布 $p(\theta | Y)$の値が最大になる点$\theta^*$を事後確率最大推定値 (maximum a posteriori estimate)と呼ぶ．略してMAP推定値 (MAP estimate)．
+
+我們把能夠將事後概率分布取極大值的參數點 $\theta^*$ 稱爲事後概率的最大似然估計值 (maximum a posteriori estimate)，簡稱 MAP估計值 (MAP estimate)。
+
+P19 
+
+統計建模的一般順序
+
+- 確定分析目的
+- 確定數據分布
+- 想象數據產生本身的機制：思考數據與數據之間可能的關系
+- 寫下你所認爲的數據模型的數學表達式
+- 用 R 模擬(simulation)並確認前一步寫下的數學模型的性質，特點
+- 用 Stan 實際進行模型參數的推斷
+- 獲得推斷結果，解釋其事後概率分布的意義，繪制易於理解的模型示意圖
+- 繪制成功之後的模型示意圖和最先使用的模型之間進行比對，重新查缺補漏
+
+P23
+
+ただいたずらにモデルを複雑化させるのは解釈のしにくさを招く．
+
+P30
+
+最初にmodel ブロックの尤度の部分（と事前分布の部分）を書く．その尤度の部分に登場した変数のうち，データの変数をdataブロックに，残りの変数をparametersブロックに書いていく．
+
+
+Stan的基本文法構成
+```
+data {
+ 數據描述
+}
+
+parameters {
+ 想要進行MCMC事後樣本採集的參數描述
+}
+
+model {
+ p(Y|theta) 似然的描述
+ 先驗概率分布 p(theta) 的描述
+}
+```
+
+把下面的模型
+
+$$
+\begin{aligned}
+Y[n] & \sim \text{Normal}(\mu, 1) \;\; n = 1, \dots, N \\
+\mu  & \sim \text{Normal}(0, 100)
+\end{aligned}
+$$
+
+翻譯成爲 Stan 模型語言是：
+
+```
+data {
+  int N;
+  real Y[N];
+}
+
+parameters {
+  real mu;
+}
+
+model {
+  for (n in 1:N) {
+	Y[n] ~ normal(mu, 1);
+  }
+  mu ~ normal(0, 100);
+}
+```
+
+其中我們按照實際模型書寫的順序 model -> data -> parameter 來逐個解釋：
+
+- `model` 模塊中 `for (n in 1:N)` 開始的循環部分（三行）對應數學模型的 $Y[n]  \sim \text{Normal}(\mu, 1)  n = 1, \dots, N $　部分。
+- Stan 語言中，每一行描述的結尾需要用分號 `;` 來結束。
+- `mu ~ normal(0,100)` 則對應數學模型中寫的先驗概率 $\mu  \sim \text{Normal}(0, 100)$ 部分。這裏給均值的先驗概率分佈是一個方差很大的無信息先驗概率分佈 (noninformative prior)。事實上在 Stan 軟件語言中，如果不特別指出先驗概率分佈，系統會默認給參數以無信息的先驗概率分佈，這樣即使沒有這一行，模型也是可以跑的。
+- `data` 模塊中寫明的是 `model` 模塊中描述的模型將要使用的數據。它包括宣示數據的個數（樣本量 $N$），以及數據本身。其中 `int N` 意爲樣本量的數量是整數個 (integer)，`real Y[N]` 則宣示實數有 N 個作爲數據。
+- `parameter` 模塊是告訴軟件需要採樣且關注的未知參數 (parameter) 是 `mu`
+- 在 Stan 語言中，還可以和其他語言一樣爲模型加註解釋的文字，只需要在想要做註釋的文字最開始的部分增加 `//`，如果註釋的文字超過一行，那麼在註釋的模塊前後加上 `/*` 和 `*/` 即可。
+- 另外，目前爲止主流的貝葉斯模型軟件中使用精確度 (precision) ，也就是方差的倒數來描述正態分佈 `normal(mean, 1/variance)` ，但是在Stan的語法中使用的是 `normal(mean, sd)`，也就是用標準差來描述正態分佈。
+
+寫Stan（或者說寫大多數的代碼）時，請遵守以下的原則：
+
+1. 適當縮進，以便於閱讀；
+2. 表示數據的部分用大寫字母，表示參數的部分，用小寫字母；
+3. 每個部分之間至少使用一個空行加以區分；
+4. 請不要用`camelCase`這樣的方式（單詞之間用大寫隔開），請在單詞之間用下劃線 `camel_case` 的標記方法；
+5. ` ~ `或者` = `前後用一個字符大小的空格來隔開。
+
+最低限度的話，也請依照1,2兩個標準來書寫你的Stan代碼。不爲他人，也爲自己將來再讀代碼時能快速理解其涵義。往Stan的官方論壇投稿時，也必須遵守它們在手冊裏提供的 "Stan Program Style Guide" 代碼書寫規則，也是對其他寫，讀代碼的人的尊重。
+

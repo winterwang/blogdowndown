@@ -1,0 +1,240 @@
+---
+title: 等級線性回歸模型的 Rstan 貝葉斯實現
+author: ''
+date: '2019-08-16'
+slug: multilevel-model-rstan
+categories: 
+  - Bayesian
+  - R techniques
+  - statistics
+tags: 
+  - Bayesian
+  - Medical Statistics
+header:
+  caption: 'Thomas Bayes'
+  image: '052816_bayesian-opener_free.jpg'
+output:
+  blogdown::html_page:
+    toc: true
+summary: "Rstan 學習筆記 Chapter 8"
+---
+
+
+## 多層(等級)線性回歸模型/混合效應模型 multilevel/mixed effect regression model
+
+關於等級線性回歸的基本知識和概念，請參考[讀書筆記58-60章節](https://wangcc.me/LSHTMlearningnote/Hierarchical.html)。簡單來說，等級線性回歸通過給數據內部可能存在或者已知存在的結構或者層級增加隨機截距或者隨機斜率的方式來輔助解釋組間差異和組內的差異。
+
+### 適用於等級線性回歸模型的數據
+
+本章節使用的數據是四家大公司40名社員的年齡和年收入數據：
+
+```{r}
+d <- read.csv(file='../../static/files/data-salary-2.txt')
+d
+```
+
+- `X`: 社員年齡減去23獲得的數據（23歲是大部分人大學畢業入職時的年齡）
+- `Y`: 年收入（萬日元）
+- `KID`: 公司編號
+
+我們認爲，年收入 `Y`，是基本平均年收入和隨機誤差（服從均值爲零，方差是 $\sigma^2$ 的正態分佈）之和。且基本平均年收入和年齡成正比（年功序列型企業）。但是呢，因爲不同的公司入職時的基本收入可能不同，且可能隨着年齡增加而增長薪水的速度可能也不一樣。那麼由於不同公司所造成的差異，可以被認爲是組間差異。
+
+### 確認數據分佈
+
+這次分析的目的是要瞭解「每個公司`KID`內隨着年齡的增加而增長的薪水幅度是多少」，那麼我們要在結果報告中體現的就是每家公司的基本年收入，新入職時的年收入，以及隨着年齡增長而上升的薪水的事後分佈。
+
+我們先來看把四家公司職員放在一起時的整體圖形：
+
+```{r fig8-1, cache=TRUE, echo=TRUE, message=FALSE, fig.width=6, fig.height=5, fig.cap='年齡和年收入的散點圖，不同點的形狀代表不同的公司編號。', fig.align='center', out.width='80%'}
+library(ggplot2)
+
+d$KID <- as.factor(d$KID)
+res_lm <- lm(Y ~ X, data=d)
+coef <- as.numeric(res_lm$coefficients)
+
+p <- ggplot(d, aes(X, Y, shape=KID))
+p <- p + theme_bw(base_size=18)
+p <- p + geom_abline(intercept=coef[1], slope=coef[2], size=2, alpha=0.3)
+p <- p + geom_point(size=2)
+p <- p + scale_shape_manual(values=c(16, 2, 4, 9))
+p <- p + labs(x='X (age-23)', y='Y (10,000 Yen/year)')
+p
+```
+
+從總體的散點圖 \@ref(fig:fig8-1) 來看，似乎年收入確實是隨着年齡增長而呈現直線增加的趨勢。但是公司編號 `KID = 4` 的三名社員薪水似乎是在同一水平的並無明顯變化。這一點可以把四家公司社員的數據分開來看更加清晰:
+
+```{r fig8-2, cache=TRUE, echo=TRUE, message=FALSE, fig.width=6, fig.height=5, fig.cap='年齡和年收入的散點圖，不同的公司在四個平面中展示,黑色點線是每家公司數據單獨使用線性回歸時獲得的直線。', fig.align='center', out.width='80%'}
+p <- ggplot(d, aes(X, Y, shape=KID))
+p <- p + theme_bw(base_size=20)
+p <- p + geom_abline(intercept=coef[1], slope=coef[2], size=2, alpha=0.3)
+p <- p + facet_wrap(~KID)
+p <- p + geom_line(stat='smooth', method='lm', se=FALSE, size=1, color='black', linetype='31', alpha=0.8)
+p <- p + geom_point(size=3)
+p <- p + scale_shape_manual(values=c(16, 2, 4, 9))
+p <- p + labs(x='X (age-23)', y='Y (10,000 Yen/year)')
+p
+```
+
+### 如果不考慮組間(公司間)差異
+
+- 模型的數學描述
+
+$$
+\begin{aligned}
+              Y[n] & = y_{\text{base}}[n] + \varepsilon[n] & n = 1, \dots, N \\
+y_{\text{base}}[n] & = a + bX[n]                           & n = 1, \dots, N \\
+    \varepsilon[n] & \sim \text{Normal}(0, \sigma_Y^2)     & n = 1, \dots, N \\
+\end{aligned}
+$$
+
+
+當然，如果你想，模型可以直接簡化成：
+
+$$
+Y[n] \sim \text{Normal}(a + bX[n], \sigma^2_Y) \;\;\;\;\;\; n = 1, \dots, N \\
+$$
+
+
+上述簡化版的模型，翻譯成Stan語言如下：
+
+```
+data {
+  int N;
+  real X[N];
+  real Y[N];
+}
+
+parameters{
+  real a;
+  real b;
+  real<lower = 0> s_Y;
+}
+
+model {
+  for (n in 1 : N)
+  Y[n] = normal(a + b * X[n], s_Y);
+}
+
+```
+
+下面的 R 代碼用來實現對上面 Stan 模型的擬合:
+
+```{r, warning=FALSE, message=FALSE, cache=TRUE}
+library(rstan)
+d <- read.csv(file='../../static/files/data-salary-2.txt')
+d$KID <- as.factor(d$KID)
+
+data <- list(N=nrow(d), X=d$X, Y=d$Y)
+fit <- stan(file='stanfiles/model8-1.stan', data=data, seed=1234)
+fit
+```
+
+現在有更加方便的 `rstanarm` 包可以幫助我們省去寫 Stan 模型的過程：
+
+```{r message=FALSE, warning=FALSE}
+library(rstanarm)
+
+rstanarm_results = stan_glm(Y ~ X, data=d, iter=2000, warmup=1000, cores=4)
+summary(rstanarm_results, probs=c(.025, .975), digits=3)
+```
+
+可以看到強制不同公司社員的年收入來自同一個正態分佈時，方差顯得非常的大。
+
+### 如果要考慮組間差異
+
+我們認爲每家公司社員新入職時的起點薪水不同(截距不同-隨機截距)，進入公司之後隨年齡增加的薪水幅度也不同(斜率不同-隨機斜率)。因此，用 $a[1]\sim a[K], K = 1, 2, 3, 4$ 表示每家公司的截距，用 $b[1] \sim b[K], K = 1, 2, 3, 4$ 表示每家公司薪水上升的斜率。那麼每家公司的薪水年齡線性回歸模型可以寫作是 $a[K]  + b[K] X, K = 1, 2, 3, 4$ 
+
+- 模型數學描述
+
+$$
+Y[n] \sim \text{Normal}(a[\text{KID[n]}] + b[\text{KID}[n]] X[n], \sigma^2_Y) \\ n = 1, \dots, N
+$$
+
+上述模型的 Stan 譯文如下：
+
+```
+data {
+  int N;
+  int K;
+  real X[N];
+  real Y[N];
+  int<lower = 1, upper = K> KID[N];
+}
+
+parameters {
+  real a[K];
+  real b[K];
+  real<lower = 0> s_Y; 
+}
+
+model {
+  for (n in 1:N)
+  Y[n] ~ normal(a[KID[n]] + b[KID[n]] * X[n], s_Y);
+}
+
+```
+
+下面的 R 代碼用來實現上面貝葉斯多組不同截距不同斜率線性回歸模型的擬合:
+
+```{r message=FALSE, warning=FALSE, cache=TRUE}
+library(rstan)
+d <- read.csv(file='../../static/files/data-salary-2.txt')
+
+data <- list(N=nrow(d), X=d$X, Y=d$Y, KID = d$KID, K = 4)
+fit <- stan(file='stanfiles/model8-2.stan', data=data, seed=1234)
+fit
+```
+
+
+
+
+
+## 等級線性回歸的貝葉斯實現
+
+### 模型機制 mechanism
+
+如果我們認爲每家公司的起點薪水 $a[k]$ 服從正態分佈，且該正態分佈的平均值是全體公司的起點薪水的均值 $a_\mu$，方差是 $\sigma^2_a$。類似地，假設每家公司內隨着年齡增長而增加薪水的幅度 $b[k]$ 也服從某個正態分佈，均值和方差分別是 $b_\mu, \sigma^2_b$。這樣我們就不僅僅是允許了各家公司的薪水年齡回歸直線擁有不同的斜率和截距，還對這些隨機斜率和截距的前概率分佈進行了設定。
+
+此時，隨機效應模型的數學表達式就可以寫成下面這樣:
+
+$$
+\begin{aligned}
+Y[n] &\sim \text{Normal}(a[\text{KID[n]}] + b[\text{KID}[n]] X[n], \sigma^2_Y) & n = 1, \dots, N \\
+a[k] &= a_\mu + a_\varepsilon[k]   & k = 1, \dots, K \\
+a_\varepsilon[k] & \sim \text{Normal}(0, \sigma^2_a) & k = 1, \dots, K \\
+b[k] & = b_\mu + b_\varepsilon[k]  & k = 1, \dots, K \\
+b_\varepsilon[k] &\sim \text{Normal}(0, \sigma^2_b) & k = 1, \dots, K
+\end{aligned}
+$$
+
+
+使用 `rstanarm` 包可以使用下面的代碼實現
+
+```{r message=FALSE, warning=FALSE}
+library(rstanarm)
+M1_stanlmer <- stan_lmer(formula = Y ~ X  + (X | KID), 
+                            data = d,
+                            seed = 1234)
+print(M1_stanlmer, digits = 2)
+
+summary(M1_stanlmer, 
+        pars = c("(Intercept)", "X","sigma", 
+                 "Sigma[KID:(Intercept),(Intercept)]",
+                 "Sigma[KID:X,(Intercept)]", "Sigma[KID:X,X]"),
+        probs = c(0.025, 0.975),
+        digits = 2)
+```
+
+
+
+
+和非貝葉斯版本的概率論隨機效應線性回歸模型的結果相對比一下：
+
+```{r message=FALSE, warning=FALSE}
+library(lme4)
+M1 <- lmer(formula = Y ~ X  + (X | KID), 
+           data = d, 
+           REML = TRUE)
+summary(M1)
+```
+

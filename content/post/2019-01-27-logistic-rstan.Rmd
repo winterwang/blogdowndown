@@ -1,0 +1,237 @@
+---
+title: Rstan Wonderful R-(4)
+author: ''
+date: '2019-01-27'
+slug: logistic-rstan
+# slug: rstan-wonderful-r(3)
+categories:
+  - Bayesian
+  - R techniques
+  - statistics
+tags:
+  - Bayesian
+  - Medical Statistics
+header:
+  caption: ''
+  image: '052816_bayesian-opener_free.jpg'
+output:
+  blogdown::html_page:
+    toc: true
+summary: "Rstan 學習筆記 Chapter 5.2"
+---
+
+# 邏輯回歸模型的 Rstan 貝葉斯實現
+
+本小節使用的[數據](https://raw.githubusercontent.com/MatsuuraKentaro/RStanBook/master/chap05/input/data-attendance-2.txt)，和前一節的出勤率數據很類似:
+
+```{r}
+d <- read.table("https://raw.githubusercontent.com/winterwang/RStanBook/master/chap05/input/data-attendance-2.txt", 
+                     sep = ",", header = T)
+head(d)
+```
+
+其中，
+
+- `PersonID`: 是學生的編號；
+- `A`, `Score`: 和之前一樣用來預測出勤率的兩個預測變量，分別是表示是否喜歡打工的 `A`，和表示對學習本身是否喜歡的評分 (滿分200)；
+- `M`: 過去三個月內，該名學生一共需要上課的總課時數；
+- `Y`: 過去三個月內，該名學生實際上出勤的課時數。
+
+
+# 確定分析目的
+
+需要回答的問題依然是，$A, Score$ 分別在多大程度上預測學生的出勤率？另外，我們希望知道的是，當需要修的課時數固定的事後，這兩個預測變量能準確提供 $Y$ 的多少信息？
+
+
+# 確認數據分佈
+
+
+```{r step1, cache=TRUE, echo=TRUE, message=FALSE, fig.width=8, fig.height=8, fig.cap='三個變量的分佈觀察圖，相比之前增加了 $ratio = Y/M$ 列。', fig.align='center', out.width='80%'}
+library(ggplot2)
+library(GGally)
+
+set.seed(1)
+d <- d[, -1]
+# d <- read.csv(file='input/data-attendance-2.txt')[,-1]
+d$A <- as.factor(d$A)
+d <- transform(d, ratio=Y/M)
+N_col <- ncol(d)
+ggp <- ggpairs(d, upper='blank', diag='blank', lower='blank')
+
+for(i in 1:N_col) {
+  x <- d[,i]
+  p <- ggplot(data.frame(x, A=d$A), aes(x))
+  p <- p + theme_bw(base_size=14)
+  p <- p + theme(axis.text.x=element_text(angle=40, vjust=1, hjust=1))
+  if (class(x) == 'factor') {
+    p <- p + geom_bar(aes(fill=A), color='grey20')
+  } else {
+    bw <- (max(x)-min(x))/10
+    p <- p + geom_histogram(aes(fill=A), color='grey20', binwidth=bw)
+    p <- p + geom_line(eval(bquote(aes(y=..count..*.(bw)))), stat='density')
+  }
+  p <- p + geom_label(data=data.frame(x=-Inf, y=Inf, label=colnames(d)[i]), aes(x=x, y=y, label=label), hjust=0, vjust=1)
+  p <- p + scale_fill_manual(values=alpha(c('white', 'grey40'), 0.5))
+  ggp <- putPlot(ggp, p, i, i)
+}
+
+zcolat <- seq(-1, 1, length=81)
+zcolre <- c(zcolat[1:40]+1, rev(zcolat[41:81]))
+
+for(i in 1:(N_col-1)) {
+  for(j in (i+1):N_col) {
+    x <- as.numeric(d[,i])
+    y <- as.numeric(d[,j])
+    r <- cor(x, y, method='spearman', use='pairwise.complete.obs')
+    zcol <- lattice::level.colors(r, at=zcolat, col.regions=grey(zcolre))
+    textcol <- ifelse(abs(r) < 0.4, 'grey20', 'white')
+    ell <- ellipse::ellipse(r, level=0.95, type='l', npoints=50, scale=c(.2, .2), centre=c(.5, .5))
+    p <- ggplot(data.frame(ell), aes(x=x, y=y))
+    p <- p + theme_bw() + theme(
+      plot.background=element_blank(),
+      panel.grid.major=element_blank(), panel.grid.minor=element_blank(),
+      panel.border=element_blank(), axis.ticks=element_blank()
+    )
+    p <- p + geom_polygon(fill=zcol, color=zcol)
+    p <- p + geom_text(data=NULL, x=.5, y=.5, label=100*round(r, 2), size=6, col=textcol)
+    ggp <- putPlot(ggp, p, i, j)
+  }
+}
+
+for(j in 1:(N_col-1)) {
+  for(i in (j+1):N_col) {
+    x <- d[,j]
+    y <- d[,i]
+    p <- ggplot(data.frame(x, y, gr=d$A), aes(x=x, y=y, fill=gr, shape=gr))
+    p <- p + theme_bw(base_size=14)
+    p <- p + theme(axis.text.x=element_text(angle=40, vjust=1, hjust=1))
+    if (class(x) == 'factor') {
+      p <- p + geom_boxplot(aes(group=x), alpha=3/6, outlier.size=0, fill='white')
+      p <- p + geom_point(position=position_jitter(w=0.4, h=0), size=2)
+    } else {
+      p <- p + geom_point(size=2)
+    }
+    p <- p + scale_shape_manual(values=c(21, 24))
+    p <- p + scale_fill_manual(values=alpha(c('white', 'grey40'), 0.5))
+    ggp <- putPlot(ggp, p, i, j)
+  }
+}
+
+ggp
+```
+
+從圖 \@ref(fig:step1) 還可以看出，由於總課時數越多，學生實際出勤的課時數也會越多所以 $M, Y$ 兩者之間理應有很強的正相關。另外可能可以推測的是 $Ratio$ 和是否愛學習的分數之間大概有可能有正相關，和是否喜歡打工之間大概可能有負相關。
+
+# 寫下數學模型表達式
+
+
+在 Stan 的語法中，使用的是反邏輯函數 (inverse logit): `inv_logit` 來描述下面的邏輯回歸模型 5-4。
+
+
+$$
+\begin{array}{l}
+q[n] = \text{inv_logit}(b_1 + b_2 A[n] + b_3Score[n]) & n = 1, 2, \dots, N \\
+Y[n] \sim \text{Binomial}(M[n], q[n])                 & n = 1, 2, \dots, N \\
+\end{array}
+$$
+
+
+上面的數學模型，可以被翻譯成下面的 Stan 語言:
+
+```
+data {
+  int N; 
+  int<lower=0, upper=1> A[N]; 
+  real<lower=0, upper=1> Score[N]; 
+  int<lower=0> M[N];
+  int<lower=0> Y[N];
+}
+
+parameters {
+  real b1; 
+  real b2; 
+  real b3;
+}
+
+transformed parameters {
+  real q[N];
+  for (n in 1:N) {
+    q[n] = inv_logit(b1 + b2*A[n] + b3*Score[n]);
+  }
+}
+
+model {
+  for (n in 1:N) {
+    Y[n] ~ binomial(M[n], q[n]); 
+  }
+}
+
+generated quantities {
+  real y_pred[N]; 
+  for (n in 1:N) {
+    y_pred[n] = binomial_rng(M[n], q[n]);
+  }
+}
+
+```
+
+
+下面的 R 代碼用來實現對上面 Stan 模型的擬合:
+
+```{r, warning=FALSE, message=FALSE, cache=TRUE}
+library(rstan)
+d <- read.csv(file='https://raw.githubusercontent.com/winterwang/RStanBook/master/chap05/input/data-attendance-2.txt', header = T)
+data <- list(N=nrow(d), A=d$A, Score=d$Score/200, M=d$M, Y=d$Y)
+fit <- stan(file='stanfiles/model5-4.stan', data=data, seed=1234)
+fit
+```
+
+
+
+把獲得的參數事後樣本的均值代入上面的數學模型中可得:
+
+$$
+\begin{array}{l}
+q[n] = \text{inv_logit}(0.09 - 0.62 A[n] + 1.90Score[n]) & n = 1, 2, \dots, N \\
+Y[n] \sim \text{Binomial}(M[n], q[n])                 & n = 1, 2, \dots, N \\
+\end{array}
+$$
+
+
+# 確認收斂效果
+
+
+```{r step53, cache=TRUE, echo=TRUE, fig.cap='用 bayesplot包數繪製的模型5-3的MCMC鏈式軌跡圖 (trace plot)。', fig.align='center', out.width='80%', message=FALSE, fig.width=6, fig.height=4.2}
+library(bayesplot)
+
+color_scheme_set("mix-brightblue-gray")
+
+posterior2 <- rstan::extract(fit, inc_warmup = TRUE, permuted = FALSE)
+
+p <- mcmc_trace(posterior2, n_warmup = 0, pars = c("b1", "b2", "b3", "lp__"),
+                facet_args = list(nrow = 2, labeller = label_parsed))
+p
+```
+
+
+```{r fig58, cache=TRUE, echo=TRUE, fig.cap='觀測值(x)，和預測值(y)的散點圖，以及預測值的80%預測區間。', fig.align='center', out.width='80%', message=FALSE, fig.width=4.5, fig.height=4.2}
+ms <- rstan::extract(fit)
+
+d_qua <- t(apply(ms$y_pred, 2, quantile, prob=c(0.1, 0.5, 0.9)))
+colnames(d_qua) <- c('p10', 'p50', 'p90')
+d_qua <- data.frame(d, d_qua)
+d_qua$A <- as.factor(d_qua$A)
+
+p <- ggplot(data=d_qua, aes(x=Y, y=p50, ymin=p10, ymax=p90, shape=A, fill=A))
+p <- p + theme_bw(base_size=18) + theme(legend.key.height=grid::unit(2.5,'line'))
+p <- p + coord_fixed(ratio=1, xlim=c(5, 70), ylim=c(5, 70))
+p <- p + geom_pointrange(size=0.8, color='grey5')
+p <- p + geom_abline(aes(slope=1, intercept=0), color='black', alpha=3/5, linetype='31')
+p <- p + scale_shape_manual(values=c(21, 24))
+p <- p + scale_fill_manual(values=c('white', 'grey70'))
+p <- p + labs(x='Observed', y='Predicted')
+p <- p + scale_x_continuous(breaks=seq(from=0, to=70, by=20))
+p <- p + scale_y_continuous(breaks=seq(from=0, to=70, by=20))
+p
+```
+
