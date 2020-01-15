@@ -14,7 +14,7 @@ weight = 120
 
 ## 2020 
 
-1. [JACC study research meeting, JACC研究班会議](https://publichealth.med.hokudai.ac.jp/jacc/), Nagoya, Japan, 14<sup>th</sup> Jan, Bayesian Survival Analysis test on the JACC study data, [Oral slides](https://wangcc.me/BayesianJACC/)
+1. [JACC study research meeting, JACC研究班会議](https://publichealth.med.hokudai.ac.jp/jacc/), Nagoya, Japan, 14<sup>th</sup> Jan, Bayesian Survival Analysis -- test on the JACC study data, [Oral slides](https://wangcc.me/BayesianJACC/)
 
 
 ## 2019
@@ -26,6 +26,14 @@ weight = 120
 3. **Understand Logistic Regression**, Nagoya, 7<sup>th</sup> July, CSS Statistical Study Group, Oral, [slides](https://wangcc.me/logistic-reg-CSS/#1), [practice material](https://rpubs.com/winterwang/log-reg).
 
 4. **Directed acyclic graphs (DAGs)**, Nagoya, 26<sup>th</sup> Aug, CSS Statistical Study Group, Oral, [slides](https://wangcc.me/DAG-CSS).
+
+5. **疫学懇話会**, Nagakute, Aichi, 17<sup>th</sup> Sep, AMU, Mining the National Diet and Nutrition Survey (NDNS RP) data, Oral, [slides](https://wangcc.me/ekikon-NDNSRP/).
+
+6. **[The 13th European Nutrition Conference](http://www.fens2019.org/)**, Dublin, Ireland, 15 - 18 October 2019, Mining relationships between food groups, eating time slots and diabetes status in adults from UK NDNS RP, [Poster](https://github.com/winterwang/Poster_FENS2019/raw/master/poster.pdf).
+
+6. **Propensity Score Analysis (PSA)**, Nagoya, 13<sup>th</sup> Dec, CSS Statistical Study Group, Oral, [slides](https://wangcc.me/PSA-CSS).
+
+
 
 ## 2018 
 1. Project Talk of my MSc of Medical Statistics@LSHTM, London, 23<sup>th</sup> April, The timing of carbohydrates intake in the UK population, Oral, [slides](https://wangcc.me/NDNSslides5/#1).
