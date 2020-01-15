@@ -12,6 +12,10 @@ weight = 120
 
 +++
 
+## 2020 
+
+1. [JACC study research meeting, JACC研究班会議](https://publichealth.med.hokudai.ac.jp/jacc/), Nagoya, Japan, 14<sup>th</sup> Jan, Bayesian Survival Analysis test on the JACC study data, [Oral slides](https://wangcc.me/BayesianJACC/)
+
 
 ## 2019
 
