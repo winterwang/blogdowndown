@@ -42,7 +42,7 @@ projects: []
 
 ![xunjie](/post/2020-02-10-daily-thinking_files/IMG_3508.JPG)
 
-
+![rumor](/post/2020-02-10-daily-thinking_files/IMG_3524.JPG)
 
 在野蠻世界的局域網，有個叫做weibo的東西上，掀起了一番小小的波瀾。彷彿死水裏被丟入一塊石子，其實不可能有期待有什麼驚濤駭浪。
 
