@@ -16,6 +16,7 @@ weight = 120
 
 1. [JACC study research meeting, JACC研究班会議](https://publichealth.med.hokudai.ac.jp/jacc/), Nagoya, Japan, 14<sup>th</sup> Jan, Bayesian Survival Analysis -- test on the JACC study data, [Oral slides](https://wangcc.me/BayesianJACC/)
 
+2. [The 30th Annual Scientific Meeting of the Japan Epidemiological Association](http://web.apollon.nta.co.jp/jea30/), Kyoto, Japan, 21<sup>st</sup>, Feb, Associations between food groups and eating time slots by diabetes status in UK adults, O-024, [Oral, slides](https://wangcc.me/JEASlides/)
 
 ## 2019
 

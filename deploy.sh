@@ -1,4 +1,7 @@
 #!/bin/bash
+# rm -rf public/
+
+# git submodule add -f https://github.com/winterwang/winterwang.github.io.git public
 
 echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 
@@ -7,6 +10,9 @@ hugo -t academic # if using a theme, replace by `hugo -t <yourtheme>`
 
 # Go To Public folder
 cd public
+
+# git pull
+
 # Add changes to git.
 git add .
 
