@@ -18,6 +18,10 @@ weight = 120
 
 2. [The 30th Annual Scientific Meeting of the Japan Epidemiological Association](http://web.apollon.nta.co.jp/jea30/), Kyoto, Japan, 21<sup>st</sup>, Feb, Associations between food groups and eating time slots by diabetes status in UK adults, O-024, [Oral, slides](https://wangcc.me/JEASlides/)
 
+6. **Propensity Score Analysis (PSA) - Day2**, Nagoya, 28<sup>th</sup> Feb, CSS Statistical Study Group, Oral, [slides](https://wangcc.me/PSA-CSS-Day2).
+
+
+
 ## 2019
 
 1. [The Annual Scientific Meeting of the Japane Epidemiological Association](http://www.jea29.jp/), Tokyo, Japan, 31<sup>th</sup> Jan, The day-time patterns of carbohydrate intake in the UK - results from the NDNS RP (2008-16), [Poster P109](https://github.com/winterwang/gemini/raw/master/poster.pdf).
