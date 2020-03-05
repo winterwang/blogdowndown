@@ -14,9 +14,9 @@ weight = 120
 
 ## 2020 
 
-1. [JACC study research meeting, JACC研究班会議](https://publichealth.med.hokudai.ac.jp/jacc/), Nagoya, Japan, 14<sup>th</sup> Jan, Bayesian Survival Analysis -- test on the JACC study data, [Oral slides](https://wangcc.me/BayesianJACC/)
+1. [JACC study research meeting, JACC研究班会議](https://publichealth.med.hokudai.ac.jp/jacc/), Nagoya, Japan, 14<sup>th</sup> Jan, Bayesian Survival Analysis -- test on the JACC study data, [Oral slides](https://wangcc.me/BayesianJACC/); <br>[Handout 1, traditional Cox PH model results](https://github.com/winterwang/JACC_bayesian/raw/master/ForReport20200114/HandOut.pdf); <br> [Handout 2, Bayesian Survival Analysis crude results](https://github.com/winterwang/JACC_bayesian/raw/master/ForReport20200114/HandOutEngBayes.pdf).
 
-2. [The 30th Annual Scientific Meeting of the Japan Epidemiological Association](http://web.apollon.nta.co.jp/jea30/), Kyoto, Japan, 21<sup>st</sup>, Feb, Associations between food groups and eating time slots by diabetes status in UK adults, O-024, [Oral, slides](https://wangcc.me/JEASlides/)
+2. [The 30th Annual Scientific Meeting of the Japan Epidemiological Association](http://web.apollon.nta.co.jp/jea30/), Kyoto, Japan, 21<sup>st</sup>, Feb, Associations between food groups and eating time slots by diabetes status in UK adults, O-024, [Oral, slides](https://wangcc.me/JEASlides/).
 
 6. **Propensity Score Analysis (PSA) - Day2**, Nagoya, 28<sup>th</sup> Feb, CSS Statistical Study Group, Oral, [slides](https://wangcc.me/PSA-CSS-Day2).
 
