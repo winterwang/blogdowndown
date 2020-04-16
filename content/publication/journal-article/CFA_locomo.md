@@ -15,13 +15,13 @@ publication: PeerJ
 publication_short: PeerJ
 # selected = true
 url_dataset: https://github.com/winterwang/CFA-GLFS-locomo
-# url_pdf: https://www.mdpi.com/2072-6643/11/10/2476/pdf
+url_pdf: https://peerj.com/articles/9026.pdf
 # url_project: chronon/
 # projects: [chronon]
 commentable: true
-# links:
-# - name: Nutrients
-#   url: https://www.mdpi.com/2072-6643/11/10/2476
+links:
+- name: PeerJ
+  url: https://peerj.com/articles/9026/
 
 # url_poster: "https://github.com/winterwang/gemini/raw/master/poster.pdf"
 ---
