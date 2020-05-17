@@ -3,7 +3,7 @@
 widget = "portfolio"  # See https://sourcethemes.com/academic/docs/page-builder/
 headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
-weight = 25  # Order that this section will appear.
+weight = 150  # Order that this section will appear.
 
 title = "Gallery"
 subtitle = "Some images that I would love to share"
@@ -26,9 +26,9 @@ subtitle = "Some images that I would love to share"
      # tag = "*"
   
   # [[content.filter_button]]
-     name = "Chorno-nutrition"
-     tag = "chrononutrition"
-  
+     # name = "Chorno-nutrition"
+     # tag = "chrononutrition"
+
   # [[content.filter_button]]
   #   name = "Other"
   #   tag = "Demo"
