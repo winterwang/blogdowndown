@@ -12,6 +12,16 @@
   name = "Posts"
   url = "#posts"
   weight = 20
+  
+[[main]]
+  name = "Gallery"
+  url = "#gallery"
+  weight = 25
+  
+## [[main]]
+##   name = "Gallery"  # Title of the link.
+##   url = "#gallery"  # Widget Page folder name.
+##   weight = 25  # Position of the link in the navigation bar.
 
 [[main]]
   name = "Projects"

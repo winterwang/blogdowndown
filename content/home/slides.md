@@ -20,6 +20,7 @@ weight = 120
 
 6. **Propensity Score Analysis (PSA) - Day2**, Nagoya, 28<sup>th</sup> Feb, CSS Statistical Study Group, Oral, [slides](https://wangcc.me/PSA-CSS-Day2).
 
+7. **Cohort Study - basic knowledge and analysis**, @HOME, 28<sup>th</sup> April, CSS Statistical Study Group, Oral, [slides](https://wangcc.me/CohortStudy). 
 
 
 ## 2019
