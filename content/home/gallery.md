@@ -7,6 +7,7 @@ weight = 150  # Order that this section will appear.
 
 title = "[Gallery](/gallery/)"
 subtitle = "[Some images that I would love to share](/gallery/)"
+commentable = true 
 
 
 [content]
