@@ -8,6 +8,14 @@ weight = 150  # Order that this section will appear.
 title = "[Gallery](/gallery/)"
 subtitle = "[Some images that I would love to share](/gallery/)"
 
+
+[content]
+  # Page type to display. E.g. project.
+  page_type = "project"
+  
+  # Choose how much pages you would like to display (0 = all pages)
+  count = 10
+  
 +++
 
 [![](/img/featured.jpg)](/gallery/)
