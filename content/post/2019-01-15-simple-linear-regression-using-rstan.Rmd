@@ -188,7 +188,8 @@ ggmcmc(ggs(fit, inc_warmup = TRUE, stan_include_auxiliar = TRUE), plot = "tracep
 上面的代碼，會自動生成四個模型參數的軌跡MCMC鏈式圖報告。
 
 ```{r step4, cache=TRUE, echo=FALSE, fig.cap='用ggmcmc函數製作而成的MCMC鏈式圖報告。', fig.align='center', out.width='80%', message=FALSE}
-knitr::include_graphics("/img/traceplot-model4-5.png")
+knitr::include_graphics("../../static/img/traceplot-model4-5.png")
+
 ```
 
 
