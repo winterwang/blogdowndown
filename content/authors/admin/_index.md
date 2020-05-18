@@ -80,12 +80,12 @@ user_groups:
 
 I am now working as an assistant professor in [Aichi Medical University](http://www.aichi-med-u.ac.jp/). Here is the [home page](http://dph-amu.umin.jp) of our department. I finished my MSc of [Medical Statistics](https://www.lshtm.ac.uk/study/masters/medical-statistics) from the [London School of Hygiene & Tropical Medicine](https://www.lshtm.ac.uk/) in 2018 and PhD in Epidemiology from the Department of Public Health, Graduate School of Medicine, Nagoya University in 2016. <br> You can find my cv [here](https://github.com/winterwang/markdown_cv/raw/master/Rmarkdown/rap-2pg-cv.pdf). I am capable of doing statistical analyses/computer programming using a variety of softwares including Python, MATLAB, STATA, SAS. However,I am a big fan of [R](https://www.r-project.org/) as well as the open-source integrated development environment (IDE) [Rstudio](https://www.rstudio.com/) and of course many other open-source softwares, which might suggest that my daily life looks like this:
 
-<center>
-![](gif/working.gif)
-</center>
+
+![](/gif/working.gif)
 
 
-<br>_**But I am only a fan, not an expert**_. Our lab is now mainly working on **Epidemiology of Gastroenterological Cancer**. My personal interests are statistical methodology, nutritional epidemiology. This site you are visiting is the place to hold the materials I personally used or going to use for lectures/conference presentations, and a place to keep my memories. 
+
+<br> _**But I am only a fan, not an expert**_. Our lab is now mainly working on **Epidemiology of Gastroenterological Cancer**. My personal interests are statistical methodology, nutritional epidemiology. This site you are visiting is the place to hold the materials I personally used or going to use for lectures/conference presentations, and a place to keep my memories. 
 
 這裏是王超辰的個人網站。2016年3月底我終於取得日本[名古屋大学](http://www.med.nagoya-u.ac.jp/medical/)的醫學博士學位，我的研究方向是慢性疾病的流行病學研究, [這](https://github.com/winterwang/markdown_cv/raw/master/Rmarkdown/rap-2pg-cv.pdf)是我的個人簡歷。我目前在[日本愛知医科大学医学部公衆衛生学教室](http://dph-amu.umin.jp)做助教。如果你不能打開左邊的鏈接，說明你生活在東土大唐GFW淪陷區內，請學會(肉身)翻牆訪問我們研究室的主頁。我支持開源軟件，工作，生活和學習中主要在[Ubuntu](https://www.ubuntu.com/)，及[Rstudio](https://www.rstudio.com/)環境下進行，堅持一邊學習，一邊使用[R](https://www.r-project.org/)分析數據。平时業餘愛好是折騰折騰电脑，讀讀[經濟學人/the Economist](http://www.economist.com/),智商平庸，痛恨GFW，每次回中國大陸超过一周時間就會出現渾身不適，惡心嘔吐等被牆症狀，每日19点症狀最爲嚴重。2017年9月我踏上留英一年之路，於2018年9月完成醫學統計學的碩士學位。我留學的地方是**[倫敦衛生與熱帶醫學院 LSHTM](https://www.lshtm.ac.uk/)**，如果你對公共衛生學，流行病學，或者是傳染病學防控，國際醫療保健，或者是對我所學的醫學統計學有興趣，牆裂推薦來 LSHTM 學習。這裡的教學和學習生活一定不會讓你失望。也歡迎參考我留下的[留學學習筆記](http://wangcc.me/LSHTMlearningnote/)。這本小書只是我學習中的部分筆記，大量的知識無法及時，也很難用中文詳細解釋。不過我相信對於想入門數據科學，或者是想從事醫學研究的人來說，能起到一定的參考作用。也許世界上認為統計學最難的人，就是我們學習統計學的人了。書山有路勤為徑，學海無涯苦作舟。沒有紮實的功底，論文發表得再多，[也會問出標準差和標準誤有什麼差別這樣的問題](https://www.researchgate.net/post/What_is_the_difference_between_meanSD_and_meanSE)。
 
