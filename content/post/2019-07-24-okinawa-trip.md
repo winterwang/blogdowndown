@@ -106,10 +106,9 @@ summary: "來日本第8個年頭，一次也未去過沖繩實在是有些說不
 ![](/post/2019-07-24-okinawa-trip_files/takephoto.jpg)
 
 海豚在興奮地跳躍，天空和大海比賽誰更藍：
+
 <video width=auto height=auto controls allowfullscreen>
   <source src="/post/2019-07-24-okinawa-trip_files/dolphinshow.mp4" type="video/mp4">
-  <source src="movie.ogg" type="video/ogg">
-  Your browser does not support the video tag.
 </video>
 
 ![](/post/2019-07-24-okinawa-trip_files/cutebackbig.jpg)

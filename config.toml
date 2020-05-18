@@ -66,3 +66,8 @@ ignoreFiles = ["\\.ipynb$", ".ipynb_checkpoints$", "\\.Rmd$", "\\.Rmarkdown$", "
   category = "categories"
   publication_type = "publication_types"
   author = "authors"
+
+# どうやらHugo 0.60.0以降では，markdown中に生のhtmlを書くと，出力されるhtmlでは
+# <!-- raw HTML omitted -->
+[markup.goldmark.renderer]
+unsafe= true
