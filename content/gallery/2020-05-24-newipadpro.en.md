@@ -64,7 +64,7 @@ commentable: true
 ![](/img/IMG_5023.jpeg)
 
 萌萌噠跑步最可愛哈哈：
+
 <video width=auto height=auto controls allowfullscreen>
   <source src="/video/IMG_5014.mov" type="video/mp4">
-  Your browser does not support the video tag.
 </video>
