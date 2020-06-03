@@ -53,8 +53,9 @@ commentable: true
 ![](/img/IMG_5096.jpeg)
 
 章魚小丸子一邊翻還一邊嗞嗞地冒油呢：
+
 <video width=auto height=auto controls allowfullscreen>
-  <source src="/video/001_WC-EditVideo_1.mov" type="video/mp4">
+  <source src="/video/001_WC-EditVideo_1.mp4" type="video/mp4">
 </video>
 
 日本小朋友指定的小學生背包真是像炸藥包一樣好大：
@@ -64,7 +65,7 @@ commentable: true
 ![](/img/IMG_5107.jpeg)
 ![](/img/IMG_5108.jpeg)
 
-安倍不知道跟哪個財團私下搞的發口罩活動，每家不分人口多少，一家兩篇布口罩，這緊急狀態都解除了才送到，是留着等第二波再用的吧：
+安倍不知道跟哪個財團私下搞的發口罩活動，每家不分人口多少，一家兩片布口罩，這緊急狀態都解除了才送到，是留着等第二波再用的吧：
 ![](/img/IMG_5112.jpeg)
 ![](/img/IMG_5113.jpeg)
 ![](/img/IMG_5114.jpeg)
