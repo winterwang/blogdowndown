@@ -15,7 +15,6 @@ tags:
   - 偶爾感慨
   - 自娛自樂
 subtitle: ''
-summary: ''
 authors: []
 lastmod: '2020-05-24T13:33:11+09:00'
 featured: no
