@@ -9,9 +9,6 @@ categories:
 tags:
   - corona
   - 偶爾感慨
-subtitle: ''
-summary: ''
-authors: []
 lastmod: '2020-04-28T13:42:39+09:00'
 featured: no
 header:

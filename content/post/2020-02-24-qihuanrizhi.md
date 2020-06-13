@@ -8,22 +8,16 @@ categories:
   - diary
 tags:
   - 偶爾感慨
-subtitle: ''
-summary: ''
-authors: []
 lastmod: '2020-02-24T14:44:45+09:00'
 featured: no
 header:
   caption: '請相信WHO，請相信中國大陸'
   image: 'IMG_3885.JPG'
-output:
-  blogdown::html_page:
-    toc: true
 summary: "有人說武漢解封了，然後三個小時之後就被闢謠了。(究竟誰在這三個小時內離開了武漢呢，這是一個值得思考的問題)"
 ---
 
 
-![封還是不封](/post/2020-02-24-qihuanrizhi_files/2020-02-24 17.52.29.jpg)
+![封還是不封](/post/2020-02-24-qihuanrizhi_files/2020-02-24.jpg)
 
 其實我也不知道到底誰在造謠。政令之混亂，只能反映出這個政權是多麼地無能。
 
@@ -55,14 +49,14 @@ summary: "有人說武漢解封了，然後三個小時之後就被闢謠了。(
 ![](/post/2020-02-24-qihuanrizhi_files/IMG_3888.JPG)
 金將軍還可以用石子擊落敵機呢。
 
-![](/post/2020-02-24-qihuanrizhi_files/2020-02-23 12.07.14.jpg)
+![](/post/2020-02-24-qihuanrizhi_files/2020-02-231.jpg)
 這不是住在奇幻世界的人的體溫嗎？
 
-![](/post/2020-02-24-qihuanrizhi_files/2020-02-23 16.00.47.jpg)
+![](/post/2020-02-24-qihuanrizhi_files/2020-02-23.jpg)
 恐怕真的不在少數。
 
-![老婆呢](/post/2020-02-24-qihuanrizhi_files/Screen Shot 2020-02-23 at 11.45.31.png)
-
+![](/post/2020-02-24-qihuanrizhi_files/ScreenShot.png)
+老婆呢?
 
 下列視頻可能引起不適，如果你想看喜訊請自覺調到CCTV進行自我調理。
 
