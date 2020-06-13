@@ -45,6 +45,7 @@ commentable: true
 
 
 鋼琴入住我們家這天，天氣很好，搬鋼琴的夥計還能說出我家小黑板上寫的“白日依山盡，黃河入海流”。人才真是不可貌相。不過看他們搬的過程，深感這位新成員的體量還是相當沉重。
+
 <video width=auto height=auto controls allowfullscreen>
   <source src="/video/IMG_5147.mov" type="video/mp4">
 </video>
