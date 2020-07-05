@@ -15,7 +15,10 @@ summary: ''
 authors: []
 lastmod: '2020-07-04T09:57:33+09:00'
 featured: no
-projects: []
+header:
+  caption: '你知道這幾個字是什麼涵義嗎？'
+  image: 'IMG_D32C3A7A0775-1.jpeg'
+summary: "RIP HK"
 ---
 
 你是否還記得一年前的這一天，[我們目睹了這個城市的集體哭泣](https://wangcc.me/post/do-you-hear-people-sing/)。
@@ -31,6 +34,7 @@ projects: []
 
 
 香港安息。
+
 
 <video width=auto height=auto controls allowfullscreen>
   <source src="/video/IMG_8129.mov" type="video/mp4">
