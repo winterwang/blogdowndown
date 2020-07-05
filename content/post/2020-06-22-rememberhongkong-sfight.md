@@ -10,8 +10,6 @@ categories:
 tags:
   - 偶爾感慨
   - thoughts
-subtitle: ''
-summary: ''
 authors: []
 lastmod: '2020-07-04T09:57:33+09:00'
 featured: no
@@ -37,7 +35,7 @@ summary: "RIP HK"
 
 
 <video width=auto height=auto controls allowfullscreen>
-  <source src="/video/IMG_8129.mov" type="video/mp4">
+  <source src="/video/IMG_8129.MOV" type="video/mp4">
 </video>
 
 
