@@ -14,7 +14,11 @@ weight = 110
 
 +++
 
-#### 平成31年/令和1年(2019)
+#### 令和2年 (2020)
+
+1. 基礎医学セミナー, 7/29, am, 基本再生産数について (Basic reproduction number R$_0$), [slides](https://wangcc.me/R0/)
+
+#### 平成31年/令和1年 (2019)
 
 1. 基礎医学セミナー1st, 2/13, am, Understand Sensitivity and Specificity, [slides](https://wangcc.me/seminar_2019/)
 2. 基礎医学セミナー2nd, 2/18, am, Pubmed and etc., [slides](https://wangcc.me/seminar_2019_pubmed/)
@@ -22,7 +26,7 @@ weight = 110
 4. 基礎医学セミナー4th, 2/21, am, Julie Huang (Stanford U.): H. pylori finds its home, [video](https://www.youtube.com/watch?v=aFc13YMfgeA); Microbiology - Helicobacter Pylori (Ulcer), [video](https://www.youtube.com/watch?v=y-shOXdsJeA)
 
 
-#### 平成29年(2017)
+#### 平成29年 (2017)
 
 1. 栄養疫学 (Nutritional Epidemiolgoy), 4/17, [slides](https://wangcc.me/slides417/)
 

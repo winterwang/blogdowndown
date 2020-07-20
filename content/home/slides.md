@@ -22,6 +22,9 @@ weight = 120
 
 7. **Cohort Study - basic knowledge and analysis**, @HOME, 28<sup>th</sup> April, CSS Statistical Study Group, Oral, [slides](https://wangcc.me/CohortStudy). 
 
+8. **Meta-analysis - with examples**, @HOME, 29<sup>th</sup> May, CSS Statistical Study Group, Oral, [slides](https://wangcc.me/meta-analysis/)
+
+9. **Survival Analysis**, @HOME, 19<sup>th</sup> June, Oral, [slides](https://wangcc.me/Survival01). 
 
 ## 2019
 
