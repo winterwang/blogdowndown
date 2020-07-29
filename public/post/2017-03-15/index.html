@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.5.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Chaochen Wang 王　超辰">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="第5章　行列式 determinant P73-79">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://wangcc.me/post/2017-03-15/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-21867861-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           document.location = url;
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target);  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-21867861-1', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon-32.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://wangcc.me/post/2017-03-15/">
+
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Be Ambitious">
+  <meta property="og:url" content="https://wangcc.me/post/2017-03-15/">
+  <meta property="og:title" content="「統計解析のための線形代数」復習筆記18 | Be Ambitious">
+  <meta property="og:description" content="第5章　行列式 determinant P73-79"><meta property="og:image" content="https://wangcc.me/img/icon-192.png">
+  <meta property="twitter:image" content="https://wangcc.me/img/icon-192.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2017-03-15T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2017-03-15T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://wangcc.me/post/2017-03-15/"
+  },
+  "headline": "「統計解析のための線形代数」復習筆記18",
+  
+  "datePublished": "2017-03-15T00:00:00Z",
+  "dateModified": "2017-03-15T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Chaochen Wang 王　超辰"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Be Ambitious",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://wangcc.me/img/icon-512.png"
+    }
+  },
+  "description": "第5章　行列式 determinant P73-79"
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>「統計解析のための線形代数」復習筆記18 | Be Ambitious</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0 compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Be Ambitious</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#publications"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#teaching"><span>Teaching</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#slides"><span>Slides</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/gallery"><span>Gallery</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>「統計解析のための線形代数」復習筆記18</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    2017-03-15
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    4 min read
+  </span>
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/post/2017-03-15/#disqus_thread"></a>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/categories/statistics/">statistics</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="行列式的定義與計算" class="section level2">
+<h2>行列式的定義與計算</h2>
+
+<div class="theorem">
+<span id="thm:unnamed-chunk-1" class="theorem"><strong>Theorem 1  (determinant)  </strong></span><span class="math inline">\(n\)</span> 次正方形矩陣 <span class="math inline">\(A= (a_{ij})=\left( \begin{array}{c} a_{11}&amp; a_{12} &amp; \cdots &amp; a_{1n}\\ a_{21}&amp; a_{22} &amp; \cdots &amp; a_{2n}\\ \vdots&amp; \vdots &amp; \ddots &amp; \vdots\\ a_{n1}&amp; a_{n2} &amp; \cdots &amp; a_{nn} \end{array} \right)\)</span> 的<strong>行列式(determinant)</strong>被定義爲是，<span class="math inline">\(A\)</span> 的全部成分 <span class="math inline">\(a_{11},a_{12},\cdots,a_{nn}\)</span> 的函數，這個函數是一個<strong>標量(scalar)</strong>。
+</div>
+<p><span class="math inline">\(n\)</span>次正方形矩陣 <span class="math inline">\(A\)</span> 的行列式(<span class="math inline">\(n\)</span>次行列式)，被記作：<br>
+<span class="math inline">\(|A|, |a_{ij}|, \det(A), \det(a_{ij})， \begin{vmatrix} a_{11}&amp; a_{12} &amp; \cdots &amp; a_{1n}\\ a_{21}&amp; a_{22} &amp; \cdots &amp; a_{2n}\\ \vdots&amp; \vdots &amp; \ddots &amp; \vdots\\ a_{n1}&amp; a_{n2} &amp; \cdots &amp; a_{nn} \notag \end{vmatrix}\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p>1次行列式：
+<span class="math display">\[\begin{equation}
+A=(a_{11}), |A|=a_{11}
+(\#eq:determinant1)
+\end{equation}\]</span></p></li>
+<li><p>2次行列式：
+<span class="math display">\[\begin{equation}
+A=\left(
+\begin{array}{}
+a_{11} &amp; a_{12}\\
+a_{21} &amp; a_{22}\\
+\end{array}
+\right), |A|=a_{11}a_{12}-a_{12}a_{21}
+(\#eq:determinant2)
+\end{equation}\]</span><br></p></li>
+<li><p><span class="math inline">\(n-1\)</span> 次行列式
+<span class="math display">\[\begin{equation}
+A_{(n-1)\times(n-1)}, 假設行列式 |A| 有被定義
+(\#eq:determinant3)
+\end{equation}\]</span></p></li>
+<li><p><span class="math inline">\(n\)</span> 次行列式<br>
+假如<a href="#eq:determinant3">(<strong>??</strong>)</a>成立：<br>
+對於：<span class="math inline">\(A_{n\times n}=\left( \begin{array}{c} a_{11}&amp; a_{12} &amp; \cdots &amp; a_{1n}\\ a_{21}&amp; a_{22} &amp; \cdots &amp; a_{2n}\\ \vdots&amp; \vdots &amp; \ddots &amp; \vdots\\ a_{n1}&amp; a_{n2} &amp; \cdots &amp; a_{nn} \end{array} \right)\\ |A|=\begin{vmatrix} a_{11}&amp; a_{12} &amp; \cdots &amp; a_{1n}\\ a_{21}&amp; a_{22} &amp; \cdots &amp; a_{2n}\\ \vdots&amp; \vdots &amp; \ddots &amp; \vdots\\ a_{n1}&amp; a_{n2} &amp; \cdots &amp; a_{nn} \notag \end{vmatrix}\\ \left\{ \begin{array}{} (4)\;=a_{i1}A_{i1}+a_{i2}A_{i2}+\cdots+a_{ij}A_{ij}+\cdots+a_{in}A_{in}\\ (5)\;=a_{1j}A_{i1}+a_{2j}A_{2j}+\cdots+a_{ij}A_{ij}+\cdots+a_{nj}A_{nj}\\  \end{array} \right.\)</span><br>
+式子 <span class="math inline">\((4)\)</span> 被稱爲行列式 <span class="math inline">\(|A|\)</span> 的第 <span class="math inline">\(i\)</span> 行<strong>展開式(expansion of <span class="math inline">\(|A|\)</span> according to elements of row <span class="math inline">\(i\)</span>)</strong>。同樣的，式子 <span class="math inline">\((5)\)</span> 被稱爲行列式 <span class="math inline">\(|A|\)</span> 的第 <span class="math inline">\(j\)</span> 列展開式。<span class="math inline">\(|A_{ij}|(i=1,2,\cdots,n;j=1,2,\cdots,n)\)</span> 被稱爲 成分 <span class="math inline">\(a_{ij}\)</span> 的<strong>餘因子(cofactor)</strong>，定義如下：<br>
+<span class="math inline">\(A_{ij}=(-1)^{i+j}D_{ij}\\ \;\;\;\;=(-1)^{i+j}\begin{vmatrix} a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1,j-1} &amp; a_{1,j+1} &amp; \cdots &amp; a_{1n}\\ a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2,j-1} &amp; a_{2,j+1} &amp; \cdots &amp; a_{2n}\\ \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots\\ a_{i-1,1} &amp; a_{i-1,2} &amp; \cdots &amp; a_{i-1,j-1} &amp; a_{i-1,j+1} &amp; \cdots &amp; a_{i-1,n}\\ a_{i+1,1} &amp; a_{i+1,2} &amp; \cdots &amp; a_{i+1,j-1} &amp; a_{i+1,,j+1} &amp; \cdots &amp; a_{i+1,n}\\ \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots\\ a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1,j-1} &amp; a_{1,j+1} &amp; \cdots &amp; a_{1n}\\ \end{vmatrix}\)</span><br>
+<span class="math inline">\(D_{ij}\)</span> 正如上面等式最右端所寫，其實是行列式 <span class="math inline">\(A_{n\times n}\)</span> 剔除了第 <span class="math inline">\(i\)</span> 行和第 <span class="math inline">\(j\)</span> 列的 <span class="math inline">\((n-1)\)</span> 次行列式，又被叫做行列式 <span class="math inline">\(A_{n\times n}\)</span> 的<strong>小行列式(minor)</strong>。</p></li>
+</ol>
+</div>
+<div id="餘因子矩陣" class="section level2">
+<h2>餘因子矩陣</h2>
+<p>以 <span class="math inline">\(A_{n\times n}\)</span> 的成分 <span class="math inline">\(a_{ij}\)</span> 的餘因子 <span class="math inline">\(A_{ij}\)</span> 作成分<strong>的矩陣</strong><span class="diff_alert">的轉置矩陣</span>作被稱爲 <span class="math inline">\(A_{n\times n}\)</span> 的<strong>餘因子矩陣(adjoint matrix, adjugate matrix)</strong>。標記爲 <span class="math inline">\(adj(A)\)</span>。也就是說：<br>
+<span class="math inline">\(adj(A)=\left( \begin{array}{c} A_{11}&amp; A_{12} &amp; \cdots &amp; A_{1n}\\ A_{21}&amp; A_{22} &amp; \cdots &amp; A_{2n}\\ \vdots&amp; \vdots &amp; \ddots &amp; \vdots\\ A_{n1}&amp; A_{n2} &amp; \cdots &amp; A_{nn} \end{array} \right)^t=\left( \begin{array}{c} A_{11}&amp; A_{21} &amp; \cdots &amp; A_{n1}\\ A_{12}&amp; A_{22} &amp; \cdots &amp; A_{n2}\\ \vdots&amp; \vdots &amp; \ddots &amp; \vdots\\ A_{1n}&amp; A_{2n} &amp; \cdots &amp; A_{nn} \end{array} \right)\)</span></p>
+<p>我們來試着計算行列式：<br>
+1. <span class="math inline">\(2\)</span> 次行列式<br>
+以方程<a href="#eq:determinant2">(<strong>??</strong>)</a>的定義計算：<br>
+<span class="math inline">\(\begin{vmatrix}  a_{11} &amp; a_{12}\\  a_{21} &amp; a_{22}\\  \end{vmatrix}=a_{11}a_{22}-a_{12}a_{21}\)</span><br>
+此公式可以用下列 <strong>示意圖(薩呂法則, Sarrus’ rule)</strong> 來記憶:
+　<img src="/img/sarrus.png" /><br>
+也就是，沿着右下方向將所有成分相乘以後用加號 <span class="math inline">\(+\)</span> 號連接起來，沿着左下的方向的所有成分則相乘以後用減號 <span class="math inline">\(-\)</span> 號連接起來。最後將這兩者相加獲得行列式的值。</p>
+<hr />
+<p>練習： 求 <span class="math inline">\(A=\left( \begin{array}{} 4 &amp; 2\\ 1 &amp; 3\\ \end{array} \right)\)</span> 的行列式和餘因子矩陣。</p>
+<p>解： <span class="math inline">\(|A|=\begin{vmatrix} 4 &amp; 2\\ 1 &amp; 3\\ \end{vmatrix}=4\times3-2\times1=10\)</span> <br>
+<span class="math inline">\(adj(A)=\left( \begin{array}{} A_{11} &amp; A_{21}\\ A_{12} &amp; A_{22}\\ \end{array} \right)\)</span> <br>
+<span class="math inline">\(\because A_{11}=(-1)^{(1+1)}\times3\\ A_{21}=(-1)^{(2+1)}\times2\\ A_{12}=(-1)^{(1+2)}\times1\\ A_{22}=(-1)^{2+2}\times4\\ \therefore adj(A)=\left( \begin{array}{r} 3 &amp; -2\\ -1 &amp; 4\\ \end{array} \right)\)</span><br>
+<span class="diff_alert"> 注意：餘因子<strong>矩陣</strong>，終究是一個矩陣而非行列式。</span></p>
+<hr />
+<ol start="2" style="list-style-type: decimal">
+<li>三次矩陣<br>
+<span class="math inline">\(A=\left( \begin{array}{c}  a_{11} &amp; a_{12} &amp; a_{13}\\  a_{21} &amp; a_{22} &amp; a_{23}\\  a_{31} &amp; a_{32} &amp; a_{33}\\ \end{array} \right)\)</span> 的行列式 <span class="math inline">\(|A|\)</span> 要如何用 <span class="math inline">\(A\)</span> 的成分來表示呢？ <br>
+我們發現，代入上面第 <span class="math inline">\((4)\)</span> 個式子 <span class="math inline">\(n=3\)</span> 的情況來計算。<br>
+在這裏，我們就按照 <span class="math inline">\(i=1\)</span> 的情況來展開。<span class="diff_alert"> (注意：<span class="math inline">\(i=2, i=3\)</span> 的情況展開，結果也是一樣的。)</span><br>
+<span class="math display">\[\begin{align}
+ |A| &amp;= a_{11}A_{11}+a_{12}A_{12}+a_{13}A_{13}\\
+     &amp;= a_{11}(-1)^{1+1}D_{11}+a_{12}(-1)^{1+2}D_{12}\\
+     &amp;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;+a_{13}(-1)^{1+3}D_{13}\\
+     &amp;= a_{11}\begin{vmatrix}a_{22} &amp; a_{23}\\ a_{32} &amp; a_{33}\\\end{vmatrix}-a_{12}\begin{vmatrix}a_{21} &amp; a_{23}\\ a_{31} &amp; a_{33}\\\end{vmatrix}\\
+     &amp;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;+a_{13}\begin{vmatrix}a_{21} &amp; a_{22}\\ a_{31} &amp; a_{32}\\\end{vmatrix}\\
+     &amp;= a_{11}(a_{22}a_{23}-a_{23}a_{32})-a_{12}(a_{21}a_{33}-a_{31}a_{23})\\
+     &amp;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;+a_{13}(a_{21}a_{32}-a_{22}a_{31})\\
+     &amp;=a_{11}a_{22}a_{33}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}-a_{11}a_{23}a_{32}\\
+     &amp;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;-a_{12}a_{21}a_{33}-a_{13}a_{22}a_{31}
+\end{align}\]</span><br>
+我們也可以利用薩呂法則（下圖）來記住計算過程：<br>
+<img src="/img/sarrus33.png" /><br>
+另外，可以得到如下的餘因子：<br>
+<span class="math inline">\(A_{11}=\begin{vmatrix}a_{22} &amp; a_{23}\\ a_{32} &amp; a_{33}\\\end{vmatrix}, A_{12}=-\begin{vmatrix}a_{21} &amp; a_{23}\\ a_{31} &amp; a_{33}\\\end{vmatrix}, A_{13}=\begin{vmatrix}a_{21} &amp; a_{22}\\ a_{31} &amp; a_{32}\\\end{vmatrix}\\ A_{21}=-\begin{vmatrix}a_{12} &amp; a_{13}\\ a_{32} &amp; a_{33}\\\end{vmatrix}, A_{22}=\begin{vmatrix}a_{11} &amp; a_{13}\\ a_{31} &amp; a_{33}\\\end{vmatrix}, A_{23}=-\begin{vmatrix}a_{11} &amp; a_{12}\\ a_{31} &amp; a_{32}\\\end{vmatrix}\\ A_{31}=\begin{vmatrix}a_{12} &amp; a_{13}\\ a_{22} &amp; a_{23}\\\end{vmatrix}, A_{32}=-\begin{vmatrix}a_{11} &amp; a_{13}\\ a_{21} &amp; a_{23}\\\end{vmatrix}, A_{33}=\begin{vmatrix}a_{11} &amp; a_{12}\\ a_{21} &amp; a_{22}\\\end{vmatrix}\)</span><br>
+因此餘因子矩陣爲：<br>
+<span class="math inline">\(adj(A)=\left( \begin{array}{c}  A_{11} &amp; A_{12} &amp; A_{13}\\  A_{21} &amp; A_{22} &amp; A_{23}\\  A_{31} &amp; A_{32} &amp; A_{33}\\ \end{array} \right)^t=\left( \begin{array}{c}  A_{11} &amp; A_{21} &amp; A_{23}\\  A_{12} &amp; A_{22} &amp; A_{32}\\  A_{13} &amp; A_{23} &amp; A_{33}\\ \end{array} \right)\)</span></li>
+</ol>
+<table style="width:7%;">
+<colgroup>
+<col width="6%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>練習：試求矩陣 <span class="math inline">\(A=\left( \begin{array}{r} 6 &amp; 1 &amp; -3\\ 3 &amp; 5 &amp; 7\\ 2 &amp; -1 &amp; 3\\ \end{array} \right)\)</span> 的行列式和餘因子矩陣</td>
+</tr>
+<tr class="even">
+<td>解： <span class="math inline">\(|A|= \begin{vmatrix} 6 &amp; 1 &amp; -3\\ 3 &amp; 5 &amp; 7\\ 2 &amp; -1 &amp; 3\\ \end{vmatrix}\\ \;\;\;\;\:=6\times5\times3+1\times7\times2+(-3)\times3\times(-1)\\ \;\;\;\;\;\:\;\;\;\;\:-\{6\times7\times(-1)+1\times3\times3+(-3)\times5\times2\}\\ \;\;\;\;\:=113-(-63)=176\\ \\ A_{11}=\begin{vmatrix}5 &amp; 7\\ -1 &amp; 3\\\end{vmatrix}=15-(-7)=22\\ A_{12}=\begin{vmatrix}3 &amp; 7\\ 2&amp; 3\\\end{vmatrix}=9-14=-5\\ A_{13}=\begin{vmatrix}3 &amp; 5\\ 2 &amp; -1\\\end{vmatrix}=-3-10=-13\\ A_{21}=\begin{vmatrix}1 &amp; -3\\ -1 &amp; 3\\\end{vmatrix}=3-3=0\\ A_{22}=\begin{vmatrix}6 &amp; -3\\ 2 &amp; 3\\\end{vmatrix}=18-(-6)=24\\ A_{23}=\begin{vmatrix}6 &amp; 1\\ 2 &amp; -1\\\end{vmatrix}=-6-2=-8\\ A_{31}=\begin{vmatrix}1 &amp; -3\\5 &amp; 7\\\end{vmatrix}=7-(-15)=22\\ A_{32}=\begin{vmatrix}6 &amp; -3\\3 &amp; 7\\\end{vmatrix}=42-(-9)=51\\ A_{33}=\begin{vmatrix}6 &amp; 1\\ 3 &amp; 5\\\end{vmatrix}=30-3=27\\ \Longrightarrow adj(A)=\left( \begin{array}{r} 22 &amp; 5 &amp; -13 \\ 0 &amp; 24&amp; -8 \\ 22 &amp; 51&amp; 27 \\ \end{array} \right)^t=\left( \begin{array}{r} 22 &amp; 0 &amp; 22\\ 5 &amp; 24 &amp; 51\\ -13 &amp; -8 &amp; 27\\ \end{array} \right)\)</span></td>
+</tr>
+</tbody>
+</table>
+<table style="width:7%;">
+<colgroup>
+<col width="6%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>練習： 求3次矩陣的固有值時(將來敘述)需要的行列式<br>
+<span class="math inline">\(\begin{vmatrix} a-\lambda &amp; b &amp; c\\ d &amp; e-\lambda &amp; f\\ g &amp; h &amp; i-\lambda \end{vmatrix}\)</span><br>
+展開以後，整理爲關於 <span class="math inline">\(\lambda\)</span> 的式子：<br></td>
+</tr>
+<tr class="even">
+<td>解： <span class="math inline">\(\begin{vmatrix} a-\lambda &amp; b &amp; c\\ d &amp; e-\lambda &amp; f\\ g &amp; h &amp; i-\lambda \end{vmatrix}\\ =(a-\lambda)(e-\lambda)(i-\lambda)+bfg+dhc\\ \;\;\;\;\;-\{g(e-\lambda)c+bd(i-\lambda)+(a-\lambda)fh\}\\ =-\lambda^3+(a+e+i)\lambda^2+(bd+cg+fh-ae-ei-ai)\lambda\\ \;\;\;\;\;+(aei+bfg+cdh-afh-bdi-ecg)\)</span></td>
+</tr>
+</tbody>
+</table>
+<ol start="3" style="list-style-type: decimal">
+<li>4次行列式：<br>
+試求<span class="math inline">\(A=\left( \begin{array}{}  a_{11}&amp; a_{12}&amp; a_{13}&amp; a_{14}\\  a_{21}&amp; a_{22}&amp; a_{23}&amp; a_{24}\\  a_{31}&amp; a_{32}&amp; a_{33}&amp; a_{34}\\  a_{41}&amp; a_{42}&amp; a_{43}&amp; a_{44} \end{array} \right)\\ \;\;=\left( \begin{array}{r}  -2 &amp; 3 &amp;4 &amp; 1\\  4 &amp; 2&amp; 0&amp; 5\\  2 &amp;-3&amp; -4&amp; 2\\  2 &amp; 1&amp; 2&amp; -3 \end{array} \right)\)</span> <br>的行列式 <span class="math inline">\(|A|\)</span>：<br>
+由於第2行有成分 <span class="math inline">\(a_{23}=0\)</span> 我們以第二行展開行列式，因爲 <span class="math inline">\(a_{23}=0\)</span>，所以 <span class="math inline">\(a_{23}A_{23}=0\)</span> 可以省略：<br>
+<span class="math inline">\(|A|=a_{21}A_{21}+a_{22}A_{22}+a_{24}A_{24}\\ \;\;\;\;\:=a_{21}(-1)^{2+1}D_{21}+a_{22}(-1)^{2+2}D_{22}+a_{24}(-1)^{2+4}D_{24}\)</span><br>
+<span class="math inline">\(\because A_{21}=(-1)^{2+1}\begin{vmatrix}  a_{12} &amp; a_{13} &amp; a_{14}\\  a_{32} &amp; a_{33} &amp; a_{34}\\  a_{42} &amp; a_{43} &amp; a_{44}\\ \end{vmatrix}\\ \;\;\;\;\;\;\;\;\;=-\begin{vmatrix}  3 &amp; 4 &amp; 1\\  -3 &amp; -4 &amp; 2\\  1 &amp; 2&amp; -3\\ \end{vmatrix}=6\\ A_{22}=(-1)^{2+2}\begin{vmatrix}  a_{11} &amp; a_{13} &amp; a_{14}\\  a_{31} &amp; a_{33} &amp; a_{34}\\  a_{41} &amp; a_{43} &amp; a_{44}\\ \end{vmatrix}\\ \;\;\;\;\;\;\;\;\;=\begin{vmatrix}  -2 &amp; 4 &amp;1\\  2 &amp; -4 &amp;2\\  2 &amp; 2 &amp;-3\\ \end{vmatrix}=36\\ A_{24}=(-1)^{2+4}\begin{vmatrix}  a_{11} &amp; a_{12} &amp; a_{13}\\  a_{31} &amp; a_{32} &amp; a_{33}\\  a_{41} &amp; a_{42} &amp; a_{43}\\ \end{vmatrix}\\ \;\;\;\;\;\;\;\;\;=-\begin{vmatrix}  -2 &amp; 3 &amp;4\\  2 &amp; -3 &amp;-4\\  2 &amp; 1 &amp;2\\ \end{vmatrix}=0\\ \therefore |A|=4\times6+2\times36+5\times0=96\)</span><br>
+<span class="diff_alert">然而，<strong>4次以上的矩陣的行列式計算，沒有類似薩呂法則的計算方法。</strong></span></li>
+</ol>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/learning-notes/">learning notes</a>
+  
+  <a class="badge badge-light" href="/tags/basic-mathematics/">basic mathematics</a>
+  
+  <a class="badge badge-light" href="/tags/linear-algebra/">linear algebra</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://wangcc.me/post/2017-03-15/&amp;text=%e3%80%8c%e7%b5%b1%e8%a8%88%e8%a7%a3%e6%9e%90%e3%81%ae%e3%81%9f%e3%82%81%e3%81%ae%e7%b7%9a%e5%bd%a2%e4%bb%a3%e6%95%b0%e3%80%8d%e5%be%a9%e7%bf%92%e7%ad%86%e8%a8%9818" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://wangcc.me/post/2017-03-15/&amp;t=%e3%80%8c%e7%b5%b1%e8%a8%88%e8%a7%a3%e6%9e%90%e3%81%ae%e3%81%9f%e3%82%81%e3%81%ae%e7%b7%9a%e5%bd%a2%e4%bb%a3%e6%95%b0%e3%80%8d%e5%be%a9%e7%bf%92%e7%ad%86%e8%a8%9818" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%e3%80%8c%e7%b5%b1%e8%a8%88%e8%a7%a3%e6%9e%90%e3%81%ae%e3%81%9f%e3%82%81%e3%81%ae%e7%b7%9a%e5%bd%a2%e4%bb%a3%e6%95%b0%e3%80%8d%e5%be%a9%e7%bf%92%e7%ad%86%e8%a8%9818&amp;body=https://wangcc.me/post/2017-03-15/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://wangcc.me/post/2017-03-15/&amp;title=%e3%80%8c%e7%b5%b1%e8%a8%88%e8%a7%a3%e6%9e%90%e3%81%ae%e3%81%9f%e3%82%81%e3%81%ae%e7%b7%9a%e5%bd%a2%e4%bb%a3%e6%95%b0%e3%80%8d%e5%be%a9%e7%bf%92%e7%ad%86%e8%a8%9818" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=%e3%80%8c%e7%b5%b1%e8%a8%88%e8%a7%a3%e6%9e%90%e3%81%ae%e3%81%9f%e3%82%81%e3%81%ae%e7%b7%9a%e5%bd%a2%e4%bb%a3%e6%95%b0%e3%80%8d%e5%be%a9%e7%bf%92%e7%ad%86%e8%a8%9818%20https://wangcc.me/post/2017-03-15/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://wangcc.me/post/2017-03-15/&amp;title=%e3%80%8c%e7%b5%b1%e8%a8%88%e8%a7%a3%e6%9e%90%e3%81%ae%e3%81%9f%e3%82%81%e3%81%ae%e7%b7%9a%e5%bd%a2%e4%bb%a3%e6%95%b0%e3%80%8d%e5%be%a9%e7%bf%92%e7%ad%86%e8%a8%9818" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      <img class="portrait mr-3" src="https://s.gravatar.com/avatar/eca3c74b8c4ce437424800c7bc74b67d?s=200')" alt="Avatar">
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://wangcc.me/">Chaochen Wang 王　超辰</a></h5>
+      <h6 class="card-subtitle">Assistant Professor</h6>
+      <p class="card-text">All models are wrong, but some are useful.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/outyousin" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.jp/citations?user=0J-5evgAAAAJ&amp;hl=ja" target="_blank" rel="noopener">
+        <i class="ai ai-google-scholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/winterwang" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "ccwang" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/2017-03-13/">「統計解析のための線形代数」復習筆記17</a></li>
+      
+      <li><a href="/post/2017-03-11/">「統計解析のための線形代数」復習筆記16</a></li>
+      
+      <li><a href="/post/2017-03-08/">「統計解析のための線形代数」復習筆記15</a></li>
+      
+      <li><a href="/post/2017-03-01/">「統計解析のための線形代数」復習筆記14</a></li>
+      
+      <li><a href="/post/2017-02-28/">「統計解析のための線形代数」復習筆記13</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+    
+    <script src="/js/mathjax-config.js"></script>
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha256-1zu+3BnLYV9LdiY85uXMzii3bdrkelyp37e0ZyTAQh0=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+        
+      
+
+      
+      
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://ccwang.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.d6bd04fdad2ad213aa8111c5a3b72fc5.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    © 2017-2020 Chaochen Wang | 王超辰 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

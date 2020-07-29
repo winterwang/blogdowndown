@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.5.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Chaochen Wang 王　超辰">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="關於卡方分佈的知識和推導，我竟然花了一天時間">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://wangcc.me/post/chi-square-distribution/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-21867861-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           document.location = url;
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target);  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-21867861-1', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon-32.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://wangcc.me/post/chi-square-distribution/">
+
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Be Ambitious">
+  <meta property="og:url" content="https://wangcc.me/post/chi-square-distribution/">
+  <meta property="og:title" content="卡方分佈 chi square distribution | Be Ambitious">
+  <meta property="og:description" content="關於卡方分佈的知識和推導，我竟然花了一天時間"><meta property="og:image" content="https://wangcc.me/img/icon-192.png">
+  <meta property="twitter:image" content="https://wangcc.me/img/icon-192.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2017-10-26T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2017-10-26T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://wangcc.me/post/chi-square-distribution/"
+  },
+  "headline": "卡方分佈 chi square distribution",
+  
+  "datePublished": "2017-10-26T00:00:00Z",
+  "dateModified": "2017-10-26T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Chaochen Wang 王　超辰"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Be Ambitious",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://wangcc.me/img/icon-512.png"
+    }
+  },
+  "description": "關於卡方分佈的知識和推導，我竟然花了一天時間"
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>卡方分佈 chi square distribution | Be Ambitious</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0 compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Be Ambitious</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#featured"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#teaching"><span>Teaching</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#slides"><span>Slides</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>卡方分佈 chi square distribution</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    2017-10-26
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    2 min read
+  </span>
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/post/chi-square-distribution/#disqus_thread"></a>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/categories/statistics/">statistics</a>, <a href="/categories/study-abroad/">study abroad</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+
+
+<div id="卡方分佈的期望和方差的證明" class="section level3">
+<h3>卡方分佈的期望和方差的證明：</h3>
+<p>當 <span class="math inline">\(X\sim N(0,1)\)</span> 時， <span class="math inline">\(X^2\sim \mathcal{X}_1^2\)</span></p>
+<p>如果 <span class="math inline">\(X_1, \dots, X_n\stackrel{i.i.d}{\sim} N(0,1)\)</span>，
+那麼 <span class="math inline">\(\sum_{i=1}^nX_i^2\sim\mathcal{X}_n^2\)</span></p>
+<p>其中： <span class="math inline">\(\mathcal{X}_n^2\)</span> 表示自由度爲 <span class="math inline">\(n\)</span> 的卡方分佈。</p>
+<p>且 <span class="math inline">\(X_m^2+X_n^2=\mathcal{X}_{m+n}^2\)</span></p>
+<div id="卡方分佈的期望" class="section level4">
+<h4>卡方分佈的期望：</h4>
+<p><span class="math display">\[E(X_1^2)=Var(X)+[E(X)]^2=1+0=1\]</span></p>
+<p><span class="math display">\[\Rightarrow E(X_n^2)=n\]</span></p>
+</div>
+<div id="卡方分佈的方差" class="section level4">
+<h4>卡方分佈的方差：</h4>
+<p><span class="math display">\[
+\begin{aligned}
+Var(X_1^2) &amp;= E(X_1^{2^2}) - E(X_1^2)^2 \\
+           &amp;= E(X_1^4)-1
+\end{aligned}
+\]</span></p>
+<div id="下面來求-ex_14" class="section level5">
+<h5>下面來求 <span class="math inline">\(E(X_1^4)\)</span></h5>
+<p><span class="math display">\[
+\begin{aligned}
+\because E(X_1) &amp;= \int_{-\infty}^{+\infty} xf(x)dx \\
+\therefore E(X_1^4) &amp;= \int_{-\infty}^{+\infty} x^4f(x)dx
+\end{aligned}\]</span></p>
+<p>已知： <span class="math inline">\(f(x)=\frac{1}{\sqrt{2\pi}}e^{(-\frac{x^2}{2})}\)</span> 代入上式：</p>
+<p><span class="math display">\[
+\begin{aligned}
+E(X_1^4) &amp;= \int_{-\infty}^{+\infty} x^4f(x)dx \\
+         &amp;= \int_{-\infty}^{+\infty} x^4\frac{1}{\sqrt{2\pi}}e^{(-\frac{x^2}{2})}dx\\
+         &amp;=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}x^4e^{(-\frac{x^2}{2})}dx\\
+         &amp;=\frac{-1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}x^3(-x)e^{(-\frac{x^2}{2})}dx
+\end{aligned}
+\]</span></p>
+<p>令 <span class="math inline">\(u=x^3, v=e^{(-\frac{x^2}{2})},t=-\frac{x^2}{2}\)</span>
+可以推導：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{dv}{dx} &amp;= \frac{dv}{dt}\frac{dt}{dx} \\
+              &amp;= e^t(-\frac{1}{2}\times2x) \\
+              &amp;= (-x)e^{(-\frac{x^2}{2})} \\
+\Rightarrow dv &amp;= (-x)e^{(-\frac{x^2}{2})}dx
+\end{aligned}
+\]</span></p>
+<p>再代入上面的式子：</p>
+<p><span class="math display">\[
+\begin{aligned}
+E(X_1^4) &amp;= \frac{-1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}u\:dv \\
+integrate\; &amp;by\; parts:\\
+E(X_1^4) &amp;= \frac{-1}{\sqrt{2\pi}}\{[u\:v] \rvert_{-\infty}^{+\infty}-\int_{-\infty}^{+\infty}v\:du\} \\
+&amp;= \frac{-1}{\sqrt{2\pi}}\{[x^3e^{(-\frac{x^2}{2})}]\rvert_{-\infty}^{+\infty} -\int_{-\infty}^{+\infty}v\:du\} \\
+&amp;=\frac{-1}{\sqrt{2\pi}}\{0-0-\int_{-\infty}^{+\infty}e^{(-\frac{x^2}{2})}dx^3\} \\
+&amp;=\frac{-1}{\sqrt{2\pi}}[-3\int_{-\infty}^{+\infty}x^2e^{(-\frac{x^2}{2})}dx] \\
+&amp;=\frac{-3}{\sqrt{2\pi}}[\int_{-\infty}^{+\infty}x(-x)e^{(-\frac{x^2}{2})}dx] \\
+\end{aligned}
+\]</span></p>
+<p>再來一次分部積分：</p>
+<p>令 <span class="math inline">\(a=x,b=e^{(-\frac{x^2}{2})},d\:b = (-x)e^{(-\frac{x^2}{2})}dx\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+E(X_1^4) &amp;= \frac{-3}{\sqrt{2\pi}}\{[a\:b] \rvert_{-\infty}^{+\infty} - \int_{-\infty}^{+\infty}b\:da\} \\
+&amp;=\frac{-3}{\sqrt{2\pi}}\{[xe^{(-\frac{x^2}{2})}]\rvert_{-\infty}^{+\infty} -\int_{-\infty}^{+\infty}b\:da\} \\
+&amp;=\frac{-3}{\sqrt{2\pi}}\{0-0-\int_{-\infty}^{+\infty}e^{(-\frac{x^2}{2})}dx\} \\
+&amp;=\frac{-3}{\sqrt{2\pi}}[-\int_{-\infty}^{+\infty}e^{(-\frac{x^2}{2})}dx] \\
+&amp;=\frac{3}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}e^{(-\frac{x^2}{2})}dx
+\end{aligned}
+\]</span></p>
+<p>下面令 <span class="math inline">\(I=\int_{-\infty}^{+\infty}e^{(-\frac{x^2}{2})}dx\\ \Rightarrow I^2=\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}e^{(-\frac{x^2+y^2}{2})}dxdy\)</span></p>
+<p>接下來需要用到 <a href="https://www.youtube.com/watch?v=r0fv9V9GHdo">座標轉換</a>的知識，將 <span class="math inline">\(x,y\)</span> 表示的笛卡爾座標，轉換爲用角度 <span class="math inline">\(\theta\)</span> 和半徑 <span class="math inline">\(r\)</span> 表示的形式。之後的證明可以在<a href="https://www.youtube.com/watch?v=fWOGfzC3IeY">油管</a>上看到，但是我還是繼續證明下去。</p>
+<p>直角座標系 (cartesian coordinators) 和
+極座標系 (polar coordinators) 之間轉換的關係如下：</p>
+<p><span class="math display">\[
+\begin{aligned}
+x&amp;=r\:cos\theta\\
+y&amp;=r\:sin\theta\\
+r^2&amp;=x^2+y^2\\
+\end{aligned}
+\]</span></p>
+<p>座標轉換以後可以繼續求 <span class="math inline">\(E(X_1^4)\)</span>。 在那之前我們先求 <span class="math inline">\(I^2\)</span>。
+注意轉換座標系統以後，<span class="math inline">\(\theta\in[0,2\pi], r\in[0,+\infty]\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+I^2 &amp;= \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}e^{(-\frac{x^2+y^2}{2})}dxdy \\
+&amp;= \int_{0}^{+\infty}\int_{0}^{2\pi}e^{(-\frac{r^2}{2})}rd\theta dr \\
+\end{aligned}
+\]</span></p>
+<p>由於先從中間的 <span class="math inline">\(\int_{0}^{2\pi}e^{(-\frac{r^2}{2})}rd\theta\)</span> 開始積分，<span class="math inline">\(\theta\)</span> 以外都可以視爲常數，那麼這個 <span class="math inline">\([0,2\pi]\)</span> 上的積分就的等於 <span class="math inline">\(2\pi e^{(-\frac{r^2}{2})}r\)</span>。</p>
+<p>因此上面的式子又變爲：</p>
+<p><span class="math display">\[
+\begin{aligned}
+I^2 &amp;=  2\pi\int_{0}^{+\infty}e^{(-\frac{r^2}{2})}r\:dr \\
+\because \frac{d(e^{\frac{-r^2}{2}})}{dr} &amp;= -e^{(-\frac{r^2}{2})}r \\
+\therefore I^2 &amp;= 2\pi(-e^{\frac{-r^2}{2}})\rvert_0^{+\infty} \\
+               &amp;= 0-(2\pi\times(-1)) \\
+               &amp;= 2\pi\\
+\Rightarrow I  &amp;= \sqrt{2\pi}
+\end{aligned}
+\]</span></p>
+<p>所以，</p>
+<p><span class="math display">\[
+\begin{aligned}
+E(X_1^4) &amp;= \frac{3}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}e^{(-\frac{x^2}{2})}dx \\
+&amp;= \frac{3}{\sqrt{2\pi}}\times I \\
+&amp;= 3 \\
+\Rightarrow Var(X_1^2) &amp;= E(X_1^4) - 1 \\
+                       &amp;= 3-1 =2 \\
+\Rightarrow Var(X_n^2) &amp;= 2n
+\end{aligned}
+\]</span></p>
+<p>結論：<span class="math inline">\(X_1, \dots, X_n\stackrel{i.i.d}{\sim} N(0,1)\)</span> 時，<span class="math inline">\(\sum_{i=1}^nX_i^2\sim\mathcal{X}_n^2\)</span> 服從卡方分佈，其期望 <span class="math inline">\(E(X_n^2)=n\)</span>，方差 <span class="math inline">\(Var(X_n^2)=2n\)</span>。
+根據<a href="https://winterwang.github.io/post/central-limit-theory/">中心極限定理</a></p>
+<p><span class="math display">\[n\rightarrow \infty, X_n^2\sim N(n, 2n)\]</span></p>
+</div>
+</div>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/inference/">inference</a>
+  
+  <a class="badge badge-light" href="/tags/learning-notes/">learning notes</a>
+  
+  <a class="badge badge-light" href="/tags/lshtm/">LSHTM</a>
+  
+  <a class="badge badge-light" href="/tags/london/">London</a>
+  
+  <a class="badge badge-light" href="/tags/medical-statistics/">Medical Statistics</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://wangcc.me/post/chi-square-distribution/&amp;text=%e5%8d%a1%e6%96%b9%e5%88%86%e4%bd%88%20chi%20square%20distribution" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://wangcc.me/post/chi-square-distribution/&amp;t=%e5%8d%a1%e6%96%b9%e5%88%86%e4%bd%88%20chi%20square%20distribution" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%e5%8d%a1%e6%96%b9%e5%88%86%e4%bd%88%20chi%20square%20distribution&amp;body=https://wangcc.me/post/chi-square-distribution/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://wangcc.me/post/chi-square-distribution/&amp;title=%e5%8d%a1%e6%96%b9%e5%88%86%e4%bd%88%20chi%20square%20distribution" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=%e5%8d%a1%e6%96%b9%e5%88%86%e4%bd%88%20chi%20square%20distribution%20https://wangcc.me/post/chi-square-distribution/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://wangcc.me/post/chi-square-distribution/&amp;title=%e5%8d%a1%e6%96%b9%e5%88%86%e4%bd%88%20chi%20square%20distribution" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      <img class="portrait mr-3" src="https://s.gravatar.com/avatar/eca3c74b8c4ce437424800c7bc74b67d?s=200')" alt="Avatar">
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://wangcc.me/">Chaochen Wang 王　超辰</a></h5>
+      <h6 class="card-subtitle">Assistant Professor</h6>
+      <p class="card-text">All models are wrong, but some are useful.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/outyousin" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.jp/citations?user=0J-5evgAAAAJ&amp;hl=ja" target="_blank" rel="noopener">
+        <i class="ai ai-google-scholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/winterwang" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "ccwang" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/frequentist-statistical-inference02/">估計和精確度的概念</a></li>
+      
+      <li><a href="/post/frequentist-statistical-inference01/">概率論者統計推斷入門之-被門夾住</a></li>
+      
+      <li><a href="/post/central-limit-theory/">偉大的中心極限定理</a></li>
+      
+      <li><a href="/post/central-limit-theorem-application/">中心極限定理的應用</a></li>
+      
+      <li><a href="/post/probability3/">你買的彩票中獎概率到底有多少？</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+    
+    <script src="/js/mathjax-config.js"></script>
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha256-1zu+3BnLYV9LdiY85uXMzii3bdrkelyp37e0ZyTAQh0=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+        
+      
+
+      
+      
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://ccwang.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.d6bd04fdad2ad213aa8111c5a3b72fc5.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    &copy; 2017-2019 Chaochen Wang | 王超辰 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

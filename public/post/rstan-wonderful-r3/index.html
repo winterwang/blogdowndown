@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.5.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Chaochen Wang 王　超辰">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Rstan 學習筆記 Chapter 5.1">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://wangcc.me/post/rstan-wonderful-r3/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-21867861-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           document.location = url;
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target);  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-21867861-1', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon-32.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://wangcc.me/post/rstan-wonderful-r3/">
+
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Be Ambitious">
+  <meta property="og:url" content="https://wangcc.me/post/rstan-wonderful-r3/">
+  <meta property="og:title" content="Rstan Wonderful R-(3) | Be Ambitious">
+  <meta property="og:description" content="Rstan 學習筆記 Chapter 5.1"><meta property="og:image" content="https://wangcc.me/img/052816_bayesian-opener_free.jpg">
+  <meta property="twitter:image" content="https://wangcc.me/img/052816_bayesian-opener_free.jpg"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2019-01-22T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2019-01-22T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://wangcc.me/post/rstan-wonderful-r3/"
+  },
+  "headline": "Rstan Wonderful R-(3)",
+  
+  "datePublished": "2019-01-22T00:00:00Z",
+  "dateModified": "2019-01-22T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Chaochen Wang 王　超辰"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Be Ambitious",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://wangcc.me/img/icon-512.png"
+    }
+  },
+  "description": "Rstan 學習筆記 Chapter 5.1"
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Rstan Wonderful R-(3) | Be Ambitious</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0 compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Be Ambitious</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#publications"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#teaching"><span>Teaching</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#slides"><span>Slides</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/gallery"><span>Gallery</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+<div class="article-header">
+  
+  
+  <img src="/img/052816_bayesian-opener_free.jpg" class="article-banner" alt="">
+  
+
+  
+</div>
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Rstan Wonderful R-(3)</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    2019-01-22
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    11 min read
+  </span>
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/post/rstan-wonderful-r3/#disqus_thread"></a>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/categories/bayesian/">Bayesian</a>, <a href="/categories/r-techniques/">R techniques</a>, <a href="/categories/statistics/">statistics</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#多重回歸-multiple-regression">多重回歸 multiple regression</a>
+<ul>
+<li><a href="#step-1.-確認數據分佈">Step 1. 確認數據分佈</a></li>
+<li><a href="#step-2.-寫下數學模型">Step 2. 寫下數學模型</a></li>
+<li><a href="#step-3.-看圖確認模型擬合狀況">Step 3. 看圖確認模型擬合狀況</a></li>
+<li><a href="#step-4.-mcmc-樣本的散點圖矩陣">Step 4. MCMC 樣本的散點圖矩陣</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="多重回歸-multiple-regression" class="section level1">
+<h1>多重回歸 multiple regression</h1>
+<p>本章使用的數據，大學生出勤記錄也是<a href="https://raw.githubusercontent.com/winterwang/RStanBook/master/chap05/input/data-attendance-1.txt">架空的數據</a>。</p>
+<p>有大學記錄了50名大學生的出勤狀況：</p>
+<pre><code>A,Score,Y
+0,69,0.286
+1,145,0.196
+0,125,0.261
+1,86,0.109
+1,158,0.23
+0,133,0.35
+0,111,0.33
+1,147,0.194
+0,146,0.413
+0,145,0.36
+1,141,0.225
+0,137,0.423
+1,118,0.186
+0,111,0.287
+...
+0,99,0.268
+1,99,0.234</code></pre>
+<p>其中，</p>
+<ul>
+<li><span class="math inline">\(A\)</span>: 是學生大學二年級時進行的問卷調查時回答是否喜歡打零工的結果（0:不喜歡打工；1:喜歡打工）</li>
+<li><span class="math inline">\(Score\)</span>: 是大學二年級時進行的問卷調查時計算的該學生對學習是否感興趣的數值評分(200分滿分，分數越高，該學生越熱愛學習)</li>
+<li><span class="math inline">\(Y\)</span>: 是該學生一年內的出勤率</li>
+</ul>
+<p>在本次分析範例中，把<span class="math inline">\(Y\)</span>出勤率當作是連續型結果變量，我們來用Stan實施多重回歸分析，回答學生喜歡打零工與否，和學生對學習的熱情程度兩個變量能解釋多少出勤率。</p>
+<div id="step-1.-確認數據分佈" class="section level2">
+<h2>Step 1. 確認數據分佈</h2>
+<pre class="r"><code># The following figure codes come from the authors website: 
+# https://github.com/MatsuuraKentaro/RStanBook/blob/master/chap05/fig5-1.R
+library(ggplot2)
+library(GGally)
+
+set.seed(123)
+d &lt;- read.csv(file=&#39;https://raw.githubusercontent.com/winterwang/RStanBook/master/chap05/input/data-attendance-1.txt&#39;, header = T)
+d$A &lt;- as.factor(d$A)
+
+N_col &lt;- ncol(d)
+ggp &lt;- ggpairs(d, upper=&#39;blank&#39;, diag=&#39;blank&#39;, lower=&#39;blank&#39;)
+
+for(i in 1:N_col) {
+  x &lt;- d[,i]
+  p &lt;- ggplot(data.frame(x, A=d$A), aes(x))
+  p &lt;- p + theme_bw(base_size=14)
+  p &lt;- p + theme(axis.text.x=element_text(angle=40, vjust=1, hjust=1))
+  if (class(x) == &#39;factor&#39;) {
+    p &lt;- p + geom_bar(aes(fill=A), color=&#39;grey5&#39;)
+  } else {
+    bw &lt;- (max(x)-min(x))/10
+    p &lt;- p + geom_histogram(binwidth=bw, aes(fill=A), color=&#39;grey5&#39;) #繪製柱狀圖
+    p &lt;- p + geom_line(eval(bquote(aes(y=..count..*.(bw)))), stat=&#39;density&#39;) #添加概率密度曲線
+  }
+  p &lt;- p + geom_label(data=data.frame(x=-Inf, y=Inf, label=colnames(d)[i]), aes(x=x, y=y, label=label), hjust=0, vjust=1)
+  p &lt;- p + scale_fill_manual(values=alpha(c(&#39;white&#39;, &#39;grey40&#39;), 0.5))
+  ggp &lt;- putPlot(ggp, p, i, i)
+}
+
+zcolat &lt;- seq(-1, 1, length=81)
+zcolre &lt;- c(zcolat[1:40]+1, rev(zcolat[41:81]))
+
+for(i in 1:(N_col-1)) {
+  for(j in (i+1):N_col) {
+    x &lt;- as.numeric(d[,i])
+    y &lt;- as.numeric(d[,j])
+    r &lt;- cor(x, y, method=&#39;spearman&#39;, use=&#39;pairwise.complete.obs&#39;)
+    zcol &lt;- lattice::level.colors(r, at=zcolat, col.regions=grey(zcolre))
+    textcol &lt;- ifelse(abs(r) &lt; 0.4, &#39;grey20&#39;, &#39;white&#39;)
+    ell &lt;- ellipse::ellipse(r, level=0.95, type=&#39;l&#39;, npoints=50, scale=c(.2, .2), centre=c(.5, .5))
+    p &lt;- ggplot(data.frame(ell), aes(x=x, y=y))
+    p &lt;- p + theme_bw() + theme(
+      plot.background=element_blank(),
+      panel.grid.major=element_blank(), panel.grid.minor=element_blank(),
+      panel.border=element_blank(), axis.ticks=element_blank()
+    )
+    p &lt;- p + geom_polygon(fill=zcol, color=zcol)
+    p &lt;- p + geom_text(data=NULL, x=.5, y=.5, label=100*round(r, 2), size=6, col=textcol)
+    ggp &lt;- putPlot(ggp, p, i, j)
+  }
+}
+
+for(j in 1:(N_col-1)) {
+  for(i in (j+1):N_col) {
+    x &lt;- d[,j]
+    y &lt;- d[,i]
+    p &lt;- ggplot(data.frame(x, y, gr=d$A), aes(x=x, y=y, fill=gr, shape=gr))
+    p &lt;- p + theme_bw(base_size=14)
+    p &lt;- p + theme(axis.text.x=element_text(angle=40, vjust=1, hjust=1))
+    if (class(x) == &#39;factor&#39;) {
+      p &lt;- p + geom_boxplot(aes(group=x), alpha=3/6, outlier.size=0, fill=&#39;white&#39;)
+      p &lt;- p + geom_point(position=position_jitter(w=0.4, h=0), size=2)
+    } else {
+      p &lt;- p + geom_point(size=2)
+    }
+    p &lt;- p + scale_shape_manual(values=c(21, 24))
+    p &lt;- p + scale_fill_manual(values=alpha(c(&#39;white&#39;, &#39;grey40&#39;), 0.5))
+    ggp &lt;- putPlot(ggp, p, i, j)
+  }
+}
+
+ggp</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:step1"></span>
+<img src="/post/2019-01-22-rstan-wonderful-r-multi-lm_files/figure-html/step1-1.png" alt="三個變量的分佈觀察圖，對角線上是三個變量各自的柱狀圖 (histogram) 和計算獲得的概率密度函數曲線；左下角三個圖是三個變量的箱式圖和散點圖；右上角三個圖是三個變量兩兩計算獲得的 Spearman 秩相關乘以100之後的數值。對角線上及左下角三個圖中數據點和形狀的不同分別表示學生喜歡(三角形)和不喜歡(圓形)打工。右上角表示秩相關的數值越接近0，顏色越白圖形越接近圓形，相關係數的絕對值越接近1，則顏色越深，橢圓越細長。" width="80%" />
+<p class="caption">
+Figure 1: 三個變量的分佈觀察圖，對角線上是三個變量各自的柱狀圖 (histogram) 和計算獲得的概率密度函數曲線；左下角三個圖是三個變量的箱式圖和散點圖；右上角三個圖是三個變量兩兩計算獲得的 Spearman 秩相關乘以100之後的數值。對角線上及左下角三個圖中數據點和形狀的不同分別表示學生喜歡(三角形)和不喜歡(圓形)打工。右上角表示秩相關的數值越接近0，顏色越白圖形越接近圓形，相關係數的絕對值越接近1，則顏色越深，橢圓越細長。
+</p>
+</div>
+<pre class="r"><code># png(file=&#39;output/fig5-1.png&#39;, w=1600, h=1600, res=300)
+# print(ggp, left=0.3, bottom=0.3)
+# dev.off()</code></pre>
+</div>
+<div id="step-2.-寫下數學模型" class="section level2">
+<h2>Step 2. 寫下數學模型</h2>
+<p>Model can be written as (Model5-1):</p>
+<p><span class="math display">\[
+\begin{array}{l}
+Y[n]        = b_1 + b_2A[n] + b_3Sore[n] + \varepsilon [n]&amp;  n = 1,2,\dots,N \\
+\varepsilon[n] \sim \text{Normal}(0, \sigma) &amp; n = 1,2,\dots,N \\ 
+\end{array}
+\]</span></p>
+<p>其中，</p>
+<ul>
+<li><span class="math inline">\(N\)</span> 表示學生的人數，<span class="math inline">\(n\)</span>則是學生編號的下標；</li>
+<li><span class="math inline">\(b_1\)</span> 是回歸直線的截距；</li>
+<li><span class="math inline">\(b_2\)</span> 是<span class="math inline">\(Score\)</span>保持不變時，<span class="math inline">\(A\)</span>從<span class="math inline">\(0\rightarrow 1\)</span>時出勤率的變化(增加，或者減少)；</li>
+<li><span class="math inline">\(b_3\)</span> 是<span class="math inline">\(A\)</span>保持不變時，<span class="math inline">\(Score\)</span>增加一個單位時出勤率的變化(增加，或者減少)。</li>
+</ul>
+<p>Model can also be written as (Model5-2):</p>
+<p><span class="math display">\[
+\begin{array}{l}
+Y[n]       \sim \text{Normal}(b_1 + b_2A[n] + b_3Score[n], \sigma) &amp;  n = 1,2,\dots,N \\
+\end{array}
+\]</span></p>
+<p>如果認爲<span class="math inline">\(A\)</span>和<span class="math inline">\(Score\)</span>所能預測的出勤率有一個基礎的均值 <span class="math inline">\(\mu[n]\)</span>，剩下的每名學生的出勤率服從這個均值和標準差爲 <span class="math inline">\(\sigma\)</span> 的正態分佈，那麼模型又可以繼續改寫成爲下面的 Model 5-3:</p>
+<p><span class="math display">\[
+\begin{array}{l}
+\mu[n]        = b_1 + b_2A[n] + b_3Sore[n] &amp;  n = 1,2,\dots,N \\
+Y[n] \sim \text{Normal}(\mu[n], \sigma) &amp; n = 1,2,\dots,N \\ 
+\end{array}
+\]</span></p>
+<p>下面的 Stan 模型是按照 Model 5-3 寫的，它的模型參數有四個，<span class="math inline">\(b_1, b_2, b_3, \sigma\)</span>，<span class="math inline">\(\mu[n]\)</span>通過 <code>transformed parameter</code> 計算獲得:</p>
+<pre><code>data {
+  int N; 
+  int&lt;lower=0, upper=1&gt; A[N];
+  real&lt;lower=0, upper=1&gt; Score[N];
+  real&lt;lower=0, upper=1&gt; Y[N];
+}
+
+parameters {
+  real b1; 
+  real b2;
+  real b3;
+  real&lt;lower=0&gt; sigma;
+}
+
+transformed parameters {
+  real mu[N];
+  for (n in 1:N) {
+    mu[n] = b1 + b2*A[n] + b3*Score[n];
+  }
+}
+
+model {
+  for (n in 1:N) {
+    Y[n] ~ normal(mu[n], sigma);
+  }
+}
+
+generated quantities {
+  real y_pred[N];
+  for (n in 1:N) {
+    y_pred[n] = normal_rng(mu[n], sigma);
+  }
+}
+</code></pre>
+<p>下面的 R 代碼用來實現對上面 Stan 模型的擬合:</p>
+<pre class="r"><code>library(rstan)
+d &lt;- read.csv(file=&#39;https://raw.githubusercontent.com/winterwang/RStanBook/master/chap05/input/data-attendance-1.txt&#39;, header = T)
+data &lt;- list(N=nrow(d), A=d$A, Score=d$Score/200, Y=d$Y)
+fit &lt;- stan(file=&#39;stanfiles/model5-3.stan&#39;, data=data, seed=1234)</code></pre>
+<pre><code>## 
+## SAMPLING FOR MODEL &#39;model5-3&#39; NOW (CHAIN 1).
+## Chain 1: 
+## Chain 1: Gradient evaluation took 1.8e-05 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.18 seconds.
+## Chain 1: Adjust your expectations accordingly!
+## Chain 1: 
+## Chain 1: 
+## Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)
+## Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)
+## Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)
+## Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)
+## Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)
+## Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+## Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+## Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+## Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+## Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+## Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+## Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
+## Chain 1: 
+## Chain 1:  Elapsed Time: 0.120626 seconds (Warm-up)
+## Chain 1:                0.137671 seconds (Sampling)
+## Chain 1:                0.258297 seconds (Total)
+## Chain 1: 
+## 
+## SAMPLING FOR MODEL &#39;model5-3&#39; NOW (CHAIN 2).
+## Chain 2: 
+## Chain 2: Gradient evaluation took 6e-06 seconds
+## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.06 seconds.
+## Chain 2: Adjust your expectations accordingly!
+## Chain 2: 
+## Chain 2: 
+## Chain 2: Iteration:    1 / 2000 [  0%]  (Warmup)
+## Chain 2: Iteration:  200 / 2000 [ 10%]  (Warmup)
+## Chain 2: Iteration:  400 / 2000 [ 20%]  (Warmup)
+## Chain 2: Iteration:  600 / 2000 [ 30%]  (Warmup)
+## Chain 2: Iteration:  800 / 2000 [ 40%]  (Warmup)
+## Chain 2: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+## Chain 2: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+## Chain 2: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+## Chain 2: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+## Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+## Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+## Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
+## Chain 2: 
+## Chain 2:  Elapsed Time: 0.11864 seconds (Warm-up)
+## Chain 2:                0.14427 seconds (Sampling)
+## Chain 2:                0.26291 seconds (Total)
+## Chain 2: 
+## 
+## SAMPLING FOR MODEL &#39;model5-3&#39; NOW (CHAIN 3).
+## Chain 3: 
+## Chain 3: Gradient evaluation took 7e-06 seconds
+## Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.07 seconds.
+## Chain 3: Adjust your expectations accordingly!
+## Chain 3: 
+## Chain 3: 
+## Chain 3: Iteration:    1 / 2000 [  0%]  (Warmup)
+## Chain 3: Iteration:  200 / 2000 [ 10%]  (Warmup)
+## Chain 3: Iteration:  400 / 2000 [ 20%]  (Warmup)
+## Chain 3: Iteration:  600 / 2000 [ 30%]  (Warmup)
+## Chain 3: Iteration:  800 / 2000 [ 40%]  (Warmup)
+## Chain 3: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+## Chain 3: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+## Chain 3: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+## Chain 3: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+## Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+## Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+## Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
+## Chain 3: 
+## Chain 3:  Elapsed Time: 0.125027 seconds (Warm-up)
+## Chain 3:                0.122722 seconds (Sampling)
+## Chain 3:                0.247749 seconds (Total)
+## Chain 3: 
+## 
+## SAMPLING FOR MODEL &#39;model5-3&#39; NOW (CHAIN 4).
+## Chain 4: 
+## Chain 4: Gradient evaluation took 7e-06 seconds
+## Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.07 seconds.
+## Chain 4: Adjust your expectations accordingly!
+## Chain 4: 
+## Chain 4: 
+## Chain 4: Iteration:    1 / 2000 [  0%]  (Warmup)
+## Chain 4: Iteration:  200 / 2000 [ 10%]  (Warmup)
+## Chain 4: Iteration:  400 / 2000 [ 20%]  (Warmup)
+## Chain 4: Iteration:  600 / 2000 [ 30%]  (Warmup)
+## Chain 4: Iteration:  800 / 2000 [ 40%]  (Warmup)
+## Chain 4: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+## Chain 4: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+## Chain 4: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+## Chain 4: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+## Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+## Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+## Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
+## Chain 4: 
+## Chain 4:  Elapsed Time: 0.129317 seconds (Warm-up)
+## Chain 4:                0.13154 seconds (Sampling)
+## Chain 4:                0.260857 seconds (Total)
+## Chain 4:</code></pre>
+<pre class="r"><code>fit</code></pre>
+<pre><code>## Inference for Stan model: model5-3.
+## 4 chains, each with iter=2000; warmup=1000; thin=1; 
+## post-warmup draws per chain=1000, total post-warmup draws=4000.
+## 
+##              mean se_mean   sd   2.5%    25%    50%    75%  97.5% n_eff Rhat
+## b1           0.12    0.00 0.03   0.06   0.10   0.12   0.15   0.19  1803    1
+## b2          -0.14    0.00 0.01  -0.17  -0.15  -0.14  -0.13  -0.11  2486    1
+## b3           0.32    0.00 0.05   0.22   0.29   0.33   0.36   0.43  1751    1
+## sigma        0.05    0.00 0.01   0.04   0.05   0.05   0.05   0.06  2328    1
+## mu[1]        0.24    0.00 0.02   0.20   0.22   0.24   0.25   0.27  2014    1
+## mu[2]        0.22    0.00 0.01   0.19   0.21   0.22   0.22   0.24  2589    1
+## mu[3]        0.33    0.00 0.01   0.31   0.32   0.33   0.33   0.35  3512    1
+## mu[4]        0.12    0.00 0.02   0.09   0.11   0.12   0.13   0.15  2338    1
+## mu[5]        0.24    0.00 0.02   0.21   0.23   0.24   0.25   0.27  2333    1
+## mu[6]        0.34    0.00 0.01   0.32   0.33   0.34   0.35   0.36  3369    1
+## mu[7]        0.30    0.00 0.01   0.28   0.30   0.30   0.31   0.32  3110    1
+## mu[8]        0.22    0.00 0.01   0.19   0.21   0.22   0.23   0.24  2544    1
+## mu[9]        0.36    0.00 0.01   0.34   0.35   0.36   0.37   0.38  2891    1
+## mu[10]       0.36    0.00 0.01   0.34   0.35   0.36   0.37   0.38  2926    1
+## mu[11]       0.21    0.00 0.01   0.18   0.20   0.21   0.22   0.23  2683    1
+## mu[12]       0.35    0.00 0.01   0.33   0.34   0.35   0.35   0.37  3228    1
+## mu[13]       0.17    0.00 0.01   0.15   0.16   0.17   0.18   0.19  2964    1
+## mu[14]       0.30    0.00 0.01   0.28   0.30   0.30   0.31   0.32  3110    1
+## mu[15]       0.30    0.00 0.01   0.28   0.29   0.30   0.31   0.32  3017    1
+## mu[16]       0.14    0.00 0.01   0.12   0.13   0.14   0.15   0.17  2577    1
+## mu[17]       0.31    0.00 0.01   0.29   0.30   0.31   0.31   0.33  3244    1
+## mu[18]       0.26    0.00 0.01   0.23   0.25   0.26   0.27   0.28  2168    1
+## mu[19]       0.42    0.00 0.02   0.38   0.41   0.42   0.44   0.46  2180    1
+## mu[20]       0.23    0.00 0.01   0.20   0.22   0.23   0.24   0.26  2367    1
+## mu[21]       0.12    0.00 0.02   0.09   0.11   0.12   0.13   0.15  2338    1
+## mu[22]       0.16    0.00 0.01   0.13   0.15   0.16   0.16   0.18  2789    1
+## mu[23]       0.15    0.00 0.01   0.13   0.14   0.15   0.16   0.18  2743    1
+## mu[24]       0.21    0.00 0.01   0.19   0.20   0.21   0.22   0.24  2635    1
+## mu[25]       0.17    0.00 0.01   0.15   0.16   0.17   0.18   0.19  2953    1
+## mu[26]       0.19    0.00 0.01   0.16   0.18   0.19   0.20   0.21  2961    1
+## mu[27]       0.32    0.00 0.01   0.30   0.31   0.32   0.32   0.34  3426    1
+## mu[28]       0.32    0.00 0.01   0.30   0.31   0.32   0.32   0.34  3426    1
+## mu[29]       0.38    0.00 0.01   0.36   0.38   0.39   0.39   0.41  2484    1
+## mu[30]       0.31    0.00 0.01   0.29   0.30   0.31   0.31   0.33  3200    1
+## mu[31]       0.25    0.00 0.02   0.22   0.24   0.25   0.26   0.28  2232    1
+## mu[32]       0.10    0.00 0.02   0.07   0.09   0.10   0.11   0.14  2185    1
+## mu[33]       0.20    0.00 0.01   0.18   0.20   0.20   0.21   0.23  2754    1
+## mu[34]       0.18    0.00 0.01   0.16   0.17   0.18   0.19   0.20  2989    1
+## mu[35]       0.33    0.00 0.01   0.31   0.32   0.33   0.33   0.35  3509    1
+## mu[36]       0.34    0.00 0.01   0.32   0.33   0.34   0.34   0.36  3427    1
+## mu[37]       0.15    0.00 0.01   0.13   0.14   0.15   0.16   0.18  2719    1
+## mu[38]       0.30    0.00 0.01   0.28   0.30   0.30   0.31   0.32  3064    1
+## mu[39]       0.27    0.00 0.01   0.24   0.26   0.27   0.28   0.29  2306    1
+## mu[40]       0.27    0.00 0.01   0.24   0.26   0.27   0.27   0.29  2283    1
+## mu[41]       0.33    0.00 0.01   0.31   0.33   0.33   0.34   0.35  3472    1
+## mu[42]       0.34    0.00 0.01   0.32   0.33   0.34   0.35   0.36  3369    1
+## mu[43]       0.32    0.00 0.01   0.30   0.32   0.32   0.33   0.34  3491    1
+## mu[44]       0.36    0.00 0.01   0.34   0.36   0.36   0.37   0.39  2823    1
+## mu[45]       0.42    0.00 0.02   0.38   0.41   0.42   0.43   0.45  2204    1
+## mu[46]       0.29    0.00 0.01   0.27   0.29   0.29   0.30   0.31  2838    1
+## mu[47]       0.21    0.00 0.02   0.17   0.19   0.21   0.22   0.25  1910    1
+## mu[48]       0.37    0.00 0.01   0.34   0.36   0.37   0.38   0.39  2759    1
+## mu[49]       0.28    0.00 0.01   0.26   0.28   0.28   0.29   0.31  2603    1
+## mu[50]       0.14    0.00 0.01   0.12   0.13   0.14   0.15   0.17  2577    1
+## y_pred[1]    0.23    0.00 0.05   0.13   0.20   0.23   0.27   0.34  3730    1
+## y_pred[2]    0.22    0.00 0.05   0.11   0.18   0.22   0.25   0.32  3977    1
+## y_pred[3]    0.32    0.00 0.05   0.23   0.29   0.32   0.36   0.43  3856    1
+## y_pred[4]    0.12    0.00 0.05   0.01   0.08   0.12   0.15   0.22  3896    1
+## y_pred[5]    0.24    0.00 0.05   0.13   0.20   0.24   0.27   0.34  3804    1
+## y_pred[6]    0.34    0.00 0.05   0.24   0.31   0.34   0.38   0.44  3865    1
+## y_pred[7]    0.30    0.00 0.05   0.20   0.27   0.30   0.34   0.41  3757    1
+## y_pred[8]    0.22    0.00 0.05   0.11   0.18   0.22   0.25   0.33  3784    1
+## y_pred[9]    0.36    0.00 0.05   0.26   0.33   0.36   0.40   0.47  3939    1
+## y_pred[10]   0.36    0.00 0.05   0.25   0.32   0.36   0.39   0.46  3743    1
+## y_pred[11]   0.21    0.00 0.05   0.10   0.17   0.21   0.25   0.32  4113    1
+## y_pred[12]   0.35    0.00 0.05   0.24   0.31   0.35   0.38   0.45  4149    1
+## y_pred[13]   0.17    0.00 0.05   0.07   0.14   0.17   0.21   0.28  3806    1
+## y_pred[14]   0.30    0.00 0.05   0.20   0.27   0.30   0.34   0.41  3944    1
+## y_pred[15]   0.30    0.00 0.05   0.20   0.27   0.30   0.34   0.41  3930    1
+## y_pred[16]   0.14    0.00 0.05   0.03   0.11   0.14   0.18   0.24  3833    1
+## y_pred[17]   0.31    0.00 0.05   0.21   0.27   0.31   0.34   0.41  3981    1
+## y_pred[18]   0.26    0.00 0.05   0.15   0.22   0.26   0.29   0.37  3718    1
+## y_pred[19]   0.43    0.00 0.06   0.32   0.39   0.43   0.46   0.53  3690    1
+## y_pred[20]   0.23    0.00 0.05   0.13   0.20   0.23   0.27   0.34  2926    1
+## y_pred[21]   0.12    0.00 0.05   0.01   0.08   0.12   0.15   0.23  3751    1
+## y_pred[22]   0.16    0.00 0.05   0.05   0.12   0.16   0.19   0.26  3993    1
+## y_pred[23]   0.15    0.00 0.05   0.04   0.11   0.15   0.19   0.26  3990    1
+## y_pred[24]   0.21    0.00 0.05   0.11   0.17   0.21   0.25   0.32  3766    1
+## y_pred[25]   0.17    0.00 0.05   0.06   0.13   0.17   0.21   0.27  3800    1
+## y_pred[26]   0.19    0.00 0.05   0.08   0.15   0.19   0.22   0.30  3781    1
+## y_pred[27]   0.32    0.00 0.05   0.22   0.28   0.32   0.35   0.42  4073    1
+## y_pred[28]   0.32    0.00 0.05   0.21   0.28   0.32   0.35   0.42  4155    1
+## y_pred[29]   0.38    0.00 0.05   0.28   0.35   0.38   0.42   0.49  3869    1
+## y_pred[30]   0.31    0.00 0.05   0.20   0.27   0.31   0.34   0.41  3708    1
+## y_pred[31]   0.25    0.00 0.06   0.14   0.21   0.25   0.29   0.35  4005    1
+## y_pred[32]   0.10    0.00 0.06  -0.01   0.06   0.10   0.14   0.21  3479    1
+## y_pred[33]   0.20    0.00 0.05   0.10   0.17   0.20   0.24   0.31  3656    1
+## y_pred[34]   0.18    0.00 0.05   0.08   0.15   0.18   0.22   0.28  4111    1
+## y_pred[35]   0.33    0.00 0.05   0.22   0.29   0.33   0.36   0.43  3866    1
+## y_pred[36]   0.34    0.00 0.05   0.23   0.30   0.34   0.37   0.44  4043    1
+## y_pred[37]   0.15    0.00 0.05   0.04   0.12   0.15   0.19   0.25  3830    1
+## y_pred[38]   0.30    0.00 0.05   0.20   0.27   0.30   0.34   0.41  3814    1
+## y_pred[39]   0.27    0.00 0.05   0.16   0.23   0.27   0.30   0.37  3792    1
+## y_pred[40]   0.27    0.00 0.05   0.16   0.23   0.27   0.30   0.37  3793    1
+## y_pred[41]   0.33    0.00 0.05   0.23   0.30   0.33   0.37   0.44  3748    1
+## y_pred[42]   0.34    0.00 0.05   0.23   0.30   0.34   0.38   0.44  3811    1
+## y_pred[43]   0.32    0.00 0.05   0.22   0.29   0.32   0.35   0.42  4268    1
+## y_pred[44]   0.36    0.00 0.05   0.26   0.33   0.36   0.40   0.47  4015    1
+## y_pred[45]   0.42    0.00 0.05   0.31   0.38   0.42   0.45   0.53  3658    1
+## y_pred[46]   0.29    0.00 0.05   0.19   0.26   0.29   0.33   0.40  3993    1
+## y_pred[47]   0.21    0.00 0.06   0.10   0.17   0.21   0.24   0.32  3671    1
+## y_pred[48]   0.37    0.00 0.05   0.26   0.33   0.37   0.40   0.47  3988    1
+## y_pred[49]   0.28    0.00 0.05   0.18   0.25   0.28   0.32   0.39  3596    1
+## y_pred[50]   0.14    0.00 0.05   0.03   0.10   0.14   0.18   0.24  4027    1
+## lp__       120.85    0.04 1.43 117.36 120.12 121.19 121.90 122.68  1610    1
+## 
+## Samples were drawn using NUTS(diag_e) at Mon May 18 16:52:55 2020.
+## For each parameter, n_eff is a crude measure of effective sample size,
+## and Rhat is the potential scale reduction factor on split chains (at 
+## convergence, Rhat=1).</code></pre>
+<p>上述代碼中值得注意的是我們對 <span class="math inline">\(Score\)</span> 進行了全部除以 <span class="math inline">\(200\)</span> 的數據縮放調整 (scaling)。這樣有助於我們的模型在進行 MCMC 計算時加速其達到收斂時所需要的時間。</p>
+<p>把計算獲得的事後模型參數平均值代入模型 Model 5-3:</p>
+<p><span class="math display">\[
+\begin{array}{l}
+\mu[n]        = 0.12 - 0.14A[n] + 0.32Sore[n] &amp;  n = 1,2,\dots,N \\
+Y[n] \sim \text{Normal}(\mu[n], 0.05) &amp; n = 1,2,\dots,N \\ 
+\end{array}
+\]</span></p>
+<p>從輸出的結果報告來看，所有的 <code>Rhat</code> 都小於1.1，可以認爲採樣已經達到收斂效果，再來確認一下軌跡圖：</p>
+<pre class="r"><code>library(bayesplot)
+
+color_scheme_set(&quot;mix-brightblue-gray&quot;)
+
+posterior2 &lt;- rstan::extract(fit, inc_warmup = TRUE, permuted = FALSE)
+
+p &lt;- mcmc_trace(posterior2, n_warmup = 0, pars = c(&quot;b1&quot;, &quot;b2&quot;, &quot;b3&quot;, &quot;sigma&quot;, &quot;lp__&quot;),
+                facet_args = list(nrow = 2, labeller = label_parsed))
+p</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:step53"></span>
+<img src="/post/2019-01-22-rstan-wonderful-r-multi-lm_files/figure-html/step53-1.png" alt="用 bayesplot包數繪製的模型5-3的MCMC鏈式軌跡圖 (trace plot)。" width="80%" />
+<p class="caption">
+Figure 2: 用 bayesplot包數繪製的模型5-3的MCMC鏈式軌跡圖 (trace plot)。
+</p>
+</div>
+<p>收斂效果很不錯，下面來解釋回歸係數的事後均值的涵義：</p>
+<ul>
+<li><code>b3</code>的事後均值是<span class="math inline">\(0.32\)</span>，所以，<span class="math inline">\(Score=150\)</span>和<span class="math inline">\(Score=50\)</span>的兩名學生，當他們同時都是喜歡或者同時都不喜歡打工時，<span class="math inline">\(Score = 150\)</span>的學生的出勤率平均比 <span class="math inline">\(Score = 50\)</span> 的學生的出勤率高 <span class="math inline">\(0.32 \times (150-50)/200 = 0.16\)</span>。</li>
+<li><code>b2</code>的事後均值是<span class="math inline">\(-0.14\)</span>，所以，同樣地，<span class="math inline">\(Score\)</span>相同的兩名學生，喜歡打工的學生比不喜歡打工的學生出勤率平均要低 <span class="math inline">\(0.14\)</span>。</li>
+</ul>
+</div>
+<div id="step-3.-看圖確認模型擬合狀況" class="section level2">
+<h2>Step 3. 看圖確認模型擬合狀況</h2>
+<p>下圖繪製了上面貝葉斯多重線性回歸模型計算獲得的事後貝葉斯預測區間，和觀測值<span class="math inline">\(Y\)</span>出勤率之間的直觀關係：</p>
+<pre class="r"><code>source(&quot;commonRstan.R&quot;)
+
+ms &lt;- rstan::extract(fit)
+
+Score_new &lt;- 50:200
+N_X &lt;- length(Score_new)
+N_mcmc &lt;- length(ms$lp__)
+
+set.seed(1234)
+y_base_mcmc &lt;- as.data.frame(matrix(nrow=N_mcmc, ncol=N_X))
+y_base_a0_mcmc &lt;- as.data.frame(matrix(nrow = N_mcmc, ncol = N_X))
+y_mcmc &lt;- as.data.frame(matrix(nrow=N_mcmc, ncol=N_X))
+y_a0_mcmc &lt;- as.data.frame(matrix(nrow=N_mcmc, ncol=N_X))
+
+for (i in 1:N_X) {
+  y_base_mcmc[,i] &lt;- ms$b1 + ms$b2 + ms$b3 * Score_new[i]/200
+  y_base_a0_mcmc[] &lt;- ms$b1 + ms$b2*0 + ms$b3 * Score_new[i]/200
+  y_mcmc[,i] &lt;- rnorm(n=N_mcmc, mean=y_base_mcmc[,i], sd=ms$sigma)
+  y_a0_mcmc[,i] &lt;- rnorm(n=N_mcmc, mean=y_base_a0_mcmc[,i], sd=ms$sigma)
+}
+
+customize.ggplot.axis &lt;- function(p) {
+  p &lt;- p + labs(x=&#39;Score&#39;, y=&#39;Y&#39;)
+  p &lt;- p + scale_y_continuous(breaks=seq(from=-0.2, to=0.8, by=0.2))
+  p &lt;- p + coord_cartesian(xlim=c(50, 200), ylim=c(-0.2, 0.6))
+  return(p)
+}
+
+d_est &lt;- data.frame.quantile.mcmc(x=Score_new, y_mcmc=y_mcmc)
+d_esta0 &lt;- data.frame.quantile.mcmc(x=Score_new, y_mcmc=y_a0_mcmc)
+# p &lt;- ggplot.5quantile(data=d_est)
+# p2 &lt;- ggplot.5quantile(data = d_esta0)
+# p &lt;- p + geom_point(data=d[d$A==1, ], aes(x=Score, y=Y), shape=24, size=5)
+# p2 &lt;- p2 + geom_point(data=d[d$A==0, ], aes(x=Score, y=Y), shape=1, size=5)
+# p &lt;- customize.ggplot.axis(p)
+# p2 &lt;- customize.ggplot.axis(p2)
+
+visuals = rbind(d_est,d_esta0)
+visuals$A=c(rep(1,151),rep(0,151)) # 151 points of each flavour
+
+qn &lt;- colnames(visuals)[-1]
+p &lt;- ggplot(data=visuals, aes(x=X, y=p50, group = A))
+p &lt;- p + my_theme()
+p &lt;- p + geom_ribbon(aes_string(ymin=qn[1], ymax=qn[5]), fill=&#39;black&#39;, alpha=1/6)
+p &lt;- p + geom_ribbon(aes_string(ymin=qn[2], ymax=qn[4]), fill=&#39;black&#39;, alpha=2/6)
+p &lt;- p + geom_line(size=1)
+p &lt;- p + geom_point(data=d[d$A==1, ], aes(x=Score, y=Y), shape=24, size=5)
+p &lt;- p + geom_point(data=d[d$A==0, ], aes(x=Score, y=Y), shape=20, size=5)
+p &lt;- customize.ggplot.axis(p)
+p</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:fig52"></span>
+<img src="/post/2019-01-22-rstan-wonderful-r-multi-lm_files/figure-html/fig52-1.png" alt="黑色原點(不喜歡打工)，和無色三角形(喜歡打工)的學生的出勤率，和模型計算獲得的貝葉斯事後預測區間。黑色線是中位數，灰色帶是50%預測區間和95%預測區間。" width="80%" />
+<p class="caption">
+Figure 3: 黑色原點(不喜歡打工)，和無色三角形(喜歡打工)的學生的出勤率，和模型計算獲得的貝葉斯事後預測區間。黑色線是中位數，灰色帶是50%預測區間和95%預測區間。
+</p>
+</div>
+<p>上述觀察預測值區間和實際觀測之間的關係的視覺化圖形，在多重線性回歸模型只有兩個預測變量的事後還較爲容易獲得，當模型中有三個或以上的預測變量時，可視化變得困難重重。</p>
+<p>此時我們推薦繪製“實際觀測值和預測值”，以及模型給出的每個預測值的隨機誤差<span class="math inline">\(\varepsilon\)</span>分佈範圍，相結合的圖形來判斷模型擬合程度。</p>
+<pre class="r"><code>d_qua &lt;- t(apply(ms$y_pred, 2, quantile, prob=c(0.1, 0.5, 0.9)))
+colnames(d_qua) &lt;- c(&#39;p10&#39;, &#39;p50&#39;, &#39;p90&#39;)
+d_qua &lt;- data.frame(d, d_qua)
+d_qua$A &lt;- as.factor(d_qua$A)
+
+p &lt;- ggplot(data=d_qua, aes(x=Y, y=p50, ymin=p10, ymax=p90, shape=A, fill=A))
+p &lt;- p + theme_bw(base_size=18) + theme(legend.key.height=grid::unit(2.5,&#39;line&#39;))
+p &lt;- p + coord_fixed(ratio=1, xlim=c(0, 0.5), ylim=c(0, 0.5))
+p &lt;- p + geom_pointrange(size=0.8, color=&#39;grey5&#39;)
+p &lt;- p + geom_abline(aes(slope=1, intercept=0), color=&#39;black&#39;, alpha=3/5, linetype=&#39;31&#39;)
+p &lt;- p + scale_shape_manual(values=c(21, 24))
+p &lt;- p + scale_fill_manual(values=c(&#39;white&#39;, &#39;grey70&#39;))
+p &lt;- p + labs(x=&#39;Observed&#39;, y=&#39;Predicted&#39;)
+p &lt;- p + scale_x_continuous(breaks=seq(from=0, to=0.5, by=0.1))
+p &lt;- p + scale_y_continuous(breaks=seq(from=0, to=0.5, by=0.1))
+p</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:fig53"></span>
+<img src="/post/2019-01-22-rstan-wonderful-r-multi-lm_files/figure-html/fig53-1.png" alt="觀測值(x)，和預測值(y)的散點圖，以及預測值的80%預測區間。" width="80%" />
+<p class="caption">
+Figure 4: 觀測值(x)，和預測值(y)的散點圖，以及預測值的80%預測區間。
+</p>
+</div>
+<p>從上圖中可以看出，大多數的觀測點和預測點以及預測的80%區間基本都在 <span class="math inline">\(y = x\)</span> 這條對角線上。大致可以認爲本次貝葉斯多重線性回歸擬合效果尚且能夠接受。</p>
+<p>隨機誤差 <span class="math inline">\(\varepsilon[n]\)</span> 被認爲服從 <span class="math inline">\(\text{Normal}(0, \sigma)\)</span> 的正態分佈。從模型中可以計算獲得每個學生出勤率的預測值和實際觀測值之間的差，這就是隨機誤差。貝葉斯框架之下，我們實際獲得的會是每名學生隨機誤差的分佈：</p>
+<pre class="r"><code>N_mcmc &lt;- length(ms$lp__)
+
+d_noise &lt;- data.frame(t(-t(ms$mu) + d$Y))
+colnames(d_noise) &lt;- paste0(&#39;noise&#39;, 1:nrow(d))
+d_est &lt;- data.frame(mcmc=1:N_mcmc, d_noise)
+d_melt &lt;- reshape2::melt(d_est, id=c(&#39;mcmc&#39;), variable.name=&#39;X&#39;)
+
+d_mode &lt;- data.frame(t(apply(d_noise, 2, function(x) {
+  dens &lt;- density(x)
+  mode_i &lt;- which.max(dens$y)
+  mode_x &lt;- dens$x[mode_i]
+  mode_y &lt;- dens$y[mode_i]
+  c(mode_x, mode_y)
+})))
+colnames(d_mode) &lt;- c(&#39;X&#39;, &#39;Y&#39;)
+
+p &lt;- ggplot()
+p &lt;- p + theme_bw(base_size=18)
+p &lt;- p + geom_line(data=d_melt, aes(x=value, group=X), stat=&#39;density&#39;, color=&#39;black&#39;, alpha=0.4)
+p &lt;- p + geom_segment(data=d_mode, aes(x=X, xend=X, y=Y, yend=0), color=&#39;black&#39;, linetype=&#39;dashed&#39;, alpha=0.4)
+p &lt;- p + geom_rug(data=d_mode, aes(x=X), sides=&#39;b&#39;)
+p &lt;- p + labs(x=&#39;value&#39;, y=&#39;density&#39;)
+p</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:fig54left"></span>
+<img src="/post/2019-01-22-rstan-wonderful-r-multi-lm_files/figure-html/fig54left-1.png" alt="每名學生的出勤率隨機誤差的分佈" width="80%" />
+<p class="caption">
+Figure 5: 每名學生的出勤率隨機誤差的分佈
+</p>
+</div>
+<p>實際上我們只需要選取每名學生模型計算獲得的事後隨機誤差的代表值，比如可以是平均值，中央值，或者是MAP值（事後確率最大推定値，maximum a posteriori estimate），來觀察就可以了：</p>
+<pre class="r"><code>s_dens &lt;- density(ms$s)
+s_MAP &lt;- s_dens$x[which.max(s_dens$y)]
+bw &lt;- 0.01
+p &lt;- ggplot(data=d_mode, aes(x=X))
+p &lt;- p + theme_bw(base_size=18)
+p &lt;- p + geom_histogram(binwidth=bw, color=&#39;black&#39;, fill=&#39;white&#39;)
+p &lt;- p + geom_density(eval(bquote(aes(y=..count..*.(bw)))), alpha=0.5, color=&#39;black&#39;, fill=&#39;gray20&#39;)
+p &lt;- p + stat_function(fun=function(x) nrow(d)*bw*dnorm(x, mean=0, sd=s_MAP), linetype=&#39;dashed&#39;)
+p &lt;- p + labs(x=&#39;value&#39;, y=&#39;count&#39;)
+p &lt;- p + xlim(range(density(d_mode$X)$x))
+p</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_bar).</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:fig54right"></span>
+<img src="/post/2019-01-22-rstan-wonderful-r-multi-lm_files/figure-html/fig54right-1.png" alt="每名學生事後出勤率隨機誤差的MAP值的柱狀圖，和相應的概率密度函數（灰色鐘罩），點狀虛線是均值爲0，標準差是模型計算的事後隨機誤差標準差的 MAP 值的正態分佈的形狀。" width="80%" />
+<p class="caption">
+Figure 6: 每名學生事後出勤率隨機誤差的MAP值的柱狀圖，和相應的概率密度函數（灰色鐘罩），點狀虛線是均值爲0，標準差是模型計算的事後隨機誤差標準差的 MAP 值的正態分佈的形狀。
+</p>
+</div>
+</div>
+<div id="step-4.-mcmc-樣本的散點圖矩陣" class="section level2">
+<h2>Step 4. MCMC 樣本的散點圖矩陣</h2>
+<pre class="r"><code>library(ggplot2)
+library(GGally)
+library(hexbin)
+
+
+d &lt;- data.frame(b1=ms$b1, b2=ms$b2, b3=ms$b3, sigma=ms$sigma, mu1=ms$mu[,1], mu50=ms$mu[,50], lp__=ms$lp__)
+N_col &lt;- ncol(d)
+ggp &lt;- ggpairs(d, upper=&#39;blank&#39;, diag=&#39;blank&#39;, lower=&#39;blank&#39;)
+
+label_list &lt;- list(b1=&#39;b1&#39;, b2=&#39;b2&#39;, b3=&#39;b3&#39;, sigma=&#39;sigma&#39;, mu1=&#39;mu[1]&#39;, mu50=&#39;mu[50]&#39;, lp__=&#39;lp__&#39;)
+for(i in 1:N_col) {
+  x &lt;- d[,i]
+  bw &lt;- (max(x)-min(x))/10
+  p &lt;- ggplot(data.frame(x), aes(x))
+  p &lt;- p + theme_bw(base_size=14)
+  p &lt;- p + theme(axis.text.x=element_text(angle=60, vjust=1, hjust=1))
+  p &lt;- p + geom_histogram(binwidth=bw, fill=&#39;white&#39;, color=&#39;grey5&#39;)
+  p &lt;- p + geom_line(eval(bquote(aes(y=..count..*.(bw)))), stat=&#39;density&#39;)
+  p &lt;- p + geom_label(data=data.frame(x=-Inf, y=Inf, label=label_list[[colnames(d)[i]]]), aes(x=x, y=y, label=label), hjust=0, vjust=1)
+  ggp &lt;- putPlot(ggp, p, i, i)
+}
+
+zcolat &lt;- seq(-1, 1, length=81)
+zcolre &lt;- c(zcolat[1:40]+1, rev(zcolat[41:81]))
+
+for(i in 1:(N_col-1)) {
+  for(j in (i+1):N_col) {
+    x &lt;- as.numeric(d[,i])
+    y &lt;- as.numeric(d[,j])
+    r &lt;- cor(x, y, method=&#39;spearman&#39;, use=&#39;pairwise.complete.obs&#39;)
+    zcol &lt;- lattice::level.colors(r, at=zcolat, col.regions=grey(zcolre))
+    textcol &lt;- ifelse(abs(r) &lt; 0.4, &#39;grey20&#39;, &#39;white&#39;)
+    ell &lt;- ellipse::ellipse(r, level=0.95, type=&#39;l&#39;, npoints=50, scale=c(.2, .2), centre=c(.5, .5))
+    p &lt;- ggplot(data.frame(ell), aes(x=x, y=y))
+    p &lt;- p + theme_bw() + theme(
+      plot.background=element_blank(),
+      panel.grid.major=element_blank(), panel.grid.minor=element_blank(),
+      panel.border=element_blank(), axis.ticks=element_blank()
+    )
+    p &lt;- p + geom_polygon(fill=zcol, color=zcol)
+    p &lt;- p + geom_text(data=NULL, x=.5, y=.5, label=100*round(r, 2), size=6, col=textcol)
+    ggp &lt;- putPlot(ggp, p, i, j)
+  }
+}
+
+for(j in 1:(N_col-1)) {
+  for(i in (j+1):N_col) {
+    x &lt;- d[,j]
+    y &lt;- d[,i]
+    p &lt;- ggplot(data.frame(x, y), aes(x=x, y=y))
+    p &lt;- p + theme_bw(base_size=14)
+    p &lt;- p + theme(axis.text.x=element_text(angle=60, vjust=1, hjust=1))
+    p &lt;- p + geom_hex()
+    p &lt;- p + scale_fill_gradientn(colours=gray.colors(7, start=0.1, end=0.9))
+    ggp &lt;- putPlot(ggp, p, i, j)
+  }
+}
+ggp</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:fig55"></span>
+<img src="/post/2019-01-22-rstan-wonderful-r-multi-lm_files/figure-html/fig55-1.png" alt="MCMC樣本的事後矩陣。對角線上是各個參數事後樣本的柱狀圖和相應的概率密度曲線。右上角是各個參數事後樣本之間的 Spearman 秩相關係數。左下角是兩兩的散點圖。" width="80%" />
+<p class="caption">
+Figure 7: MCMC樣本的事後矩陣。對角線上是各個參數事後樣本的柱狀圖和相應的概率密度曲線。右上角是各個參數事後樣本之間的 Spearman 秩相關係數。左下角是兩兩的散點圖。
+</p>
+</div>
+</div>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/bayesian/">Bayesian</a>
+  
+  <a class="badge badge-light" href="/tags/medical-statistics/">Medical Statistics</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://wangcc.me/post/rstan-wonderful-r3/&amp;text=Rstan%20Wonderful%20R-%283%29" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://wangcc.me/post/rstan-wonderful-r3/&amp;t=Rstan%20Wonderful%20R-%283%29" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Rstan%20Wonderful%20R-%283%29&amp;body=https://wangcc.me/post/rstan-wonderful-r3/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://wangcc.me/post/rstan-wonderful-r3/&amp;title=Rstan%20Wonderful%20R-%283%29" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Rstan%20Wonderful%20R-%283%29%20https://wangcc.me/post/rstan-wonderful-r3/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://wangcc.me/post/rstan-wonderful-r3/&amp;title=Rstan%20Wonderful%20R-%283%29" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      <img class="portrait mr-3" src="https://s.gravatar.com/avatar/eca3c74b8c4ce437424800c7bc74b67d?s=200')" alt="Avatar">
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://wangcc.me/">Chaochen Wang 王　超辰</a></h5>
+      <h6 class="card-subtitle">Assistant Professor</h6>
+      <p class="card-text">All models are wrong, but some are useful.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/outyousin" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.jp/citations?user=0J-5evgAAAAJ&amp;hl=ja" target="_blank" rel="noopener">
+        <i class="ai ai-google-scholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/winterwang" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "ccwang" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/simple-linear-regression-using-rstan/">Simple linear regression using Rstan--Rstan Wonderful R-(2)</a></li>
+      
+      <li><a href="/post/rstan-wonderful-r/">Rstan Wonderful R-(1)</a></li>
+      
+      <li><a href="/post/summer-project-schedule/">Summer Project Schedule</a></li>
+      
+      <li><a href="/post/log-likelihood-ratio/">對數似然比 Log-likelihood ratio</a></li>
+      
+      <li><a href="/post/central-limit-theory/">偉大的中心極限定理</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+    
+    <script src="/js/mathjax-config.js"></script>
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha256-1zu+3BnLYV9LdiY85uXMzii3bdrkelyp37e0ZyTAQh0=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+        
+      
+
+      
+      
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://ccwang.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.d6bd04fdad2ad213aa8111c5a3b72fc5.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    © 2017-2020 Chaochen Wang | 王超辰 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
