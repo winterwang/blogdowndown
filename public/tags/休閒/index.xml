@@ -41,6 +41,12 @@
 &lt;p&gt;&lt;img src=&#34;https://wangcc.me/img/IMG_5528.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://wangcc.me/img/IMG_5532.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://wangcc.me/img/IMG_5534.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;video width=auto height=auto controls allowfullscreen&gt;
+  &lt;source src=&#34;https://wangcc.me/video/IMG_5476.mov&#34; type=&#34;video/mp4&#34;&gt;
+&lt;/video&gt;
+&lt;video width=auto height=auto controls allowfullscreen&gt;
+  &lt;source src=&#34;https://wangcc.me/video/IMG_5493.mov&#34; type=&#34;video/mp4&#34;&gt;
+&lt;/video&gt;
 </description>
     </item>
     
