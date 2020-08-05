@@ -14,7 +14,7 @@ cd public
 # git pull
 
 # Add changes to git.
-sudo git add --all --force
+git add --all --force
 
 # Commit changes.
 msg="rebuilding site `date`"
