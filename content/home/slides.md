@@ -26,7 +26,10 @@ weight = 120
 
 9. **Survival Analysis**, @HOME, 19<sup>th</sup> June, Oral, [slides](https://wangcc.me/Survival01). 
 
-10. **Causal Inference Study Group for CSS**, @HOME, 31<sup>st</sup> July, Oral, [slides](https://wangcc.me/CausalInference01/)
+10. **Causal Inference Study Group for CSS -- Chapter 01**, @HOME, 31<sup>st</sup> July, Oral, [slides](https://wangcc.me/CausalInference01/)
+
+10. **Causal Inference Study Group for CSS -- Chapter 02**, @HOME, 4<sup>th</sup> Sep, Oral, [slides](https://wangcc.me/CausalInference01/#27)
+
 
 ## 2019
 
