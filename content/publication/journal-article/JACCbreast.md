@@ -16,7 +16,8 @@ url_pdf: "files/srep32559.pdf"
 # url_project: "project/JACC/"
 #url_slides: "files/2011_Hangzhou_C3.pdf"
 #url_video: "#"
-
+url_project: JACC/
+projects: [JACC]
 links:
 - name: "Scientific Reports"
   url: "http://www.nature.com/articles/srep32559"

@@ -2,8 +2,8 @@
 #abstract: "Colorectal cancer is the third most common cancer worldwide, and many risk factors for colorectal cancer have been established. However, it remains uncertain whether psychological stress contributes to the onset of colorectal cancer. Therefore, we conducted a large-scale prospective cohort study to confirm the association between perceived stress and colorectal cancer incidence. We identified 680 cases of colon cancer and 330 cases of rectal cancer during a maximum of 21-year follow-up of 61,563 Japanese men and women. Cox regression analysis adjusted for potential confounders revealed a significant association of perceived stress with rectal cancer incidence but not with colon cancer incidence. This finding is partly consistent with that from only one previous study that addressed an association between perceived stress and the risk of colorectal cancer. However, studies on this topic are sparse and warrant further exploration."
 authors: ["Masaaki Matsunaga", "Hiroshi Yatsuya", "Hiroyasu Iso", "Kentaro Yamashita", "Yuanying Li", "Kazumasa Yamagishi", "Naohito Tanabe", "Yasuhiko Wada", "Chaochen Wang", "Atsuhiko Ota", "Koji Tamakoshi", "Akiko Tamakoshi", "The JACC Study Group"]
 date: "2017-03-06"
-#image: ""
-#image_preview: ""
+url_project: JACC/
+projects: [JACC]
 math: true
 publication_types: ["2"]
 publication: "Atherosclerosis"
