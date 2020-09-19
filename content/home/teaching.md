@@ -17,6 +17,7 @@ weight = 110
 #### 令和2年 (2020)
 
 1. 基礎医学セミナー, 7/29, am, 基本再生産数について (Basic reproduction number R$_0$), [slides](https://wangcc.me/R0/)
+2. 公衆衛生学実習，09/30，am，EZRを利用したデータ解析の基本と演習，[slides](https://wangcc.me/epi2020slides/#1)，[参考資料](https://github.com/winterwang/Epi2020/raw/master/EZRintro/intro.pdf)
 
 #### 平成31年/令和1年 (2019)
 

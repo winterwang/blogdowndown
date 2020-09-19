@@ -79,12 +79,13 @@ weight = 120
 
 ## 2013
 
-1. [日本公衆衛生学会総会](http://www.c-linkage.co.jp/jsph72/index.html), Tsu, Mie, 23~25<sup>th</sup> Oct, _Seaweed intake and thyroid cancer_, [Poster P-0103-9](http://winterwang.github.io/files/Seaweed_thyroid.pdf), [Abstract](http://winterwang.github.io/files/Seaweed_abstract.pdf).
+1. [日本公衆衛生学会総会](http://www.c-linkage.co.jp/jsph72/index.html), Tsu, Mie, 23~25<sup>th</sup> Oct, _Seaweed intake and thyroid cancer_, [Poster P-0103-9](http://winterwang.github.io/files/Seaweed_thyroid.pdf), [Abstract](http://winterwang.github.io/files/seaweed_abstract.pdf).
 2. [日本疫学会](http://jeaweb.jp/)学術総会, Osaka, 24-26<sup>th</sup> Jan., _Milk intake frequency and overall mortality_, [Poster](http://winterwang.github.io/files/poster.pdf), [Abstract](/files/JEA2013ccwang.pdf).
 
 ## 2012
 
 1. [日本疫学会](http://jeaweb.jp/)学術総会, JEA, Tokyo, 26-28<sup>th</sup> Jan., _CRP and Diabetes Incidence_, [Poster P2-063](http://winterwang.github.io/files/2012_JEA_CRP.pdf), [Abstract](http://winterwang.github.io/files/2012_JEA_abstract.pdf).
+2. [日本循環器病予防学会](http://www.jacd.info)，Kyoto, 16<sup>th</sup> June, _Association between high sensitivity C-reactive protein and incidence of type-2 diabetes mellitus in Japanese male and female workers_, [Abstract](), [Slides](), [Photos](). 
 
 
 ## 2011
