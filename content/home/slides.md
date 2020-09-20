@@ -53,6 +53,7 @@ weight = 120
 1. Project Talk of my MSc of Medical Statistics@LSHTM, London, 23<sup>th</sup> April, The timing of carbohydrates intake in the UK population, Oral, [slides](https://wangcc.me/NDNSslides5/#1).
 2. Internal seminar webslides@AMU, Nagakute, 3<sup>th</sup> Oct, Basic survival analysis, oral, [slides](https://wangcc.me/basic_suvival/#1).
 3. Some slides about the year in LSHTM 2017-09/2018-09, [slides](https://wangcc.me/life_in_LSHTM2017_18/#1).
+4. The day-time patterns of carbohydrate intake in the UK adults – results from the NDNS RP (2008-16), Winter Meeting of the Nutrition Society, 4–5 December 2018, London, Optimal diet and lifestyle strategies for the management of cardio-metabolic risk, Oral, [abstract](https://wangcc.me/files/daytime_patterns_of_carbohydrate_intake_in_the_uk_adults_results_from_the_ndns_rp_200816.pdf)
 
 ## 2017
 1. **名大愛知医大名市大ゲノム勉強会1**, Nagoya, 16<sup>th</sup> May, Introduction of the usage of GCTA program, Oral, [slides](https://winterwang.github.io/GTCA/#1).
@@ -64,31 +65,31 @@ weight = 120
 
 1. [日本ヘリコバクター学会](http://www.jshr.jp/), Beppu, Oita, 24-26<sup>th</sup> June, _Safety of Metronidazole_, Oral, [slides](/metronidazole).
 2. 加藤班会議, Sapporo, Hokkaido, 15~16<sup>th</sup> Jan., _Comparison of Urinelisa and Rapirun_, Oral, [slides](http://rpubs.com/winterwang/sapporo).
-3. [日本疫学会](http://jeaweb.jp/)学術総会, JEA, Yonago, Tottori, 21-23<sup>th</sup> Jan, _Milk and stroke risk_, Poster, [Slides, P1-027](http://winterwang.github.io/files/2016_JEA_Milk_stroke.html), [Abstract](http://winterwang.github.io/files/2016_JEA_Milk_stroke.pdf).
+3. [日本疫学会](http://jeaweb.jp/)学術総会, JEA, Yonago, Tottori, 21-23<sup>th</sup> Jan, _Milk and stroke risk_, Poster, [Slides, P1-027](https://wangcc.me/files/2016_JEA_Milk_stroke.html), [Abstract](https://wangcc.me/files/2016_JEA_Milk_stroke.pdf).
 
 ## 2015
 
-1. 疫学懇話会, Nagakute, Aichi, 14<sup>th</sup>  Sep., Epidemiological Forum in Nagoya, Oral[1](http://winterwang.github.io/epi-forum/#1); [2](http://rpubs.com/winterwang/epi-forum-2); [3](http://rpubs.com/winterwang/epi-forum-3).
+1. 疫学懇話会, Nagakute, Aichi, 14<sup>th</sup>  Sep., Epidemiological Forum in Nagoya, Oral[1](https://wangcc.me/epi-forum/#1); [2](http://rpubs.com/winterwang/epi-forum-2); [3](http://rpubs.com/winterwang/epi-forum-3).
 
 
 
 ## 2014
 
-1. [20th IEA World Congress of Epidemiology](https://wce.confex.com/wce/2014/webprogram/meeting.html), Anchorage, Alaska, USA, 17-21<sup>th</sup> Aug., _Family history and diabetes_, [Poster P-2199](http://winterwang.github.io/files/2014_IEA.pdf), [Abstract](https://wce.confex.com/wce/2014/webprogram/Paper2199.html).
+1. [20th IEA World Congress of Epidemiology](https://wce.confex.com/wce/2014/webprogram/meeting.html), Anchorage, Alaska, USA, 17-21<sup>th</sup> Aug., _Family history and diabetes_, [Poster P-2199](https://wangcc.me/files/2014_IEA.pdf), [Abstract](https://wce.confex.com/wce/2014/webprogram/Paper2199.html).
 
 
 ## 2013
 
-1. [日本公衆衛生学会総会](http://www.c-linkage.co.jp/jsph72/index.html), Tsu, Mie, 23~25<sup>th</sup> Oct, _Seaweed intake and thyroid cancer_, [Poster P-0103-9](http://winterwang.github.io/files/Seaweed_thyroid.pdf), [Abstract](http://winterwang.github.io/files/seaweed_abstract.pdf).
-2. [日本疫学会](http://jeaweb.jp/)学術総会, Osaka, 24-26<sup>th</sup> Jan., _Milk intake frequency and overall mortality_, [Poster](http://winterwang.github.io/files/poster.pdf), [Abstract](/files/JEA2013ccwang.pdf).
+1. [日本公衆衛生学会総会](http://www.c-linkage.co.jp/jsph72/index.html), Tsu, Mie, 23~25<sup>th</sup> Oct, _Seaweed intake and thyroid cancer_, [Poster P-0103-9](https://wangcc.me/files/Seaweed_thyroid.pdf), [Abstract](https://wangcc.me/files/seaweed_abstract.pdf).
+2. [日本疫学会](http://jeaweb.jp/)学術総会, Osaka, 24-26<sup>th</sup> Jan., _Milk intake frequency and overall mortality_, [Poster](https://wangcc.me/files/poster.pdf), [Abstract](/files/JEA2013ccwang.pdf).
 
 ## 2012
 
-1. [日本疫学会](http://jeaweb.jp/)学術総会, JEA, Tokyo, 26-28<sup>th</sup> Jan., _CRP and Diabetes Incidence_, [Poster P2-063](http://winterwang.github.io/files/2012_JEA_CRP.pdf), [Abstract](http://winterwang.github.io/files/2012_JEA_abstract.pdf).
-2. [日本循環器病予防学会](http://www.jacd.info)，Kyoto, 16<sup>th</sup> June, _Association between high sensitivity C-reactive protein and incidence of type-2 diabetes mellitus in Japanese male and female workers_, [Abstract](), [Slides](), [Photos](). 
+1. [日本疫学会](http://jeaweb.jp/)学術総会, JEA, Tokyo, 26-28<sup>th</sup> Jan., _CRP and Diabetes Incidence_, [Poster P2-063](https://wangcc.me/files/2012_JEA_CRP.pdf), [Abstract](https://wangcc.me/files/2012_JEA_abstract.pdf).
+2. [日本循環器病予防学会](http://www.jacd.info)，Kyoto, 16<sup>th</sup> June, _Association between high sensitivity C-reactive protein and incidence of type-2 diabetes mellitus in Japanese male and female workers_, [Abstract](https://wangcc.me/files/CRPDM2_abstract.pdf), [Slides](https://wangcc.me/files/CRPDM2.pdf), [Photos](https://wangcc.me/img/201206.JPG). 
 
 
 ## 2011
 
-1. [日本疫学会](http://jeaweb.jp/)学術総会, JEA, Sapporo, Hokkaido, 21-22<sup>th</sup> Jan., _$\omega$-3 PUFA and liver fat content_, [Poster PP1-056](http://winterwang.github.io/files/2011_JEA_Sapporo.pdf), [Abstract](http://winterwang.github.io/files/2011_JEA_PUFA.pdf).
-2. [The 9th International Symposium on In Vivo Body Composition Studies](https://www.ncbi.nlm.nih.gov/pubmed/21568001), IBC-2011, Hangzhou, China,  21-24<sup>th</sup> May., _C3 and liver fat content_, [Poster P-24](http://winterwang.github.io/files/2011_Hangzhou_C3.pdf), [Abstract](http://winterwang.github.io/files/2011_Hangzhou_abstract.pdf).
+1. [日本疫学会](http://jeaweb.jp/)学術総会, JEA, Sapporo, Hokkaido, 21-22<sup>th</sup> Jan., _$\omega$-3 PUFA and liver fat content_, [Poster PP1-056](https://wangcc.me/files/2011_JEA_Sapporo.pdf), [Abstract](https://wangcc.me/files/2011_JEA_PUFA.pdf).
+2. [The 9th International Symposium on In Vivo Body Composition Studies](https://www.ncbi.nlm.nih.gov/pubmed/21568001), IBC-2011, Hangzhou, China,  21-24<sup>th</sup> May., _C3 and liver fat content_, [Poster P-24](https://wangcc.me/files/2011_Hangzhou_C3.pdf), [Abstract](https://wangcc.me/files/2011_Hangzhou_abstract.pdf).
