@@ -30,6 +30,11 @@ weight = 120
 
 10. **Causal Inference Study Group for CSS -- Chapter 02**, @HOME, 4<sup>th</sup> Sep, Oral, [slides](https://wangcc.me/CausalInference01/#27)
 
+10. **Causal Inference Study Group for CSS -- Chapter 03**, @HOME, 4<sup>th</sup> Dec, Oral, [slides](https://wangcc.me/CausalInference01/#50)
+
+10. **Causal Inference Study Group for CSS -- Chapter 04**, @HOME, 18<sup>th</sup> Dec, Oral, [slides](https://wangcc.me/CausalInference01/#79)
+
+
 
 ## 2019
 
