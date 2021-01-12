@@ -12,6 +12,16 @@ weight = 120
 
 +++
 
+
+## 2021 
+
+1. **Proposal to ACC: Seaweed intake and the risk of thyroid cancer.**, @HOME, 15<sup>th</sup> Jan, Oral, [slides](https://wangcc.me/ACC_Seawed/)
+1. **Causal Inference Study Group for CSS -- Chapter 04**, @HOME, 15<sup>th</sup> Jan, Oral, [slides](https://wangcc.me/CausalInference01/#79)
+
+
+
+
+
 ## 2020 
 
 1. [JACC study research meeting, JACC研究班会議](https://publichealth.med.hokudai.ac.jp/jacc/), Nagoya, Japan, 14<sup>th</sup> Jan, Bayesian Survival Analysis -- test on the JACC study data, [Oral slides](https://wangcc.me/BayesianJACC/); <br>[Handout 1, traditional Cox PH model results](https://github.com/winterwang/JACC_bayesian/raw/master/ForReport20200114/HandOut.pdf); <br> [Handout 2, Bayesian Survival Analysis crude results](https://github.com/winterwang/JACC_bayesian/raw/master/ForReport20200114/HandOutEngBayes.pdf).
@@ -31,8 +41,6 @@ weight = 120
 10. **Causal Inference Study Group for CSS -- Chapter 02**, @HOME, 4<sup>th</sup> Sep, Oral, [slides](https://wangcc.me/CausalInference01/#27)
 
 10. **Causal Inference Study Group for CSS -- Chapter 03**, @HOME, 4<sup>th</sup> Dec, Oral, [slides](https://wangcc.me/CausalInference01/#50)
-
-10. **Causal Inference Study Group for CSS -- Chapter 04**, @HOME, 18<sup>th</sup> Dec, Oral, [slides](https://wangcc.me/CausalInference01/#79)
 
 
 
