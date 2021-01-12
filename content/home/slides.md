@@ -15,7 +15,7 @@ weight = 120
 
 ## 2021 
 
-1. **Proposal to ACC: Seaweed intake and the risk of thyroid cancer.**, @HOME, 15<sup>th</sup> Jan, Oral, [slides](https://wangcc.me/ACC_Seawed/)
+1. **Proposal to ACC: Seaweed intake and the risk of thyroid cancer.**, @HOME, 15<sup>th</sup> Jan, Oral, [slides](https://wangcc.me/ACC_seaweed/)
 1. **Causal Inference Study Group for CSS -- Chapter 04**, @HOME, 15<sup>th</sup> Jan, Oral, [slides](https://wangcc.me/CausalInference01/#79)
 
 
