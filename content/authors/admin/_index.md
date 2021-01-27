@@ -53,9 +53,9 @@ social:
 - icon: envelope
   icon_pack: fas
   link: '#contact'  # For a direct email link, use "mailto:test@example.org".
-- icon: twitter
-  icon_pack: fab
-  link: https://twitter.com/outyousin
+# - icon: twitter
+#   icon_pack: fab
+#   link: https://twitter.com/outyousin
 - icon: google-scholar
   icon_pack: ai
   link: https://scholar.google.co.jp/citations?user=0J-5evgAAAAJ&hl=ja
