@@ -13,8 +13,8 @@ superuser: true
 role: Senior Lecturer 講師
 
 # Organizations/Affiliations
-organizations:
-- name: Aichi Medical University 愛知医科大学
+organizations: 
+- name: Faculty of the Department of Public Health, Aichi Medical University (愛知医科大学)
   url: "https://www.aichi-med-u.ac.jp/"
 
 # Short bio (displayed in user profile at end of posts)
@@ -27,7 +27,6 @@ interests:
 - Data Analysis 
 - Bayesian Statistics
 - Statistical Inference
-- Machine/Deep Learning
 - Nutritional Epidemiology
 
 education:
