@@ -18,10 +18,11 @@ weight = 110
 #### 令和3年（2021）
 
 1. 公衆衛生学講義 -- 人口統計, 4/14, am, Slides only available upon request. 
+1. 基礎医学セミナー, 7/29, am, 基本再生産数について (Basic reproduction number R$_0$), [slides](https://wangcc.me/R0)
 
 #### 令和2年 (2020)
 
-1. 基礎医学セミナー, 7/29, am, 基本再生産数について (Basic reproduction number R$_0$), [slides](https://wangcc.me/R0/)
+1. 基礎医学セミナー, 7/29, am, 基本再生産数について (Basic reproduction number R$_0$), [slides](https://github.com/winterwang/R0/raw/master/R0_20200729.pdf)
 2. 公衆衛生学実習，09/30，am，EZRを利用したデータ解析の基本と演習，[slides](https://wangcc.me/epi2020slides/#1)，[参考資料](https://github.com/winterwang/Epi2020/raw/master/EZRintro/intro.pdf)
 
 #### 平成31年/令和1年 (2019)
