@@ -19,6 +19,7 @@ weight = 110
 
 1. 公衆衛生学講義 -- 人口統計, 4/14, am, Slides only available upon request. 
 1. 基礎医学セミナー, 7/29, am, 基本再生産数について (Basic reproduction number R$_0$), [slides](https://wangcc.me/R0)
+1. 基礎医学セミナー, 7/30, am, これからの薬剤疫学研究, Slides only available upon request.
 
 #### 令和2年 (2020)
 
