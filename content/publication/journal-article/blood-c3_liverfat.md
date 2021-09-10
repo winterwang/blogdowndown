@@ -13,9 +13,9 @@ title: "Positive Association between blood C3 Level and Liver Fat Content Quanti
 #url_code: ""
 #url_dataset: "#"
 url_pdf: "files/Positive_Association_between_blood_C3_Level_and_Li.pdf"
-# url_project : ["Aichi"]
 url_slides: "files/2011_Hangzhou_C3.pdf"
 #url_video: "#"
+projects: [Aichi]
 
 links:
   - name: Researchgate

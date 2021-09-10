@@ -13,9 +13,9 @@ title: "Independent association of liver fat accumulation with insulin resistanc
 #url_code: ""
 #url_dataset: "#"
 #url_pdf: "files/Uemura.pdf"
-url_project: "project/Aichi/"
 #url_slides: "files/CRPDM2.pdf"
 #url_video: "#"
+projects: [Aichi]
 
 links:
 - name: "link to Journal"

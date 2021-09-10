@@ -13,7 +13,7 @@ title : "Breakfast Skipping is Positively Associated With Incidence of Type 2 Di
 #url_code : ""
 #url_dataset : "#"
 url_pdf : "files/je-25-351.pdf"
-# url_project: [Aichi]
+projects: [Aichi]
 # url_slides : "files/CRPDM2.pdf"
 #url_video : "#"
 links:

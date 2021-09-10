@@ -1,6 +1,6 @@
 ---
 #abstract_short: ""
-authors: ["Mayu Uemura", "Hiroshi Yatsuya", "Koji Tamakoshi", "Chaochen Wang", "Chifa Chiang", "Rei Otsuka", "Hideaki Toyoshima", "Satoshi Sasaki", "Atsuko Aoyama"]
+authors: ["Mayu Uemura", "Hiroshi Yatsuya", "Koji Tamakoshi", "**Chaochen Wang**", "Chifa Chiang", "Rei Otsuka", "Hideaki Toyoshima", "Satoshi Sasaki", "Atsuko Aoyama"]
 date: "2014-02-01"
 #image: ""
 #image_preview: ""
@@ -13,9 +13,7 @@ title: "Association between five dietary health metrics of the American Heart As
 #url_code: ""
 #url_dataset: "#"
 url_pdf: "files/Uemura.pdf"
-# url_project: "project/Aichi/"
-#url_slides: "files/CRPDM2.pdf"
-#url_video: "#"
+projects: [Aichi]
 
 #[[url_custom]]
 #name: "Nagoya Repository"

@@ -16,6 +16,7 @@ url_pdf: "https://linkinghub.elsevier.com/retrieve/pii/S0091-7435(15)00237-6"
 #url_project: "project/deep-learning/"
 url_slides: "files/2014_IEA.pdf"
 #url_video: "#"
+projects: [Aichi]
 
 links:
 - name: "Nagoya Repository"

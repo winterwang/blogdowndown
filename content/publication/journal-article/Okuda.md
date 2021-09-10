@@ -1,6 +1,6 @@
 ---
 #abstract_short: ""
-authors: ["Okuda, Masumi", "Mabe, Katsuhiro", "Lin, Yingsong", "Wang, Chaochen", "Taniguchi, Yohei", "Kato, Mototsugu", "Kikuchi, Shogo"]
+authors: ["Okuda, Masumi", "Mabe, Katsuhiro", "Lin, Yingsong", "**Wang, Chaochen**", "Taniguchi, Yohei", "Kato, Mototsugu", "Kikuchi, Shogo"]
 date: "2017-04-26"
 #image: ""
 #image_preview: ""
@@ -10,6 +10,8 @@ publication: "Pediatrics International"
 publication_short: "Pediatr. Int."
 selected: false  
 title: "Rapid urine antibody test for Helicobacter pylori infection in adolescents"
+projects: [Hpylori]
+
 #url_code: ""
 #url_dataset: "#"
 #url_pdf: "files/Uemura.pdf"

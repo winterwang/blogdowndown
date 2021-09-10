@@ -16,7 +16,7 @@ url_pdf: "files/Wang_Milk drinking and mortality.pdf"
 # url_project: "project/JACC/"
 #url_slides: "files/CRPDM2.pdf"
 #url_video: "#"
-
+projects: [JACC]
 links:
 - name: "日本語概要"
   url: "http://publichealth.med.hokudai.ac.jp/jacc/160906JACC_HP_Added/wang1/index.html"

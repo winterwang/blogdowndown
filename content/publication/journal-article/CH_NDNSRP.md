@@ -14,7 +14,7 @@ publication_short: Nutrients
 url_dataset: https://beta.ukdataservice.ac.uk/datacatalogue/studies/study?id=6533#!/details
 url_pdf: https://www.mdpi.com/2072-6643/11/10/2476/pdf
 # url_project: chronon/
-projects: [chronon]
+projects: [Chronon]
 commentable: true
 links:
 - name: Nutrients

@@ -15,7 +15,7 @@ title: "Smoking and Diabetes: Is the Association Mediated by Adiponectin, Leptin
 #url_code: ""
 #url_dataset: "#"
 url_pdf: "files/Hilawe et al_2015_Smoking and Diabetes.pdf"
-url_project: "project/Aichi/"
+projects: [Aichi]
 #url_slides: "files/CRPDM2.pdf"
 #url_video: "#"
 

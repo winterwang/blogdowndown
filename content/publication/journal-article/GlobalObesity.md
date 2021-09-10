@@ -1,6 +1,6 @@
 ---
 #abstract_short: ""
-authors: ["Hiroshi Yatsuya", "Yuanying Li", "Esayas Haregot Hilawe", "Atsuhiko Ota", "Chaochen Wang", "Chifa Chiang", "Yan Zhang", "Mayu Uemura", "Ayako Osako", "Yukio Ozaki",  "Atsuko Aoyama"]
+authors: ["Hiroshi Yatsuya", "Yuanying Li", "Esayas Haregot Hilawe", "Atsuhiko Ota", "**Chaochen Wang**", "Chifa Chiang", "Yan Zhang", "Mayu Uemura", "Ayako Osako", "Yukio Ozaki",  "Atsuko Aoyama"]
 date: "2014-11-11"
 #image: "img/award.jpg"
 #image_preview: ""
@@ -16,7 +16,7 @@ url_pdf: "files/GlobalObesity.pdf"
 #url_project: "project/Aichi/"
 #url_slides: "files/CRPDM2.pdf"
 #url_video: "#"
-
+projects: [Pool_Meta]
 #[[url_custom]]
 #name: "Nagoya Repository"
 #url: "http://ir.nul.nagoya-u.ac.jp/jspui/handle/2237/22505"

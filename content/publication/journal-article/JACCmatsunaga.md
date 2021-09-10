@@ -13,10 +13,9 @@ title: "Similarities and differences between coronary heart disease and stroke i
 #url_code: ""
 #url_dataset: "files/srep40363-s1.doc"
 #url_pdf: "files/srep40363.pdf"
-url_project: "project/JACC/"
 #url_slides: "files/2011_Hangzhou_C3.pdf"
 #url_video: "#"
-
+projects: [JACC]
 
 links:
 - name: "link to the Journal"

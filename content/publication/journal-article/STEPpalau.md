@@ -15,6 +15,7 @@ url_pdf: "files/palauSTEPDM.pdf"
 #url_project: "project/deep-learning/"
 #url_slides: "files/2011_Hangzhou_C3.pdf"
 #url_video: "#"
+projects: [Palau]
 
 links:
 - name: "PubMed"  

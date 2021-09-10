@@ -9,6 +9,7 @@ publication_types: ["8"]
 publication: "Annals of Epidemiology"
 publication_short: "Ann. Epidemiol."
 selected: false
+projects: [Pool_Meta]
 title: "Esophageal cancer in high-risk areas of China: research progress and challenges"
 #url_code: "http://jlc.jst.go.jp/DN/JST.JSTAGE/circj/CJ-14-0850?lang=en&from=CrossRef&type=abstract"
 #url_dataset: "#"

@@ -14,6 +14,7 @@ title: "Changing trends in the prevalence of H. pylori infection in Japan (1908-
 url_dataset: "http://rpubs.com/winterwang/288338"
 url_pdf: "/files/hpylorimetaSciRep.pdf"
 #url_project: "project/deep-learning/"
+projects: [Hpylori, Pool_Meta]
 url_slides: "https://winterwang.github.io/For_Inoue_pylori/"
 #url_video: "#"
 

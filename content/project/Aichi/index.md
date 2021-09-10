@@ -6,8 +6,9 @@ tags:
 date: "2017-02-02T00:00:00Z"
 
 # Optional external URL for project (replaces project detail page).
-external_link: http://koei-nagoya.blogspot.jp/
-image:
-  caption: Aichi
+# external_link: http://koei-nagoya.blogspot.jp/
+# image:
+#   caption: Aichi
 ---
 
+You may find more information/pictures from the homepage of the Aichi Worker's Cohort Study: [http://koei-nagoya.blogspot.jp/](http://koei-nagoya.blogspot.jp/)

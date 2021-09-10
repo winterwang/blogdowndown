@@ -13,7 +13,7 @@ title: "Positive association between high‐sensitivity C‐reactive protein and
 #url_code: ""
 #url_dataset: "#"
 url_pdf: "http://onlinelibrary.wiley.com/doi/10.1002/dmrr.2406/full"
-#url_project: "project/deep-learning/"
+projects: [Aichi]
 url_slides: "files/CRPDM2.pdf"
 #url_video: "#"
 

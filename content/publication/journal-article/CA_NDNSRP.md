@@ -14,7 +14,7 @@ publication_short: Front. Nutr.
 url_dataset: https://beta.ukdataservice.ac.uk/datacatalogue/studies/study?id=6533#!/details
 # url_pdf: 
 # url_project: chronon/
-projects: [chronon]
+projects: [Chronon]
 commentable: true
 links:
 - name: Front. Nutr.

@@ -16,6 +16,7 @@ title: "Descriptive Epidemiology of Hypertension and Its Association With Obesit
 #url_project: "project/deep-learning/"
 #url_slides: "files/2011_Hangzhou_C3.pdf"
 #url_video: "#"
+projects: [Palau]
 
 links:
 - name: "Link to Journal"

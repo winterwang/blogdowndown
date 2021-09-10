@@ -11,8 +11,7 @@ publication_short: Int. J. Cancer
 url_pdf: https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/ijc.33248?download=true
 # url_project: chronon/
 # projects: [chronon]
-url_project: JACC/
-projects: [JACC]
+projects: [JACC, Pool_Meta]
 commentable: true
 links:
 - name: International Journal of Cancer
