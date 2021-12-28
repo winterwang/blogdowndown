@@ -1,5 +1,5 @@
 ---
-title: "Relationships between food groups and eating time slots according to diabetes status in adults from the UK National Diet and Nutrition Survey (2008-2017) [accepted]"
+title: "Relationships between food groups and eating time slots according to diabetes status in adults from the UK National Diet and Nutrition Survey (2008-2017)"
 authors: 
 - Chaochen Wang
 - Suzana Almoosawi

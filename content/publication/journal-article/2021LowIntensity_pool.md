@@ -1,5 +1,5 @@
 ---
-title: "Low-intensity cigarette smoking and mortality risks: a pooled analysis of prospective cohort studies in Japan [accepted]"
+title: "Low-intensity cigarette smoking and mortality risks: a pooled analysis of prospective cohort studies in Japan"
 authors: ["Maki Inoue-Choi", "Neal D Freedman", "Eiko Saito", "Shiori Tanaka", "Mayo Hirabayashi", "Norie Sawada", "Shoichiro Tsugane", "Yoshiaki Usui", "Hidemi Ito", "**Chaochen Wang**", "Akiko Tamakoshi", "Taro Takeuchi", "Yuri Kitamura", "Mai Utada", "Kotaro Ozasa", "Yumi Sugawara", "Ichiro Tsuji", "Keiko Wada", "Chisato Nagata", "Taichi Shimazu", "Tetsuya Mizoue", "Keitaro Matsuo", "Mariko Naito",  "Keitaro Tanaka",  "Kota Katanoda", "Manami Inoue", "for the Research Group for the Development and Evaluation of Cancer Prevention Strategies in Japan"]
 date: "2021-09-13"
 featured: true
@@ -13,11 +13,11 @@ publication_short: Int. J. Epidemiol.
 # projects: [chronon]
 projects: [JACC, Pool_Meta]
 commentable: true
-# links:
-# - name: International Journal of Cancer
-#   url: https://onlinelibrary.wiley.com/doi/10.1002/ijc.33478
-# - name: PMID 33497475
-#   url: https://pubmed.ncbi.nlm.nih.gov/33497475/
+links:
+- name: International Journal of Epidemiology
+  url: https://academic.oup.com/ije/advance-article-abstract/doi/10.1093/ije/dyab224/6414574?redirectedFrom=fulltext
+- name: PMID 34718588
+  url: https://pubmed.ncbi.nlm.nih.gov/34718588/
   
 # url_poster: "https://github.com/winterwang/gemini/raw/master/poster.pdf"
 ---
