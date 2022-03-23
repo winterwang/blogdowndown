@@ -1,8 +1,8 @@
 ---
-title: 手寫日記
+title: 徹底告別
 author: wangcc.me
-date: '2022-03-11'
-slug: hand-writing
+date: '2022-03-17'
+slug: saygoodbyeagain
 draft: false
 categories:
   - thoughts
@@ -14,7 +14,7 @@ tags:
   - 手寫
   - 日記
 authors: []
-lastmod: '2022-03-22T09:57:33+09:00'
+lastmod: '2022-03-23T09:57:33+09:00'
 featured: no
 header:
   caption: ''
@@ -22,4 +22,4 @@ header:
 summary: ""
 ---
 
-![](/post/2022-03-11-iPadHandWriting_files/IMG_1100.JPG)
+![](/post/2022-03-17-iPadHandWriting_files/IMG_1143.jpg)
