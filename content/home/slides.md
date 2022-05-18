@@ -19,7 +19,7 @@ weight = 120
 1. **Causal Inference Study Group for CSS -- Chapter 04**, @HOME, 15<sup>th</sup> Jan, Oral, [slides](https://wangcc.me/CausalInference01/#79)
 1. **Causal Inference Study Group for CSS -- Chapter 05**, @HOME, 5<sup>th</sup> March, Oral, [slides](https://wangcc.me/CausalInference01/#117)
 1. **Causal Inference Study Group for CSS -- Chapter 06**, @HOME, 2<sup>nd</sup> April, Oral, [slides](https://wangcc.me/CausalInference01/#143)
-
+1. **Introduction and examples of Bayesian Statistical Modelling for RWD Research Group**, @HOME, 30<sup>th</sup> Aug, Oral, [slides](https://wangcc.me/BayesRWD/)
 
 
 ## 2020 
