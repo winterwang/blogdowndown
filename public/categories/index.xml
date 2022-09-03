@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories | Chaochen Wang - Be Ambitious</title>
+    <link>https://wangcc.me/categories/</link>
+      <atom:link href="https://wangcc.me/categories/index.xml" rel="self" type="application/rss+xml" />
+    <description>Categories</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2017-2022 Chaochen Wang | 王超辰</copyright><lastBuildDate>Wed, 18 May 2022 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://wangcc.me/img/icon-192.png</url>
+      <title>Categories</title>
+      <link>https://wangcc.me/categories/</link>
+    </image>
+    
+  </channel>
+</rss>
