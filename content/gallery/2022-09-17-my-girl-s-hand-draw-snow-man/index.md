@@ -20,6 +20,7 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
+commentable: true 
 ---
 
 - ぱぱ大好き
