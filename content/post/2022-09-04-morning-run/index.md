@@ -7,6 +7,8 @@ categories:
   - life
 tags:
   - experience
+  - 偶爾感慨
+  - 自娛自樂
 subtitle: ''
 summary: ''
 authors: []

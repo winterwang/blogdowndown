@@ -1,13 +1,13 @@
 {
     "sortOrder": [
         {
-            "columnIndex": 4,
+            "columnIndex": 2,
             "ascending": false
         },
         {
-            "columnIndex": 2,
-            "ascending": true
+            "columnIndex": 4,
+            "ascending": false
         }
     ],
-    "path": "~/Downloads/blogdowndown/content/post/2022-09-04-morning-run/images"
+    "path": "~/Downloads/blogdowndown"
 }
