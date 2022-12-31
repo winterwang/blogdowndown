@@ -41,3 +41,5 @@ editable: false  # Allow visitors to edit the page? Supported by the Page, Post,
 
 2023年仍然計劃繼續跑步。天氣快點暖起來吧。
 
+![](images/IMG_2678.jpg)
+
