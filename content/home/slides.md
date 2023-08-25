@@ -14,7 +14,7 @@ weight = 120
 
 ## 2023
 
-1. Journal Club in Lilly: Wakabayashi, R., Hirano, T., Laurent, T., Kuwatsuru, Y., & Kuwatsuru, R. (2022). Impact of "time zero" of Follow-Up Settings in a Comparative Effectiveness Study Using Real-World Data with a Non-user Comparator: Comparison of Six Different Settings. Drugs Real World Outcomes. https://doi.org/10.1007/s40801-022-00343-1. @HOME, 9<sup>th</sup> Mar, Oral, [slides]()
+1. Journal Club in Lilly: Wakabayashi, R., Hirano, T., Laurent, T., Kuwatsuru, Y., & Kuwatsuru, R. (2022). Impact of "time zero" of Follow-Up Settings in a Comparative Effectiveness Study Using Real-World Data with a Non-user Comparator: Comparison of Six Different Settings. Drugs Real World Outcomes. https://doi.org/10.1007/s40801-022-00343-1. @HOME, 9<sup>th</sup> Mar, Oral, slides available upon request. 
 
 
 
