@@ -1,6 +1,6 @@
 ---
 # Display name
-name: "王　超辰"
+name: 王　超辰 - Chaochen Wang
 
 # Username (this should match the folder name)
 authors:
