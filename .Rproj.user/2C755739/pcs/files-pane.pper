@@ -2,12 +2,12 @@
     "sortOrder": [
         {
             "columnIndex": 4,
-            "ascending": true
+            "ascending": false
         },
         {
             "columnIndex": 2,
             "ascending": true
         }
     ],
-    "path": "~/Downloads/blogdowndown/content/post/2022-12-27-morning-run-update"
+    "path": "~/Downloads/blogdowndown/content/publication/journal-article"
 }
