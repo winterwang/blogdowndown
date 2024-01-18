@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.5.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="王　超辰 - Chaochen Wang">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="第4章　矩陣 matrix P53-56">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://wangcc.me/post/2017-02-22/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-21867861-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           document.location = url;
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target);  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-21867861-1', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon-32.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://wangcc.me/post/2017-02-22/">
+
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Chaochen Wang - Be Ambitious">
+  <meta property="og:url" content="https://wangcc.me/post/2017-02-22/">
+  <meta property="og:title" content="「統計解析のための線形代数」復習筆記12 | Chaochen Wang - Be Ambitious">
+  <meta property="og:description" content="第4章　矩陣 matrix P53-56"><meta property="og:image" content="https://wangcc.me/img/icon-192.png">
+  <meta property="twitter:image" content="https://wangcc.me/img/icon-192.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2017-02-22T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2017-02-22T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://wangcc.me/post/2017-02-22/"
+  },
+  "headline": "「統計解析のための線形代数」復習筆記12",
+  
+  "datePublished": "2017-02-22T00:00:00Z",
+  "dateModified": "2017-02-22T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "王　超辰 - Chaochen Wang"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Chaochen Wang - Be Ambitious",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://wangcc.me/img/icon-512.png"
+    }
+  },
+  "description": "第4章　矩陣 matrix P53-56"
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>「統計解析のための線形代数」復習筆記12 | Chaochen Wang - Be Ambitious</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0 compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Chaochen Wang - Be Ambitious</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#publications"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#teaching"><span>Teaching</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#slides"><span>Slides</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/gallery"><span>Gallery</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>「統計解析のための線形代数」復習筆記12</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    2017-02-22
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    4 min read
+  </span>
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/post/2017-02-22/#disqus_thread"></a>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/categories/statistics/">statistics</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="矩陣乘法運算" class="section level2">
+<h2>矩陣乘法運算</h2>
+<div id="矩陣乘法定義" class="section level4">
+<h4>矩陣乘法定義</h4>
+
+<div class="theorem">
+<span id="thm:unnamed-chunk-1" class="theorem"><strong>Theorem 1  (matrix multiplication)  </strong></span>兩個矩陣 <span class="math inline">\(A, B\)</span> ，只有 <span class="math inline">\(A\)</span> 的列數和 <span class="math inline">\(B\)</span> 的行數相等(這種特徵又被稱爲：矩陣 <span class="math inline">\(A,B\)</span> <strong>可整合的</strong>，conformable)時，才有定義：<span class="math inline">\(AB\)</span>。<span class="math inline">\(AB\)</span> 則爲新的矩陣，類型爲 <span class="math inline">\(A\)</span> 的行數， <span class="math inline">\(B\)</span>的列數。即：<span class="math inline">\(A_{k\times l}, \; B_{m\times n}\)</span> 且 <span class="math inline">\(l=m\)</span> 時才能計算乘積: <span class="math inline">\(AB_{k\times n}\)</span>。
+</div>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(A_{2\times3}=\left( \begin{array}{c} 4 &amp; 6 &amp; 8\\ 2 &amp; 1 &amp; 3\\ \end{array} \right),\; B_{3\times2}=\left( \begin{array}{c} 0 &amp; 8\\ 2 &amp; -1\\ 9 &amp; 4 \\ \end{array} \right)\)</span> 時，<br>
+“<span class="math inline">\(A\)</span>的列數” <span class="math inline">\(=\)</span> “<span class="math inline">\(B\)</span> 的行數” <span class="math inline">\(= 3\)</span>，因此積 <span class="math inline">\(AB\)</span> 被定義，類型是 <span class="math inline">\((2,2)\)</span> <br>
+“<span class="math inline">\(B\)</span>的列數” <span class="math inline">\(=\)</span> “<span class="math inline">\(A\)</span> 的行數” <span class="math inline">\(= 2\)</span>，因此積 <span class="math inline">\(BA\)</span> 被定義，類型是 <span class="math inline">\((3,3)\)</span></p></li>
+<li><p><span class="math inline">\(C_{3\times2}=\left( \begin{array}{c} 4 &amp; 2 \\ 5 &amp; 6 \\ 7 &amp; 3 \end{array} \right),\; D_{2\times4}=\left( \begin{array}{c} 2 &amp; 0 &amp; 9 &amp; -1 \\ 4 &amp; 7 &amp; 6 &amp; 5 \\ \end{array} \right)\)</span> 時， <br>
+“<span class="math inline">\(C\)</span>的列數” <span class="math inline">\(=\)</span> “<span class="math inline">\(D\)</span> 的行數” <span class="math inline">\(= 2\)</span>，因此積 <span class="math inline">\(CD\)</span> 被定義，類型是 <span class="math inline">\((3,4)\)</span> <br>
+“<span class="math inline">\(D\)</span>的列數”<span class="math inline">\(= 4\)</span>，“<span class="math inline">\(C\)</span> 的行數” <span class="math inline">\(= 3\)</span>，因此積 <span class="math inline">\(DC\)</span> 不被定義，<span class="math inline">\(DC\)</span> 不可整合。</p></li>
+</ol>
+</div>
+<div id="矩陣的積的向量表達形式" class="section level4">
+<h4>矩陣的積的向量表達形式</h4>
+<p>矩陣也可以被看做是一個個相同類型（大小，方向）的向量組成。那麼當，下面<span class="math inline">\(A, B\)</span>兩個矩陣滿足：<span class="math inline">\(A\)</span> 的行向量的維度，和<span class="math inline">\(B\)</span>的列向量的維度相等時，<span class="math inline">\(AB\)</span>被定義。</p>
+<p><span class="math inline">\(A=\left( \begin{array}{c} \underline{a}_1^t\\ \underline{a}_2^t\\ \vdots\\ \underline{a}_k^t \end{array} \right), \; B=(\underline{b}_1,\underline{b}_2,\cdots,\underline{b}_n)\)</span></p>
+<p><span class="math inline">\(AB=A(\underline{b}_1,\underline{b}_2,\cdots,\underline{b}_n)=(A\underline{b}_1,A\underline{b}_2,\cdots,A\underline{b}_n)\)</span></p>
+<p>或者：</p>
+<p><span class="math inline">\(AB=\left( \begin{array}{c} \underline{a}_1^t\\ \underline{a}_2^t\\ \vdots\\ \underline{a}_k^t \end{array} \right)B=\left( \begin{array}{c} \underline{a}_1^tB\\ \underline{a}_2^tB\\ \vdots\\ \underline{a}_k^tB \end{array} \right)\)</span></p>
+<p>特殊情況當<span class="math inline">\(A\)</span>僅有一個行向量 <span class="math inline">\(\underline{a}^t\)</span> 時，<br>
+<span class="math inline">\(AB=\underline{a}^tB=\underline{a}^t(\underline{b}_1,\underline{b}_2,\cdots,\underline{b}_n)=(\underline{a}^t\underline{b}_1,\underline{a}^t\underline{b}_2,\cdots,\underline{a}^t\underline{b}_n)\)</span></p>
+</div>
+<div id="矩陣的積的成分" class="section level4">
+<h4>矩陣的積的成分</h4>
+
+<div class="theorem">
+<span id="thm:unnamed-chunk-2" class="theorem"><strong>Theorem 2  (matrix multiplication component)  </strong></span>兩個矩陣 <span class="math inline">\(A_{k\times l}, \; B_{m\times n}\)</span> 的積有被定義時，矩陣 <span class="math inline">\(AB_{k\times n}\)</span> 的任意成分<span class="math inline">\((i,j)\)</span>，被定義爲：<strong>“<span class="math inline">\(A\)</span> 的第 <span class="math inline">\(i\)</span> 行向量與 <span class="math inline">\(B\)</span>的第 <span class="math inline">\(j\)</span> 列向量的內積”</strong>。
+</div>
+<p>故：<br>
+<span class="math inline">\(AB\)</span> 的 <span class="math inline">\((1,1)\)</span> 成分是，“<span class="math inline">\(A\)</span> 的第 <span class="math inline">\(1\)</span> 行向量與 <span class="math inline">\(B\)</span>的第 <span class="math inline">\(1\)</span> 列向量的內積”<br>
+<span class="math inline">\(AB\)</span> 的 <span class="math inline">\((1,2)\)</span> 成分是，“<span class="math inline">\(A\)</span> 的第 <span class="math inline">\(1\)</span> 行向量與 <span class="math inline">\(B\)</span>的第 <span class="math inline">\(2\)</span> 列向量的內積”<br>
+<span class="math inline">\(\vdots\)</span> <br>
+<span class="math inline">\(AB\)</span> 的 <span class="math inline">\((k,n)\)</span> 成分是，“<span class="math inline">\(A\)</span> 的第 <span class="math inline">\(k\)</span> 行向量與 <span class="math inline">\(B\)</span>的第 <span class="math inline">\(ns\)</span> 列向量的內積”<br></p>
+</div>
+<div id="練習" class="section level4">
+<h4>練習</h4>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(A=\left( \begin{array}{c} 1 &amp; 2 \\ 3 &amp; 4 \\ \end{array} \right), B=\left( \begin{array}{c} 4 &amp; 1 \\ 5 &amp; 2 \\ \end{array} \right)\)</span><br>
+<span class="math inline">\(AB=\left( \begin{array}{c} 1\times4+2\times5 &amp; 1\times1+2\times2 \\ 3\times4+4\times5 &amp; 3\times1+4\times2 \\ \end{array} \right)\\ \;\;\;\;\;=\left( \begin{array}{c} 14 &amp; 5 \\ 32 &amp; 11 \\ \end{array} \right)\)</span> <br>
+<span class="math inline">\(BA=\left( \begin{array}{c} 4\times1+1\times3 &amp; 4\times2+1\times4 \\ 5\times1+2\times3 &amp; 5\times2+2\times4 \\ \end{array} \right)\\ \;\;\;\;\;=\left( \begin{array}{c} 7 &amp; 12 \\ 11 &amp; 18 \\ \end{array} \right)\)</span><br>
+<span class="diff_alert">注意： <span class="math inline">\(AB\neq BA\)</span></span>
+<br>
+另外：<span class="math inline">\(AA=\left( \begin{array}{c} 1\times1+2\times3 &amp; 1\times2+2\times4 \\ 3\times1+4\times3 &amp; 3\times2+4\times4 \\ \end{array} \right)\\ \;\;\;\;=\left( \begin{array}{c} 7 &amp; 10 \\ 15 &amp; 22 \\ \end{array} \right)=AA^2\)</span></p></li>
+<li><p><span class="math inline">\(A=\left( \begin{array}{c} 1 &amp; 2 \\ -2 &amp; -4 \\ \end{array} \right), B=\left( \begin{array}{c} 6 &amp; -2 \\ -3 &amp; 1 \\ \end{array} \right)\)</span> <br>
+<span class="math inline">\(AB=\left( \begin{array}{c} 1\times6+2\times(-3) &amp; 1\times(-2)+2\times1 \\ (-2)\times6+(-4)\times(-3) &amp; (-2)\times(-2)+(-4)\times1 \\ \end{array} \right)\\ \;\;\;\;=\left( \begin{array}{c} 0 &amp; 0 \\ 0 &amp; 0 \\ \end{array} \right)=\Large 0\)</span><br>
+<span class="diff_alert">這裏出現了非零矩陣相乘爲<strong>零矩陣 <span class="math inline">\(\large 0\)</span></strong>的例子。</span></p></li>
+<li><p><span class="math inline">\(A_{2\times3}=\left( \begin{array}{c} a_{11} &amp; a_{12} &amp; a_{13}\\ a_{21} &amp; a_{22} &amp; a_{23}\\ \end{array} \right)=\left( \begin{array}{c} \underline{a}_1^t\\ \underline{a}_2^t\\ \end{array} \right)=(\underline{c}_1,\underline{c}_2,\underline{c}_3); \\ B_{3\times2}=\left( \begin{array}{c} b_{11} &amp; b_{12}\\ b_{21} &amp; b_{22}\\ b_{31} &amp; b_{32}\\ \end{array} \right)=(\underline{b}_1,\underline{b}_2)=\left( \begin{array}{c} \underline{d}^t_1\\ \underline{d}^t_2\\ \underline{d}^t_3\\ \end{array} \right)\)</span> <br>
+<span class="diff_alert"><span class="math inline">\(AB_{2\times2}\)</span></span><span class="math inline">\(=\left( \begin{array}{c} \sum\limits_{k=1}^3a_{1k}b_{k1} &amp;\sum\limits_{k=1}^3a_{1k}b_{k2} \\ \sum\limits_{k=1}^3a_{2k}b_{k1} &amp;\sum\limits_{k=1}^3a_{2k}b_{k2} \\ \end{array} \right)\\=\left( \begin{array}{c} \underline{a}^t_1\underline{b}_1 &amp; \underline{a}^t_1\underline{b}_2 \\ \underline{a}^t_2\underline{b}_1 &amp; \underline{a}^t_2\underline{b}_2 \\ \end{array} \right)\)</span> <br>
+<span class="diff_alert"><span class="math inline">\(BA_{3\times3}\)</span></span><span class="math inline">\(=\left( \begin{array}{c} \sum\limits_{k=1}^2b_{1k}a_{k1} &amp; \sum\limits_{k=1}^2b_{1k}a_{k2} &amp; \sum\limits_{k=1}^2b_{1k}a_{k3} \\ \sum\limits_{k=1}^2b_{2k}a_{k1} &amp; \sum\limits_{k=1}^2b_{2k}a_{k2} &amp; \sum\limits_{k=1}^2b_{2k}a_{k3} \\ \sum\limits_{k=1}^2b_{3k}a_{k1} &amp; \sum\limits_{k=1}^2b_{3k}a_{k2} &amp; \sum\limits_{k=1}^2b_{3k}a_{k3} \end{array} \right)\\ =\left( \begin{array}{c} \underline{d}^t_1\underline{c}_1 &amp; \underline{d}^t_1\underline{c}_2 &amp; \underline{d}^t_1\underline{c}_3 \\ \underline{d}^t_2\underline{c}_1 &amp; \underline{d}^t_2\underline{c}_2 &amp; \underline{d}^t_2\underline{c}_3 \\ \underline{d}^t_3\underline{c}_1 &amp; \underline{d}^t_3\underline{c}_2 &amp; \underline{d}^t_3\underline{c}_3 \\ \end{array} \right)\)</span></p></li>
+<li><p><span class="math inline">\(\underline{x}=\left( \begin{array}{c} x_1\\ x_2\\ \vdots\\ x_n\\ \end{array} \right)\)</span> 時， <br>
+<span class="math inline">\(\underline{x}\underline{x}^t=\left( \begin{array}{c} x_1^2 &amp; x_1x_2 &amp; \cdots &amp; x_1x_n \\ x_2x_1 &amp; x_2^2 &amp; \cdots &amp; x_2x_n \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ x_nx_1 &amp; x_nx_2 &amp; \cdots &amp; x_n^2 \\ \end{array} \right)\)</span>，<br>
+<span class="math inline">\(\underline{x}^t\underline{x}=\sum\limits_{i=1}^nx_i^2\)</span></p></li>
+<li><p><span class="math inline">\(\underline{a}=\left( \begin{array}{c} a_1\\ a_2\\ a_3\\ \end{array} \right), \underline{b}=\left( \begin{array}{c} b_1\\ b_2\\ b_3\\ \end{array} \right), \underline{c}=\left( \begin{array}{c} c_1\\ c_2\\ c_3\\ \end{array} \right)\\ A=\left( \begin{array}{c} a_1 &amp; b_1 &amp; c_1 \\ a_2 &amp; b_2 &amp; c_2 \\ a_3 &amp; b_3 &amp; c_3 \\ \end{array} \right)\)</span> <br>
+<span class="math inline">\(\underline{a}\underline{a}^t+\underline{b}\underline{b}^t+\underline{c}\underline{c}^t\\ \;\;=\left( \begin{array}{c} a_1^2 &amp; a_1a_2 &amp; a_1a_3 \\ a_2a_1 &amp; a_2^2 &amp; a_2a_3 \\ a_3a_1 &amp; a_3a_2 &amp; a_3^2 \\ \end{array} \right)\\ \;\;\;\;\;\;+\left( \begin{array}{c} b_1^2 &amp; b_1b_2 &amp; b_1b_3 \\ b_2b_1 &amp; b_2^2 &amp; b_2b_3 \\ b_3b_1 &amp; b_3b_2 &amp; b_3^2 \\ \end{array} \right)\\ \;\;\;\;\;\;+\left( \begin{array}{c} c_1^2 &amp; c_1c_2 &amp; c_1c_3 \\ c_2c_1 &amp; c_2^2 &amp; c_2c_3 \\ c_3c_1 &amp; c_3c_2 &amp; c_3^2 \\ \end{array} \right)\\ =\left( \begin{array}{c} a_1 &amp; b_1 &amp; c_1 \\ a_2 &amp; b_2 &amp; c_2 \\ a_3 &amp; b_3 &amp; c_3 \\ \end{array} \right)\left( \begin{array}{c} a_1 &amp; a_2 &amp; a_3 \\ b_1 &amp; b_2 &amp; b_3 \\ c_1 &amp; c_2 &amp; c_3 \\ \end{array} \right)=AA^t\)</span></p></li>
+<li><p><span class="math inline">\(\underline{x}=\left( \begin{array}{c} x_1\\ x_2\\ \vdots\\ x_n\\ \end{array} \right), \; \underline{\frac{1}{n}}=\left( \begin{array}{c} \frac{1}{n}\\ \frac{1}{n}\\ \cdots\\ \frac{1}{n}\\ \end{array} \right)\)</span> 時， <span class="math inline">\(\underline{x}^t\underline{\frac{1}{n}}=\sum\limits_{i=1}^nx_i\cdot\frac{1}{n}=\bar{x}\)</span> <span class="diff_alert">(<span class="math inline">\(\underline{x}\)</span> 的<strong>平均值</strong>)</span>
+<br>
+將這樣的 <span class="math inline">\(\bar{x}\)</span> 寫成 <span class="math inline">\(n\)</span> 個的橫向量：<span class="math inline">\((\bar{x},\bar{x},\cdots,\bar{x})\)</span> <br>
+這個向量如果寫成展開的形式就是：<br>
+<span class="math inline">\((\bar{x},\bar{x},\cdots,\bar{x})=(\underline{x}^t\underline{\frac{1}{n}}, \underline{x}^t\underline{\frac{1}{n}}, \cdots,\underline{x}^t\underline{\frac{1}{n}})\\ \;\;\;\;\;\;=\underline{x}^t(\underline{\frac{1}{n}},\underline{\frac{1}{n}},\cdots,\underline{\frac{1}{n}})\\ \;\;\;\;\;\;=(x_1,x_2,\cdots,x_n)\left( \begin{array}{c} \frac{1}{n} &amp; \frac{1}{n} &amp; \cdots &amp; \frac{1}{n} \\ \frac{1}{n} &amp; \frac{1}{n} &amp; \cdots &amp; \frac{1}{n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ \frac{1}{n} &amp; \frac{1}{n} &amp; \cdots &amp; \frac{1}{n} \\ \end{array} \right)\)</span></p></li>
+</ol>
+</div>
+<div id="矩陣積的性質" class="section level4">
+<h4>矩陣積的性質</h4>
+<ul>
+<li>矩陣 <span class="math inline">\(AB\)</span> 有定義時， <span class="math inline">\(BA\)</span> 並不一定就有定義。無法整合時就沒有定義。</li>
+<li><span class="math inline">\(AB=BA\)</span> 時，<span class="math inline">\(A, B\)</span> 被稱爲<strong>可交換 commutative</strong>，<strong>交換可能矩陣</strong>。</li>
+<li>當 <span class="math inline">\(AB, BA\)</span> 都有定義時，也不一定就滿足 <span class="math inline">\(AB=BA\)</span>。也就是說，多數情況下， <span class="math inline">\(AB\neq BA\)</span>。爲了區分二者，<span class="math inline">\(AB\)</span> 被稱爲 <span class="math inline">\(A\)</span> 從右往左乘 <span class="math inline">\(B\)</span> <strong>(postmultiplication of <span class="math inline">\(A\)</span> by <span class="math inline">\(B\)</span>)</strong>，<span class="math inline">\(BA\)</span> 被稱爲 <span class="math inline">\(A\)</span> 從左往右乘 <span class="math inline">\(B\)</span> <strong>(postmultiplication of <span class="math inline">\(B\)</span> by <span class="math inline">\(A\)</span>)</strong>。</li>
+<li>相似的， <span class="math inline">\(AC=BC\)</span> 時，應該理解爲： 等式<span class="math inline">\(A=B\)</span>兩邊同時從右往左乘 <span class="math inline">\(C\)</span> <br>
+<span class="math inline">\(CA=CB\)</span> 就是：等式<span class="math inline">\(A=B\)</span>兩邊同時從左往右乘<span class="math inline">\(C\)</span>。</li>
+<li>即使 <span class="math inline">\(A\neq\Large 0\)</span> 且 <span class="math inline">\(B\neq\Large 0\)</span>，<span class="math inline">\(AB\)</span> 也有可能等於 <span class="math inline">\(\Large 0\)</span> (零矩陣)，此時我們說， <span class="math inline">\(A, B\)</span> 是<strong>零因子 (zero divisor)</strong>。</li>
+</ul>
+</div>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/learning-notes/">learning notes</a>
+  
+  <a class="badge badge-light" href="/tags/basic-mathematics/">basic mathematics</a>
+  
+  <a class="badge badge-light" href="/tags/linear-algebra/">linear algebra</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://wangcc.me/post/2017-02-22/&amp;text=%e3%80%8c%e7%b5%b1%e8%a8%88%e8%a7%a3%e6%9e%90%e3%81%ae%e3%81%9f%e3%82%81%e3%81%ae%e7%b7%9a%e5%bd%a2%e4%bb%a3%e6%95%b0%e3%80%8d%e5%be%a9%e7%bf%92%e7%ad%86%e8%a8%9812" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://wangcc.me/post/2017-02-22/&amp;t=%e3%80%8c%e7%b5%b1%e8%a8%88%e8%a7%a3%e6%9e%90%e3%81%ae%e3%81%9f%e3%82%81%e3%81%ae%e7%b7%9a%e5%bd%a2%e4%bb%a3%e6%95%b0%e3%80%8d%e5%be%a9%e7%bf%92%e7%ad%86%e8%a8%9812" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%e3%80%8c%e7%b5%b1%e8%a8%88%e8%a7%a3%e6%9e%90%e3%81%ae%e3%81%9f%e3%82%81%e3%81%ae%e7%b7%9a%e5%bd%a2%e4%bb%a3%e6%95%b0%e3%80%8d%e5%be%a9%e7%bf%92%e7%ad%86%e8%a8%9812&amp;body=https://wangcc.me/post/2017-02-22/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://wangcc.me/post/2017-02-22/&amp;title=%e3%80%8c%e7%b5%b1%e8%a8%88%e8%a7%a3%e6%9e%90%e3%81%ae%e3%81%9f%e3%82%81%e3%81%ae%e7%b7%9a%e5%bd%a2%e4%bb%a3%e6%95%b0%e3%80%8d%e5%be%a9%e7%bf%92%e7%ad%86%e8%a8%9812" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=%e3%80%8c%e7%b5%b1%e8%a8%88%e8%a7%a3%e6%9e%90%e3%81%ae%e3%81%9f%e3%82%81%e3%81%ae%e7%b7%9a%e5%bd%a2%e4%bb%a3%e6%95%b0%e3%80%8d%e5%be%a9%e7%bf%92%e7%ad%86%e8%a8%9812%20https://wangcc.me/post/2017-02-22/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://wangcc.me/post/2017-02-22/&amp;title=%e3%80%8c%e7%b5%b1%e8%a8%88%e8%a7%a3%e6%9e%90%e3%81%ae%e3%81%9f%e3%82%81%e3%81%ae%e7%b7%9a%e5%bd%a2%e4%bb%a3%e6%95%b0%e3%80%8d%e5%be%a9%e7%bf%92%e7%ad%86%e8%a8%9812" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="portrait mr-3" src="/authors/admin/avatar_hu6d4a55116790841a002fc0d6dcaa1b99_229423_250x250_fill_q90_lanczos_center.jpg" alt="Avatar">
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://wangcc.me/">王　超辰 - Chaochen Wang</a></h5>
+      <h6 class="card-subtitle">Real World Evidence Scientist</h6>
+      <p class="card-text">All models are wrong, but some are useful.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.jp/citations?user=0J-5evgAAAAJ&amp;hl=ja" target="_blank" rel="noopener">
+        <i class="ai ai-google-scholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/winterwang" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "ccwang" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/2017-02-21/">「統計解析のための線形代数」復習筆記11</a></li>
+      
+      <li><a href="/post/2017-02-19/">「統計解析のための線形代数」復習筆記10</a></li>
+      
+      <li><a href="/post/2017-02-18/">「統計解析のための線形代数」復習筆記9</a></li>
+      
+      <li><a href="/post/2017-02-17/">「統計解析のための線形代数」復習筆記8</a></li>
+      
+      <li><a href="/post/2017-02-16/">「統計解析のための線形代数」復習筆記7</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+    
+    <script src="/js/mathjax-config.js"></script>
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha256-1zu+3BnLYV9LdiY85uXMzii3bdrkelyp37e0ZyTAQh0=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+        
+      
+
+      
+      
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://ccwang.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.01f68d44d80310e669a1731b68a35481.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    © 2017-2024 Chaochen Wang | 王超辰 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
